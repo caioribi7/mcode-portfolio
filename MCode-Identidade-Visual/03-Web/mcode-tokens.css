@@ -1,0 +1,10 @@
+:root {
+  --mcode-neon: #A3FF12;
+  --mcode-ink: #0B100D;
+  --mcode-paper: #F1F5EF;
+  --mcode-surface: #111A14;
+  --mcode-muted: #829488;
+  --mcode-border: #2A332D;
+  --mcode-font: "Segoe UI", Arial, sans-serif;
+  --mcode-font-code: Consolas, "Courier New", monospace;
+}

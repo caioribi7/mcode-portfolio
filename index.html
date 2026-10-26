@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0B100D">
+  <meta name="description" content="MCode — design e código com personalidade. Explore uma vitrine de experiências digitais, interfaces e identidades.">
+  <title>MCode — Design encontra código.</title>
+  <link rel="icon" href="MCode-Identidade-Visual/03-Web/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/anton.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="refinements.css">
+  <script src="app.mjs" type="module"></script>
+  <script src="logo-animation.mjs" type="module"></script>
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+<svg class="svg-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><symbol id="arrow" viewBox="0 0 24 24"><path d="M5 19 19 5M5 5h14v14"/></symbol><symbol id="plus" viewBox="0 0 24 24"><path d="M12 4v16M4 12h16"/></symbol><symbol id="pause" viewBox="0 0 24 24"><path d="M9 5v14M15 5v14"/></symbol><symbol id="play" viewBox="0 0 24 24"><path d="m8 5 11 7-11 7Z"/></symbol><symbol id="asterisk" viewBox="0 0 24 24"><path d="M12 2v20M2 12h20M5 5l14 14M5 19 19 5"/></symbol></svg>
+<header class="masthead">
+  <a class="brand" href="#inicio" aria-label="MCode — início"><img src="MCode-Identidade-Visual/01-Logos-SVG/mcode-horizontal-cor-escuro.svg" width="220" height="66" alt="MCode"></a>
+  <p class="masthead-note">Design encontra código.<br>O resto é consequência.</p>
+  <button class="menu-toggle" aria-controls="nav" aria-expanded="false">Menu <svg aria-hidden="true"><use href="#plus"/></svg></button>
+  <nav id="nav" aria-label="Navegação principal"><a href="#trabalhos">Trabalhos</a><a href="#estudio">Estúdio</a><a class="nav-contact" href="#contato">Vamos conversar <svg><use href="#arrow"/></svg></a></nav>
+</header>
+<main id="conteudo">
+<section class="hero" id="inicio" aria-labelledby="hero-title">
+  <div class="logo-stage">
+    <canvas id="logo-canvas" width="560" height="347" role="img" aria-label="Símbolo da MCode em três dimensões, com extrusão e textura halftone verde"><img src="MCode-Identidade-Visual/01-Logos-SVG/mcode-simbolo-verde.svg" alt="Símbolo MCode" width="256" height="256"></canvas>
+    <button id="logo-motion" class="motion-button" type="button" aria-pressed="false"><svg aria-hidden="true"><use href="#pause"/></svg><span>Pausar rotação</span></button>
+  </div>
+  <div class="hero-heading"><div class="tape">Design • Código • Conversão</div><h1 id="hero-title"><span class="filled">FORA</span><span class="outlined">DA</span><span class="filled last-word">CAIXA<span class="neon-dot">.</span></span></h1></div>
+  <div class="hero-bottom"><p>Interfaces que você sente. <br>Experiências que você lembra.<br><span>Isso é MCode.</span></p><a class="solid-button" href="#trabalhos">Explore os trabalhos <svg><use href="#arrow"/></svg></a><a class="scroll-link" href="#trabalhos"><span>ROLE PARA DESCOBRIR</span><svg viewBox="0 0 24 24"><path d="M12 3v18M5 14l7 7 7-7"/></svg></a></div>
+</section>
+<div class="ticker" aria-label="Design, desenvolvimento e direção criativa"><div><span>DESIGN</span><svg aria-hidden="true"><use href="#asterisk"/></svg><span class="ticker-outline">DESENVOLVIMENTO</span><svg aria-hidden="true"><use href="#asterisk"/></svg><span>DIREÇÃO CRIATIVA</span></div></div>
+<section class="work section-shell" id="trabalhos" aria-labelledby="work-title">
+  <div class="section-heading"><h2 id="work-title">MENOS PAPO.<br><span class="outlined">MAIS PROJETO.</span></h2><p>Uma amostra do que acontece <br>quando a ideia sai da caixa.<br><span class="honesty">Projetos conceituais · conteúdo demonstrativo</span></p></div>
+  <div class="work-grid">
+    <a class="project project-orbit" href="#projeto-orbit" aria-label="Conheça Órbita, projeto conceitual de interface"><div class="project-art orbit-art"><div class="mock-top"><b>órbita®</b><span>MOVE DIFFERENT.</span></div><div class="orbit-title">O PRÓXIMO<br><em>MOVIMENTO.</em></div><svg class="orbital-art" viewBox="0 0 500 350" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="270" cy="175" rx="150" ry="118"/><ellipse cx="270" cy="175" rx="112" ry="118"/><ellipse cx="270" cy="175" rx="55" ry="118"/><ellipse cx="270" cy="175" rx="150" ry="48"/><ellipse cx="270" cy="175" rx="150" ry="89"/><path d="M120 175h300M270 57v236"/></g></svg><span class="mock-bottom">MARCA EM MOVIMENTO. DIGITAL POR NATUREZA.</span><span class="project-open"><svg><use href="#arrow"/></svg></span></div><div class="project-caption"><h3>Órbita</h3><span>Interface & desenvolvimento</span></div></a>
+    <a class="project project-frame" href="#projeto-frame" aria-label="Conheça Frame, projeto conceitual editorial"><div class="project-art frame-art"><div class="mock-top"><b>FRAME—</b><span>UM OUTRO OLHAR.</span></div><img src="assets/artwork.jpg" alt="Natureza-morta de flores em uma composição editorial" width="1000" height="1305" loading="lazy"><div class="frame-title">ART<br><span>IS A</span><br>FEELING.</div><span class="frame-label">UM ESPAÇO PARA O INESPERADO.</span><span class="project-open"><svg><use href="#arrow"/></svg></span></div><div class="project-caption"><h3>Frame</h3><span>Direção de arte & experiência web</span></div></a>
+    <a class="project project-pulse" href="#projeto-pulse" aria-label="Conheça Pulse, projeto conceitual de identidade"><div class="project-art pulse-art"><div class="mock-top"><b>PULSE®</b><span>SEM MODO SILENCIOSO.</span></div><div class="pulse-type">MAKE<br><span>SOME</span><br>NOISE.</div><svg class="pulse-wave" viewBox="0 0 600 130" aria-hidden="true"><path d="M0 65h70l14-20 16 40 16-68 18 94 20-108 20 120 19-108 20 86 18-58 18 22h60l15-28 19 56 20-78 20 98 18-115 20 124 20-102 19 74 17-48 18 24h70" fill="none" stroke="currentColor" stroke-width="4"/></svg><span class="mock-bottom">CULTURA INDEPENDENTE. PRESENÇA DIGITAL.</span><span class="project-open"><svg><use href="#arrow"/></svg></span></div><div class="project-caption"><h3>Pulse</h3><span>Identidade & landing page</span></div></a>
+  </div>
+  <div class="project-details" aria-label="Detalhes dos projetos conceituais">
+    <details id="projeto-orbit"><summary>Por dentro de Órbita <svg><use href="#plus"/></svg></summary><p>Estudo conceitual de uma marca em movimento: tipografia direta, navegação enxuta e uma esfera vetorial criada para esta composição. Exemplo demonstrativo de interface e desenvolvimento, sem vínculo com um cliente real.</p></details>
+    <details id="projeto-frame"><summary>Por dentro de Frame <svg><use href="#plus"/></svg></summary><p>Exploração editorial para uma galeria de arte: imagem em primeiro plano, escala tipográfica e espaço para respirar. Projeto demonstrativo com imagem de acervo via Unsplash; não é um trabalho contratado.</p></details>
+    <details id="projeto-pulse"><summary>Por dentro de Pulse <svg><use href="#plus"/></svg></summary><p>Exercício de identidade para uma plataforma cultural: lettering de impacto, preto, branco e um ritmo gráfico que atravessa a página. Conceito fictício, disponível para substituição por um case real.</p></details>
+  </div>
+</section>
+<section class="studio section-shell" id="estudio" aria-labelledby="studio-title"><div class="studio-title"><h2 id="studio-title">BOM DESIGN<br>CHAMA ATENÇÃO.<br><span>BOM CÓDIGO</span><br><span class="outlined">SEGURA ELA.</span></h2><img src="MCode-Identidade-Visual/01-Logos-SVG/mcode-simbolo-verde.svg" alt="" width="256" height="256" loading="lazy"></div><div class="studio-copy"><p class="studio-lead">O encontro entre<br>o visual e o funcional.</p><p>A MCode é o espaço onde ideias ganham forma digital. Do primeiro rascunho à última interação, design e desenvolvimento fazem parte da mesma conversa.</p><div class="services"><details open><summary>Design de interfaces <svg><use href="#plus"/></svg></summary><p>Sites e experiências digitais pensados como um todo — composição, navegação e cada pequeno detalhe.</p></details><details><summary>Desenvolvimento web <svg><use href="#plus"/></svg></summary><p>Interfaces responsivas com atenção a desempenho, acessibilidade e à experiência em diferentes telas.</p></details><details><summary>Identidade digital <svg><use href="#plus"/></svg></summary><p>Uma linguagem visual coerente para a marca se expressar no digital, da tipografia ao movimento.</p></details></div><span class="content-note">Apresentação e serviços ilustrativos, a personalizar.</span></div></section>
+<section class="contact section-shell" id="contato" aria-labelledby="contact-title"><div class="contact-heading"><h2 id="contact-title">TEM UMA IDEIA?<br><span class="outlined">TIRA DO PAPEL.</span></h2><p>Conte o que você está imaginando.<br>O primeiro passo é uma boa conversa.</p></div><form id="brief-form"><div class="form-row"><label>Seu nome<input name="name" autocomplete="name" required maxlength="100" placeholder="Como podemos te chamar?"></label><label>Seu e-mail<input type="email" name="email" autocomplete="email" required maxlength="254" placeholder="voce@exemplo.com"></label></div><label>Sua ideia<textarea name="idea" required minlength="10" maxlength="3000" rows="3" placeholder="O que você quer criar? Conte um pouco do projeto."></textarea></label><div class="form-bottom"><p>Este formulário prepara um briefing, mas não envia mensagens.<br>O contato oficial da MCode será adicionado aqui.</p><button class="solid-button" type="submit">Preparar meu briefing <svg><use href="#arrow"/></svg></button></div><div class="brief-result" id="brief-result" hidden><label>Seu briefing está pronto<textarea id="brief-text" readonly rows="7"></textarea></label><button class="text-button" id="copy-brief" type="button">Copiar briefing <svg><use href="#arrow"/></svg></button><p id="copy-status" role="status" aria-live="polite"></p></div></form></section>
+</main>
+<footer><a class="footer-brand" href="#inicio" aria-label="MCode — voltar ao início"><img src="MCode-Identidade-Visual/01-Logos-SVG/mcode-horizontal-cor-escuro.svg" width="220" height="66" alt="MCode"></a><p>FEITO COM INTENÇÃO.<br>DESENVOLVIDO PARA MARCAR.</p><a href="#inicio">Voltar ao topo <svg><use href="#arrow"/></svg></a><span class="footer-note">MCode · Portfólio conceitual</span></footer>
+</body>
+</html>

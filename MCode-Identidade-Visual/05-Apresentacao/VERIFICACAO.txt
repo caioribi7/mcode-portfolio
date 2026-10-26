@@ -1,0 +1,4 @@
+Verificação: 24 SVGs com XML válido; 48 PNGs com dimensões verificadas; mestres sem texto vivo, raster ou efeitos.
+Inspeção visual: painel, versões claras/escuras, capa e escalas reduzidas.
+Favicon de 16 px: desenho com área útil ampliada em relação ao avatar.
+Sem prova física de impressão ou pesquisa de marca.

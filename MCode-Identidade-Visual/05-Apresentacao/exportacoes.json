@@ -1,0 +1,290 @@
+[
+  {
+    "file": "02-Logos-PNG\\mcode-horizontal-cor-escuro-1024px.png",
+    "width": 1024,
+    "height": 279,
+    "alpha": true
+  },
+  {
+    "file": "02-Logos-PNG\\mcode-horizontal-cor-escuro-2048px.png",
+    "width": 2048,
+    "height": 558,
+    "alpha": true
+  },
+  {
+    "file": "02-Logos-PNG\\mcode-horizontal-cor-claro-1024px.png",
+    "width": 1024,
+    "height": 279,
+    "alpha": true
+  },
+  {
+    "file": "02-Logos-PNG\\mcode-horizontal-cor-claro-2048px.png",
+    "width": 2048,
+    "height": 558,
+    "alpha": true
+  },
+  {
+    "file": "02-Logos-PNG\\mcode-horizontal-preto-1024px.png",
+    "width": 1024,
+    "height": 279,
+    "alpha": true
+  },
+  {
+    "file": "02-Logos-PNG\\mcode-horizontal-preto-2048px.png",
+    "width": 2048,
+    "height": 558,
+    "alpha": true
+  },
+  {
+    "file": "02-Logos-PNG\\mcode-horizontal-branco-1024px.png",
+    "width": 1024,
+    "height": 279,
+    "alpha": true
+  },
+  {
+    "file": "02-Logos-PNG\\mcode-horizontal-branco-2048px.png",
+    "width": 2048,
+    "height": 558,
+    "alpha": true
+  },
+  {
+    "file": "02-Logos-PNG\\mcode-horizontal-verde-1024px.png",
+    "width": 1024,
+    "height": 279,
+    "alpha": true
+  },
+  {
+    "file": "02-Logos-PNG\\mcode-horizontal-verde-2048px.png",
+    "width": 2048,
+    "height": 558,
+    "alpha": true
+  },
+  {
+    "file": "02-Logos-PNG\\mcode-vertical-cor-escuro-1024px.png",
+    "width": 1024,
+    "height": 700,
+    "alpha": true
+  },
+  {
+    "file": "02-Logos-PNG\\mcode-vertical-cor-escuro-2048px.png",
+    "width": 2048,
+    "height": 1399,
+    "alpha": true
+  },
+  {
+    "file": "02-Logos-PNG\\mcode-vertical-cor-claro-1024px.png",
+    "width": 1024,
+    "height": 700,
+    "alpha": true
+  },
+  {
+    "file": "02-Logos-PNG\\mcode-vertical-cor-claro-2048px.png",
+    "width": 2048,
+    "height": 1399,
+    "alpha": true
+  },
+  {
+    "file": "02-Logos-PNG\\mcode-vertical-preto-1024px.png",
+    "width": 1024,
+    "height": 700,
+    "alpha": true
+  },
+  {
+    "file": "02-Logos-PNG\\mcode-vertical-preto-2048px.png",
+    "width": 2048,
+    "height": 1399,
+    "alpha": true
+  },
+  {
+    "file": "02-Logos-PNG\\mcode-vertical-branco-1024px.png",
+    "width": 1024,
+    "height": 700,
+    "alpha": true
+  },
+  {
+    "file": "02-Logos-PNG\\mcode-vertical-branco-2048px.png",
+    "width": 2048,
+    "height": 1399,
+    "alpha": true
+  },
+  {
+    "file": "02-Logos-PNG\\mcode-vertical-verde-1024px.png",
+    "width": 1024,
+    "height": 700,
+    "alpha": true
+  },
+  {
+    "file": "02-Logos-PNG\\mcode-vertical-verde-2048px.png",
+    "width": 2048,
+    "height": 1399,
+    "alpha": true
+  },
+  {
+    "file": "02-Logos-PNG\\mcode-simbolo-cor-escuro-1024px.png",
+    "width": 1024,
+    "height": 1024,
+    "alpha": true
+  },
+  {
+    "file": "02-Logos-PNG\\mcode-simbolo-cor-escuro-2048px.png",
+    "width": 2048,
+    "height": 2048,
+    "alpha": true
+  },
+  {
+    "file": "02-Logos-PNG\\mcode-simbolo-cor-claro-1024px.png",
+    "width": 1024,
+    "height": 1024,
+    "alpha": true
+  },
+  {
+    "file": "02-Logos-PNG\\mcode-simbolo-cor-claro-2048px.png",
+    "width": 2048,
+    "height": 2048,
+    "alpha": true
+  },
+  {
+    "file": "02-Logos-PNG\\mcode-simbolo-preto-1024px.png",
+    "width": 1024,
+    "height": 1024,
+    "alpha": true
+  },
+  {
+    "file": "02-Logos-PNG\\mcode-simbolo-preto-2048px.png",
+    "width": 2048,
+    "height": 2048,
+    "alpha": true
+  },
+  {
+    "file": "02-Logos-PNG\\mcode-simbolo-branco-1024px.png",
+    "width": 1024,
+    "height": 1024,
+    "alpha": true
+  },
+  {
+    "file": "02-Logos-PNG\\mcode-simbolo-branco-2048px.png",
+    "width": 2048,
+    "height": 2048,
+    "alpha": true
+  },
+  {
+    "file": "02-Logos-PNG\\mcode-simbolo-verde-1024px.png",
+    "width": 1024,
+    "height": 1024,
+    "alpha": true
+  },
+  {
+    "file": "02-Logos-PNG\\mcode-simbolo-verde-2048px.png",
+    "width": 2048,
+    "height": 2048,
+    "alpha": true
+  },
+  {
+    "file": "02-Logos-PNG\\mcode-assinatura-cor-escuro-1024px.png",
+    "width": 1024,
+    "height": 355,
+    "alpha": true
+  },
+  {
+    "file": "02-Logos-PNG\\mcode-assinatura-cor-escuro-2048px.png",
+    "width": 2048,
+    "height": 709,
+    "alpha": true
+  },
+  {
+    "file": "02-Logos-PNG\\mcode-assinatura-cor-claro-1024px.png",
+    "width": 1024,
+    "height": 355,
+    "alpha": true
+  },
+  {
+    "file": "02-Logos-PNG\\mcode-assinatura-cor-claro-2048px.png",
+    "width": 2048,
+    "height": 709,
+    "alpha": true
+  },
+  {
+    "file": "02-Logos-PNG\\mcode-assinatura-preto-1024px.png",
+    "width": 1024,
+    "height": 355,
+    "alpha": true
+  },
+  {
+    "file": "02-Logos-PNG\\mcode-assinatura-preto-2048px.png",
+    "width": 2048,
+    "height": 709,
+    "alpha": true
+  },
+  {
+    "file": "02-Logos-PNG\\mcode-assinatura-branco-1024px.png",
+    "width": 1024,
+    "height": 355,
+    "alpha": true
+  },
+  {
+    "file": "02-Logos-PNG\\mcode-assinatura-branco-2048px.png",
+    "width": 2048,
+    "height": 709,
+    "alpha": true
+  },
+  {
+    "file": "02-Logos-PNG\\mcode-assinatura-verde-1024px.png",
+    "width": 1024,
+    "height": 355,
+    "alpha": true
+  },
+  {
+    "file": "02-Logos-PNG\\mcode-assinatura-verde-2048px.png",
+    "width": 2048,
+    "height": 709,
+    "alpha": true
+  },
+  {
+    "file": "04-Social\\mcode-avatar-1024.png",
+    "width": 1024,
+    "height": 1024,
+    "alpha": true
+  },
+  {
+    "file": "03-Web\\favicon-16.png",
+    "width": 16,
+    "height": 16,
+    "alpha": true
+  },
+  {
+    "file": "03-Web\\favicon-32.png",
+    "width": 32,
+    "height": 32,
+    "alpha": true
+  },
+  {
+    "file": "03-Web\\favicon-48.png",
+    "width": 48,
+    "height": 48,
+    "alpha": true
+  },
+  {
+    "file": "03-Web\\apple-touch-icon.png",
+    "width": 180,
+    "height": 180,
+    "alpha": true
+  },
+  {
+    "file": "03-Web\\icon-192.png",
+    "width": 192,
+    "height": 192,
+    "alpha": true
+  },
+  {
+    "file": "03-Web\\icon-512.png",
+    "width": 512,
+    "height": 512,
+    "alpha": true
+  },
+  {
+    "file": "04-Social\\mcode-capa-social-1584.png",
+    "width": 1584,
+    "height": 396,
+    "alpha": true
+  }
+]

@@ -1,0 +1,21 @@
+# Local captures and generated design-review evidence
+.impeccable/review/
+.impeccable/mocks/
+.impeccable/build/
+.impeccable/config.local.json
+
+# Credentials and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Runtime, editor and operating-system files
+node_modules/
+__pycache__/
+*.log
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

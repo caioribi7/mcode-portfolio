@@ -1,0 +1,204 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-26T05:56:27.755093+00:00",
+  "title": "Design System: MCode",
+  "extensions": {
+    "colorMeta": {
+      "bg": {
+        "role": "neutral",
+        "displayName": "Green-tinted near-black"
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Off-white"
+      },
+      "accent": {
+        "role": "primary",
+        "displayName": "Acid-green"
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Supporting gray-green"
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Quiet separator"
+      },
+      "field-line": {
+        "role": "neutral",
+        "displayName": "Field bottom rule"
+      },
+      "field-placeholder": {
+        "role": "neutral",
+        "displayName": "Contact placeholder"
+      },
+      "contact-note": {
+        "role": "neutral",
+        "displayName": "Contact explanatory copy"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "purpose": "Desktop foreground h1; responsive overrides documented in DESIGN.md."
+      },
+      "headline": {
+        "purpose": "Work section headline."
+      },
+      "body": {
+        "purpose": "Default reading rhythm."
+      },
+      "label": {
+        "purpose": "Labels and desktop navigation."
+      },
+      "button": {
+        "purpose": "Primary action; 600 requested from a single 400 font face."
+      },
+      "field": {
+        "purpose": "Desktop inputs; 16px on mobile."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "navigation-underline",
+        "value": "transform .25s",
+        "purpose": "Left-origin underline on hover."
+      },
+      {
+        "name": "primary-action",
+        "value": "background .22s,color .22s,transform .22s",
+        "purpose": "Primary actions."
+      },
+      {
+        "name": "disclosure-icon",
+        "value": "transform .2s",
+        "purpose": "Plus rotates when details opens."
+      },
+      {
+        "name": "logo-rotation-cycle",
+        "value": "12000ms",
+        "purpose": "Exact MCode contours extruded 48 units, CPU-projected 3D geometry with luminance-driven #a3ff12 halftone on Canvas 2D; fixed tilt, 30fps draw cap and 600px internal width cap."
+      },
+      {
+        "name": "logo-motion-constraints",
+        "value": "pause/resume; reduced motion; visibility/offscreen suspension",
+        "purpose": "aria-pressed=true means paused. Reduced motion starts paused on a static rendered frame; preference changes update pause state, with explicit resume available. Suspend while hidden or offscreen; resume without advancing elapsed time."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "mobile-max",
+        "value": "700px"
+      },
+      {
+        "name": "tablet-max",
+        "value": "1050px"
+      },
+      {
+        "name": "wide-min",
+        "value": "1700px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary action",
+      "kind": "button",
+      "description": "Flat accent action; default, hover and keyboard focus.",
+      "html": "<button class=\"ds-button\">Explore os trabalhos <svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 19 19 5M5 5h14v14\"/></svg></button>",
+      "css": ".ds-button{display:inline-flex;align-items:center;justify-content:space-between;gap:40px;min-height:58px;padding:15px 23px;border:1px solid var(--accent,#a3ff12);border-radius:0;background:var(--accent,#a3ff12);color:var(--bg,#0b100d);font:600 16px/1.5 var(--body,Barlow,\"Segoe UI\",sans-serif);cursor:pointer;transition:background .22s,color .22s,transform .22s}.ds-button:hover{background:var(--ink,#f1f5ef);border-color:var(--ink,#f1f5ef)}.ds-button svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:square;stroke-linejoin:miter;transition:transform .22s}.ds-button:hover svg{transform:translate(2px,-2px)}.ds-button:focus-visible,.ds-nav a:focus-visible,.ds-card:focus-visible,.ds-disclosure summary:focus-visible{outline:2px solid var(--accent,#a3ff12);outline-offset:6px}@media(prefers-reduced-motion:reduce){.ds-button,.ds-button svg{transition:none}}",
+      "refersTo": "button-primary"
+    },
+    {
+      "name": "Contact action",
+      "kind": "button",
+      "description": "Inverted action on the accent field.",
+      "html": "<div class=\"ds-contact\"><button class=\"ds-button\">Preparar meu briefing <svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 19 19 5M5 5h14v14\"/></svg></button></div>",
+      "css": ".ds-button{display:inline-flex;align-items:center;justify-content:space-between;gap:40px;min-height:58px;padding:15px 23px;border:1px solid var(--accent,#a3ff12);border-radius:0;background:var(--accent,#a3ff12);color:var(--bg,#0b100d);font:600 16px/1.5 var(--body,Barlow,\"Segoe UI\",sans-serif);cursor:pointer;transition:background .22s,color .22s,transform .22s}.ds-button:hover{background:var(--ink,#f1f5ef);border-color:var(--ink,#f1f5ef)}.ds-button svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:square;stroke-linejoin:miter;transition:transform .22s}.ds-button:hover svg{transform:translate(2px,-2px)}.ds-button:focus-visible,.ds-nav a:focus-visible,.ds-card:focus-visible,.ds-disclosure summary:focus-visible{outline:2px solid var(--accent,#a3ff12);outline-offset:6px}@media(prefers-reduced-motion:reduce){.ds-button,.ds-button svg{transition:none}}.ds-contact{padding:24px;background:var(--accent,#a3ff12)}.ds-contact .ds-button{background:var(--bg,#0b100d);border-color:var(--bg,#0b100d);color:var(--ink,#f1f5ef)}.ds-contact .ds-button:hover{background:var(--ink,#f1f5ef);border-color:var(--ink,#f1f5ef);color:var(--bg,#0b100d)}.ds-contact .ds-button:focus-visible{outline-color:var(--bg,#0b100d)}",
+      "refersTo": "button-contact"
+    },
+    {
+      "name": "Copy brief action",
+      "kind": "button",
+      "description": "Underlined text action; clipboard behavior remains in app.mjs.",
+      "html": "<div class=\"ds-copy-surface\"><button class=\"ds-copy\">Copiar briefing <svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 19 19 5M5 5h14v14\"/></svg></button></div>",
+      "css": ".ds-copy-surface{padding:24px;background:var(--accent,#a3ff12);color:var(--bg,#0b100d)}.ds-copy{display:inline-flex;align-items:center;gap:30px;background:none;border:0;border-bottom:1px solid currentColor;border-radius:0;padding:12px 0;color:inherit;font:18px/1.5 var(--body,Barlow,\"Segoe UI\",sans-serif);cursor:pointer}.ds-copy svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:square;stroke-linejoin:miter}.ds-copy:focus-visible{outline:2px solid var(--bg,#0b100d);outline-offset:6px}",
+      "refersTo": "button-text"
+    },
+    {
+      "name": "Enquiry field",
+      "kind": "input",
+      "description": "Labelled transparent input on green; native validation.",
+      "html": "<div class=\"ds-field-surface\"><label class=\"ds-label\">Seu nome<input class=\"ds-field\" name=\"name\" autocomplete=\"name\" required maxlength=\"100\" placeholder=\"Como podemos te chamar?\"></label></div>",
+      "css": ".ds-field-surface{padding:24px;background:var(--accent,#a3ff12);color:var(--bg,#0b100d)}.ds-label{display:block;font:14px/1.5 var(--body,Barlow,\"Segoe UI\",sans-serif)}.ds-field{display:block;width:100%;border:0;border-radius:0;border-bottom:1px solid #3c6515;background:transparent;padding:16px 0;color:var(--bg,#0b100d);font:19px/1.5 var(--body,Barlow,\"Segoe UI\",sans-serif);caret-color:var(--bg,#0b100d)}.ds-field::placeholder{color:#38531c;opacity:1}.ds-field:focus{outline:2px solid var(--bg,#0b100d);outline-offset:6px}@media(max-width:700px){.ds-field{font-size:16px}}",
+      "refersTo": "field"
+    },
+    {
+      "name": "Desktop navigation",
+      "kind": "nav",
+      "description": "Inline links and left-origin hover underline; mobile toggle belongs to app.mjs.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Navegação principal\"><a href=\"#trabalhos\">Trabalhos</a><a href=\"#estudio\">Estúdio</a><a class=\"ds-nav-contact\" href=\"#contato\">Vamos conversar <svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 19 19 5M5 5h14v14\"/></svg></a></nav>",
+      "css": ".ds-nav{display:flex;align-items:center;gap:34px;padding:24px;background:var(--bg,#0b100d);color:var(--ink,#f1f5ef);font:14px/1.5 var(--body,Barlow,\"Segoe UI\",sans-serif)}.ds-nav a{position:relative;padding:12px 0;color:inherit;text-decoration:none}.ds-nav a:after{content:\"\";position:absolute;height:1px;left:0;right:0;bottom:7px;background:var(--accent,#a3ff12);transform:scaleX(0);transform-origin:left;transition:transform .25s}.ds-nav a:hover:after{transform:scaleX(1)}.ds-nav .ds-nav-contact{display:flex;gap:18px;align-items:center;color:var(--accent,#a3ff12)}.ds-nav svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:square;stroke-linejoin:miter}.ds-button:focus-visible,.ds-nav a:focus-visible,.ds-card:focus-visible,.ds-disclosure summary:focus-visible{outline:2px solid var(--accent,#a3ff12);outline-offset:6px}@media(prefers-reduced-motion:reduce){.ds-nav a:after{transition:none}}",
+      "refersTo": "navigation"
+    },
+    {
+      "name": "Project disclosure",
+      "kind": "custom",
+      "description": "Native keyboard-operable details row with rotating inline SVG.",
+      "html": "<details class=\"ds-disclosure\"><summary>Por dentro de Órbita <svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 4v16M4 12h16\"/></svg></summary><p>Estudo conceitual de uma marca em movimento: tipografia direta, navegação enxuta e uma esfera vetorial criada para esta composição. Exemplo demonstrativo de interface e desenvolvimento, sem vínculo com um cliente real.</p></details>",
+      "css": ".ds-disclosure{background:var(--bg,#0b100d);color:var(--ink,#f1f5ef);border-bottom:1px solid var(--line,#2a332d);font:18px/1.5 var(--body,Barlow,\"Segoe UI\",sans-serif)}.ds-disclosure summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:24px;min-height:72px;padding:20px 0;font-size:17px}.ds-disclosure summary::-webkit-details-marker{display:none}.ds-disclosure summary:hover{color:var(--accent,#a3ff12)}.ds-disclosure svg{width:18px;height:18px;flex-shrink:0;fill:none;stroke:currentColor;stroke-width:1.5;transition:transform .2s}.ds-disclosure[open]>summary svg{transform:rotate(45deg)}.ds-disclosure p{max-width:68ch;margin:0;padding:0 45px 26px 0;color:var(--muted,#a7b1aa);font-size:16px;line-height:1.65}.ds-button:focus-visible,.ds-nav a:focus-visible,.ds-card:focus-visible,.ds-disclosure summary:focus-visible{outline:2px solid var(--accent,#a3ff12);outline-offset:6px}@media(prefers-reduced-motion:reduce){.ds-disclosure svg{transition:none}}",
+      "refersTo": "disclosure"
+    },
+    {
+      "name": "Project link shell",
+      "kind": "card",
+      "description": "Source-derived square arrow and separate caption shell; artwork-only green colors are not main brand tokens. Active refinements.css overrides styles.css; project hover does not brighten artwork.",
+      "html": "<a class=\"ds-card\" href=\"#projeto-orbit\"><div class=\"ds-card-art\"><span class=\"ds-card-open\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 19 19 5M5 5h14v14\"/></svg></span></div><div class=\"ds-card-caption\"><h3>Órbita</h3><span>Interface &amp; desenvolvimento</span></div></a>",
+      "css": ".ds-card{display:block;min-width:0;background:var(--bg,#0b100d);color:var(--ink,#f1f5ef);text-decoration:none;font:18px/1.5 var(--body,Barlow,\"Segoe UI\",sans-serif)}.ds-card-art{height:440px;position:relative;overflow:hidden;background:#172319;border:1px solid #31412b;filter:none}.ds-card:hover .ds-card-art{filter:none}.ds-card-open{position:absolute;right:22px;bottom:22px;width:46px;height:46px;background:var(--ink,#f1f5ef);color:var(--bg,#0b100d);display:grid;place-items:center;transition:background .2s,transform .2s}.ds-card-open svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:square;stroke-linejoin:miter}.ds-card:hover .ds-card-open{background:var(--accent,#a3ff12);transform:translate(2px,-2px)}.ds-card-caption{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-top:16px}.ds-card-caption h3{margin:0;font-size:22px;font-weight:400}.ds-card-caption>span{font-size:13px;color:var(--muted,#a7b1aa)}.ds-button:focus-visible,.ds-nav a:focus-visible,.ds-card:focus-visible,.ds-disclosure summary:focus-visible{outline:2px solid var(--accent,#a3ff12);outline-offset:6px}@media(max-width:700px){.ds-card-art{height:390px}.ds-card-caption h3{font-size:21px}.ds-card-caption>span{font-size:12px}}@media(prefers-reduced-motion:reduce){.ds-card-art,.ds-card-open{transition:none}}"
+    },
+    {
+      "name": "Rotation control",
+      "kind": "button",
+      "description": "Static paused-state control preview only; runtime behavior belongs to logo-animation.mjs. In the live hero, this controls the 48-unit extruded, 12-second Canvas 2D halftone logo in a stage separate from headlines. aria-pressed=true means paused.",
+      "html": "<button class=\"ds-motion\" type=\"button\" aria-pressed=\"true\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"m8 5 11 7-11 7Z\"/></svg><span>Retomar rotação</span></button>",
+      "css": ".ds-motion{display:inline-flex;align-items:center;gap:9px;min-height:44px;padding:8px 0 8px 12px;border:0;background:transparent;color:var(--muted,#a7b1aa);font:12px/1.5 var(--body,Barlow,\"Segoe UI\",sans-serif);cursor:pointer}.ds-motion svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:square;stroke-linejoin:miter}.ds-motion:hover{color:var(--accent,#a3ff12)}.ds-motion:focus-visible{outline:2px solid var(--accent,#a3ff12);outline-offset:6px}@media(max-width:700px){.ds-motion{font-size:11px;padding:8px 10px;white-space:nowrap}}@media(prefers-reduced-motion:reduce){.ds-motion{animation:none;transition:none}}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The digital-studio poster",
+    "overview": "The implemented portfolio is a disciplined digital-studio poster on near-black, punctuated by acid-green fields and oversized condensed lettering. Filled and outlined words share the same headline. The exact MCode symbol geometry is extruded 48 units and rotates in a 12-second loop, rendered through CPU-projected 3D geometry and a luminance-driven halftone pass on Canvas 2D. Its own stage sits above the off-white tape and semantic headline; artwork, text and controls have separate space, with no anime character or collage.\n\nThe visual world is pinned, not a proposal for a new identity. This record describes `index.html`, with `refinements.css` loaded AFTER `styles.css` as the active override layer. Interaction lives in `app.mjs`, `brief.mjs` and `logo-animation.mjs`; exact symbol contours and extrusion live in `logo-geometry.mjs`. Original identity SVGs remain unchanged; only the derivative 3D scene rotates. Inactive ghost-window, character and collage CSS rules are legacy residue, not the current interface or design system.",
+    "keyCharacteristics": [
+      "Near-black canvas, off-white reading text and acid-green emphasis.",
+      "Local Anton display lettering paired with local Barlow reading text.",
+      "Sharp controls, thin separators and asymmetric project artboards.",
+      "A separate halftone logo stage above readable headline, work, studio and enquiry bands."
+    ],
+    "rules": [
+      {
+        "name": "The Inversion Rule",
+        "body": "On the green contact field, text, field focus and outlines switch to dark ink; the action becomes dark with off-white text.",
+        "section": "colors"
+      },
+      {
+        "name": "The Filled/Outline Rule",
+        "body": "Use the same condensed family for filled and transparent stroked words. The hero uses a 2px off-white stroke on desktop and 1.3px on mobile; ordinary outlined headings use 1.2px, while contact headings use a dark 1.3px stroke.",
+        "section": "typography"
+      }
+    ],
+    "dos": [
+      "Do preserve the near-black, off-white and acid-green roles, including the full green contact field.",
+      "Do pair local Anton display type with Barlow reading text and retain the OFL notices.",
+      "Do preserve filled/outlined headline contrast, square controls and thin section rules.",
+      "Do retain semantic links, native disclosures, visible focus and reduced-motion behavior.",
+      "Do preserve the exact logo contours, 48-unit extrusion, 12-second loop and accessible pause control in their own stage.",
+      "Do keep conceptual content and the non-sending contact limitation explicit until replaced with verified content and functionality."
+    ],
+    "donts": [
+      "Don't replace the pinned green/black filled-and-outline poster identity with a generic rounded-card or gradient landing page.",
+      "Don't apply decorative hero microcopy sizes to real navigation or reading text.",
+      "Don't turn artwork-specific palettes, dimensions or inactive ghost-window rules into main brand tokens or reusable component rules.",
+      "Don't reintroduce anime characters, collage layers or artwork/text collisions; the former character asset has been deleted.",
+      "Don't claim a brief was sent, invent a contact destination or remove concept labels without real replacement evidence."
+    ]
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "brand": "MCode",
+  "brief": "Identidade digital com monograma MC, geometria modular e verde neon. Segmento de tecnologia adotado como contexto visual.",
+  "adjectives": [
+    "precisa",
+    "direta",
+    "tecnológica"
+  ],
+  "industry": "software",
+  "brand_color": "#A3FF12",
+  "tile_color": "#0B100D",
+  "greyscale": false,
+  "final": true,
+  "round": 3,
+  "nav": [
+    "Projetos",
+    "Sobre",
+    "Contato"
+  ],
+  "concepts": [
+    {
+      "name": "Módulo MC",
+      "symbol": "../01-Logos-SVG/mcode-simbolo-preto.svg",
+      "lockup": "../01-Logos-SVG/mcode-horizontal-preto.svg",
+      "stacked": "../01-Logos-SVG/mcode-vertical-preto.svg",
+      "symbol_on_dark": "../01-Logos-SVG/mcode-simbolo-cor-escuro.svg",
+      "symbol_on_tile": "../01-Logos-SVG/mcode-simbolo-cor-escuro.svg",
+      "lockup_on_dark": "../01-Logos-SVG/mcode-horizontal-cor-escuro.svg",
+      "stacked_on_tile": "../01-Logos-SVG/mcode-vertical-cor-escuro.svg",
+      "idea": "As iniciais M e C formam um monograma modular, com barra inferior alinhada à concavidade interna do M.",
+      "rationale": [
+        "Acento verde neon em contraste com fundo quase preto.",
+        "Tipografia original desenhada em curvas, sem dependência de fonte.",
+        "Geometria simples e versões monocromáticas para diferentes aplicações."
+      ]
+    }
+  ],
+  "recommendation": "Usar a assinatura horizontal como versão principal e o símbolo isolado em avatares e ícones.",
+  "next_steps": [
+    "Aplicar os arquivos conforme o guia de identidade."
+  ]
+}
