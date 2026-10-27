@@ -171,13 +171,17 @@ The rotation control is a quiet Barlow text button (12px desktop, 11px mobile), 
 
 ### Project artboards
 
-Project links are image-led rectangular artboards with separate title/category captions and a square diagonal-arrow affordance (46px). Hover leaves artwork brightness unchanged and translates the arrow affordance. Clicking opens the matching native project disclosure and follows its anchor; there is no modal or separate case-study route. Artwork heights are surface-specific, not a universal card token. Keep the explicit conceptual-project descriptions. The active artwork height is 440px (Pulse: 420px), becoming 390px for all three on mobile. Frame image and headline remain in separate columns; artwork captions sit in reserved bottom bands (26px above the bottom, with room for the arrow). Keep Pulse at its reduced type size and hide its waveform at 700px and below.
+Project links are image-led rectangular artboards with separate title/category captions and a square diagonal-arrow affordance (46px). Hover leaves artwork brightness unchanged and translates the arrow affordance. Clicking opens the matching native project disclosure and follows its anchor; there is no modal or separate case-study route. Artwork heights are surface-specific, not a universal card token. Keep the explicit conceptual-project descriptions. The active artwork height is 440px (Pulse: 420px), becoming 390px for all three on mobile. Frame uses `assets/frame-composition.svg`, a code-authored geometric still life (green disc, dark arch and terracotta vase) without external resources. Its palette belongs only to this artwork. Frame image and headline remain in separate columns; artwork captions sit in reserved bottom bands (26px above the bottom, with room for the arrow). Keep Pulse at its reduced type size and hide its waveform at 700px and below.
 
 ### Inputs / Fields
 
 Contact labels sit above transparent, square-edged inputs and resizable textareas with dark bottom rules. Placeholder and explanatory copy use their dedicated dark-green roles. Fields focus with a 2px dark outline, offset 6px. Mobile input type becomes 16px. Validation uses native HTML requirements and limits, not a custom error component.
 
-Submitting prepares a readonly brief locally, reveals its result, focuses the textarea and announces that nothing was sent. Copy uses the Clipboard API; failure selects the text and announces manual-copy instructions. No destination, email service or backend is implemented.
+The brief controls are grouped in a borderless, zero-padding fieldset, initially disabled in HTML. A visible availability notice explains the JavaScript dependency. The script installs the native-submit guard first, then enables the group and hides the notice only when initialization completes. Direct label spacing is retained on the fieldset at desktop and mobile breakpoints. Submitting prepares a readonly brief locally, reveals its result, focuses the textarea and announces that nothing was sent. Copy uses the Clipboard API; failure selects the text and announces manual-copy instructions. No destination, email service or backend is implemented.
+
+### Not-found page
+
+`404.html` reuses local fonts, existing page colors and the solid button without JavaScript. Its heading uses a scoped responsive size to fit narrow screens. Stylesheet and home links are root-relative so the hosted error page can work at nested missing URLs. Custom error routing and its HTTP status must be checked on the hosting provider; the Python preview uses its default error body.
 
 ### Navigation
 

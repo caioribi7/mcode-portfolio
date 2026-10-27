@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="900" viewBox="0 0 600 900">
+  <title>Frame — estudo de formas e equilíbrio</title>
+  <desc>Composição geométrica com disco verde, arco escuro e vaso terracota sobre fundo claro.</desc>
+  <rect width="600" height="900" fill="#e8e1d5"/>
+  <path d="M0 680H600V900H0Z" fill="#c9bfae"/>
+  <circle cx="365" cy="240" r="158" fill="#a3ff12"/>
+  <path d="M65 680V340a145 145 0 0 1 290 0v340h-76V340a69 69 0 0 0-138 0v340Z" fill="#17251d"/>
+  <ellipse cx="359" cy="720" rx="180" ry="27" fill="#17251d" opacity=".18"/>
+  <path d="M315 446h106v96c0 38 85 55 85 130a138 138 0 0 1-276 0c0-75 85-92 85-130Z" fill="#b56146"/>
+  <path d="M368 446h53v96c0 38 85 55 85 130 0 76-62 138-138 138Z" fill="#944733"/>
+  <ellipse cx="368" cy="446" rx="53" ry="12" fill="#17251d"/>
+  <path d="M259 661c0-44 42-63 65-84" fill="none" stroke="#e8e1d5" stroke-width="8" stroke-linecap="round"/>
+  <path d="M46 834H554" fill="none" stroke="#17251d" stroke-width="2"/>
+  <circle cx="49" cy="857" r="5" fill="#17251d"/>
+  <path d="M514 857h40m-20-20v40" fill="none" stroke="#17251d" stroke-width="2"/>
+</svg>

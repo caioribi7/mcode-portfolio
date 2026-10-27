@@ -20,15 +20,30 @@ python -m http.server 4173 --bind 127.0.0.1
 
 Abra `http://127.0.0.1:4173` no navegador. O comando serve os arquivos somente na interface local; encerre com Ctrl+C. Use HTTP local para carregar os módulos, não abra apenas o HTML com `file://`. Se a porta já estiver ocupada pela prévia, use o servidor existente ou encerre-o antes de iniciar outro.
 
+## Pacote público local
+
+Com Node.js instalado, prepare uma cópia dos arquivos públicos:
+
+```sh
+node scripts/prepare-site.mjs
+python -m http.server 4174 --bind 127.0.0.1 --directory dist
+```
+
+Abra `http://127.0.0.1:4174`. O diretório `dist/` é gerado e ignorado pelo Git. O script copia 16 arquivos por lista explícita, incluindo as licenças das fontes e somente três SVGs da identidade. Não compila, transforma nem minifica o front-end. Execute novamente após alterar arquivos públicos; a prévia da raiz na porta 4173 continua disponível para desenvolvimento.
+
+Documentação, testes, histórico Git e arquivos locais ficam fora do pacote. O script recusa links simbólicos e arquivos/diretórios inesperados em `dist/`, sem removê-los automaticamente. Em caso de recusa, revise os caminhos informados antes de limpar qualquer arquivo manualmente. Novos assets públicos exigem atualização da lista `PUBLIC_FILES` em `scripts/prepare-site.mjs`.
+
+`404.html` é a página de erro preparada para hospedagem. A prévia Python permite visualizá-la em `/404.html`, mas usa sua própria página de erro para URLs inexistentes e não aplica `_headers`. A apresentação da 404 e os headers reais precisam ser verificados no provedor. Não há deploy configurado nesta etapa; não publique a raiz do repositório.
+
 ## Testes
 
 Com Node.js instalado, na raiz do projeto:
 
 ```sh
-node --test tests/*.test.mjs
+node --test
 ```
 
-Os testes existentes estão em `tests/site.test.mjs`, `tests/brief.test.mjs` e `tests/logo.test.mjs`. Verificam a página, o briefing, os contornos/extrusão e a periodicidade da rotação. Essa execução não substitui revisão visual e testes de navegador.
+Os testes estão em `tests/`: verificam a página, o briefing, a geometria/rotação do logo, a faixa de texto, a inicialização segura do formulário e o pacote público. Os testes do pacote verificam exclusão de arquivos locais, referências a assets, atualização das cópias e recusa de conteúdo inesperado. Os testes do formulário simulam controles e eventos em Node; não substituem revisão visual e testes em navegadores reais.
 
 ## Arquivos principais
 
@@ -39,6 +54,10 @@ Os testes existentes estão em `tests/site.test.mjs`, `tests/brief.test.mjs` e `
 - `logo-animation.mjs`: projeção em perspectiva e iluminação de faces, seguida de halftone em Canvas 2D; não é uma imagem plana girando em CSS. Loop de 12 segundos, botão de pausa, respeito a movimento reduzido e suspensão fora de tela.
 - `app.mjs`: menu móvel, abertura dos detalhes de projetos, preparação e cópia do briefing.
 - `brief.mjs`: formatação do texto do briefing.
+- `404.html`: página de erro sem dependência de JavaScript.
+- `scripts/prepare-site.mjs`: cópia por lista explícita para `dist/`, sem transformação do front-end.
+- `assets/frame-composition.svg`: composição geométrica usada no projeto conceitual Frame.
+- `assets/README.md`: registro de origem dos assets e licenças.
 - `assets/fonts/`: Anton e Barlow em TTF, acompanhadas de `OFL-Anton.txt` e `OFL-Barlow.txt`.
 - `MCode-Identidade-Visual/`: identidade fornecida e preservada; não alterar os originais.
 - `PRODUCT.md`: contexto e limitações do produto.
@@ -62,10 +81,12 @@ O formulário não tem backend, serviço de e-mail nem destino de contato config
 
 A cópia automática depende da Clipboard API e das permissões/contexto do navegador. Em caso de falha, o texto é selecionado e a interface orienta a cópia manual. Não remova o aviso de não envio nem altere a mensagem para “enviado” sem implementar e verificar um destino real. Sem JavaScript, não há preparação/cópia do briefing; não trate o formulário como um canal de contato funcional.
 
+Os campos e botões do briefing ficam dentro de um `fieldset` desativado no HTML. O JavaScript registra primeiro a prevenção do envio nativo e habilita o grupo somente ao terminar a inicialização dos controles. Sem JavaScript ou em caso de falha na inicialização, os campos continuam desativados e um aviso explica a dependência. Isso evita coletar e enviar campos pela submissão HTML padrão nesse modo local. O formulário ainda não tem destino real; POST e envio sem JavaScript fazem parte da futura integração do Formspree.
+
 ## Imagens e direitos: pendência antes de lançamento público comercial
 
 O personagem foi removido, inclusive de `assets/`. O destaque atual é uma animação procedural do próprio símbolo da MCode, cujos contornos reproduzem as coordenadas do SVG aprovado. Os arquivos originais da identidade não foram modificados. A extrusão e a rotação são uma aplicação derivada solicitada pelo usuário, não uma alteração do desenho mestre.
 
-A imagem de natureza-morta em `assets/artwork.jpg` é identificada na página como imagem de acervo via Unsplash. Confira sua proveniência, licença e adequação ao uso pretendido antes de publicar ou substituir. Metadados de proveniência não equivalem a autorização ou liberação de direitos. Ao substituir imagens, registre a origem e preserve os avisos de licença aplicáveis.
+A fotografia de flores anteriormente atribuída ao Unsplash foi substituída por `assets/frame-composition.svg`, uma composição geométrica escrita em SVG nesta alteração, com assistência do Codex, sem recursos externos. A origem está registrada em [assets/README.md](assets/README.md). O arquivo antigo foi removido da árvore atual e pode continuar no histórico Git. Ao substituir imagens, registre a origem e preserve os avisos de licença aplicáveis. A confirmação de titularidade/autorização comercial da identidade MCode pelos responsáveis continua pendente no planejamento.
 
 As licenças OFL das fontes acompanham os arquivos locais. A identidade visual original continua preservada. Este README não afirma implantação, publicação ou prontidão comercial; descreve apenas a implementação e o uso local.

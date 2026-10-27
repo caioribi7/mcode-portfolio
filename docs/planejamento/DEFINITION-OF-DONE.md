@@ -10,6 +10,7 @@ Documentos relacionados: [Roadmap](ROADMAP.md) e [Política de Segurança](SECUR
 
 ## Registro de lançamento
 
+- Nomes públicos informados: **mwteus** e **caioribi7**; funções e atribuições de lançamento pendentes.
 - Responsável pela publicação:
 - Revisor:
 - Domínio:
@@ -20,16 +21,28 @@ Documentos relacionados: [Roadmap](ROADMAP.md) e [Política de Segurança](SECUR
 
 Campos vazios ou pendências não equivalem a aprovação.
 
+## Evidências de acompanhamento
+
+Revisão local de 27/10/2026: projetos identificados como conceitos e arquivos originais da identidade sem alterações desde o commit inicial `0e9718b`. As evidências e pendências comerciais estão no [passo 1 do Roadmap](ROADMAP.md#1-escopo-comercial).
+
+Na mesma data, a fotografia de flores foi substituída por [frame-composition.svg](../../assets/frame-composition.svg). A origem da nova composição está registrada em [assets/README.md](../../assets/README.md); referências, dimensões, texto alternativo e descrição de Frame foram atualizados.
+
+Itens marcados refletem essa revisão e precisam ser reconferidos no commit de lançamento. A revisão não representa aprovação comercial, validação dos direitos de uso ou publicação em produção.
+
+Proteção do briefing local implementada: fieldset desativado no HTML, prevenção de envio nativo registrada primeiro e habilitação somente ao terminar a inicialização. Testes de Node cobrem falhas e o fluxo de cópia. A revisão em navegadores reais e os critérios do futuro contato via Formspree permanecem pendentes.
+
+Pacote local preparado por `scripts/prepare-site.mjs`: 16 arquivos em `dist/`, incluindo `404.html` e licenças das fontes. Testes verificam exclusão de arquivos locais, integridade das cópias e dependências. Isso não conclui os requisitos abaixo de hospedagem, headers, domínio ou CI/CD.
+
 ## Conteúdo e direitos
 
 - [ ] Apresentação da MCode aprovada pelos dois responsáveis.
 - [ ] Serviços correspondem ao que a equipe efetivamente oferece.
-- [ ] Órbita, Frame e Pulse continuam identificados como conceitos.
+- [x] Órbita, Frame e Pulse continuam identificados como conceitos.
 - [ ] Não existem clientes, resultados, métricas ou depoimentos fictícios.
 - [ ] Origem e condições de uso dos assets publicados estão registradas.
-- [ ] Pendência de `assets/artwork.jpg` resolvida ou imagem substituída.
+- [x] Imagem de flores de `assets/artwork.jpg` substituída, conforme decisão registrada no Roadmap, com referências, texto alternativo e atribuição atualizados.
 - [ ] Licenças das fontes acompanham os arquivos publicados.
-- [ ] Originais da identidade visual preservados.
+- [x] Originais da identidade visual preservados.
 
 ## Infraestrutura
 
@@ -102,7 +115,8 @@ Campos vazios ou pendências não equivalem a aprovação.
 
 ## Desempenho e apresentação
 
-- [ ] Fontes em WOFF2 e imagem otimizada.
+- [ ] Fontes em WOFF2, com caracteres necessários e licenças preservados.
+- [x] Arte atual de Frame em SVG leve e sem recursos externos; novas imagens raster, se adicionadas, precisam de otimização adequada.
 - [ ] Compressão HTTP confirmada.
 - [ ] HTML e arquivos sem versão usam revalidação.
 - [ ] Cache `immutable` é usado somente para URLs versionadas.

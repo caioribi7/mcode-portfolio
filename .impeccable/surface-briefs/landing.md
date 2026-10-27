@@ -17,4 +17,13 @@ FORM: User-pinned reference, refined by explicit request for less clutter and a 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
 
 ## Honest content
-All showcased projects are original conceptual HTML compositions, clearly labelled. No client claims, invented conversion metrics or fake contact addresses. Contact form prepares a copyable brief; it never sends it.
+
+All showcased projects are conceptual compositions, clearly labelled. No client claims, invented conversion metrics or fake contact addresses. The current JavaScript flow prepares a copyable brief without sending a message to MCode. Briefing controls start inside a disabled fieldset; JavaScript installs the native-submit guard first and enables the group only after initialization. Without JavaScript or on initialization failure the disabled group and availability notice remain. Browser verification is pending.
+
+## Project artwork
+
+Frame uses `assets/frame-composition.svg`, a code-authored geometric composition with a green disc, dark arch and terracotta vase. It replaces the flower photograph. Keep the image in the existing right-hand column, with headline and caption separate. Origin is recorded in `assets/README.md`; the artwork colors are not global design tokens. Visual review of the replacement in desktop and mobile browsers remains pending.
+
+## Planned contact transition
+
+The v1.0 roadmap permits a real Formspree contact flow once the destination and privacy information are defined and delivery/error handling are verified. Update the UI and this contract together when that happens. Keep current limitations explicit until the integration works; the no-send behavior is current state, not a permanent product requirement.

@@ -1,5 +1,9 @@
 import { buildBrief } from './brief.mjs';
 
+// Install the network guard before initializing any optional interaction.
+const form = document.querySelector('#brief-form');
+form.addEventListener('submit', (event) => event.preventDefault());
+
 const menuButton = document.querySelector('.menu-toggle');
 const navigation = document.querySelector('#nav');
 const setMenu = (open) => {
@@ -24,7 +28,6 @@ for (const link of document.querySelectorAll('.project')) {
   });
 }
 
-const form = document.querySelector('#brief-form');
 const briefResult = document.querySelector('#brief-result');
 const briefText = document.querySelector('#brief-text');
 const status = document.querySelector('#copy-status');
@@ -36,6 +39,7 @@ form.addEventListener('submit', (event) => {
   status.textContent = 'Briefing preparado. Nenhuma mensagem foi enviada.';
   briefText.focus();
 });
+
 document.querySelector('#copy-brief').addEventListener('click', async () => {
   try {
     await navigator.clipboard.writeText(briefText.value);
@@ -46,3 +50,7 @@ document.querySelector('#copy-brief').addEventListener('click', async () => {
     status.textContent = 'Não foi possível copiar automaticamente. O texto está selecionado: use Ctrl+C ou a opção Copiar do seu dispositivo.';
   }
 });
+
+// Fail closed: HTML starts disabled and remains so if initialization fails.
+document.querySelector('#brief-fields').disabled = false;
+document.querySelector('#brief-availability').hidden = true;

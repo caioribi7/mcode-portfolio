@@ -14,11 +14,21 @@ Portfolio landing page for MCode. Present a distinctive creative technology prac
 ## Users
 Prospective clients browsing the studio portfolio. Specific audience and service offerings remain unconfirmed.
 
+## Public Contributors
+
+The user confirmed the public pseudonyms **mwteus** and **caioribi7**. Roles, target audience, verified services, official contact and budget are deferred decisions; do not infer them from usernames or sample content.
+
 ## Capabilities and Constraints
 User explicitly approved generic content to replace later. Every project is a clearly labelled conceptual demonstration, not a client case. No fabricated metrics, customers, testimonials or production claims. No verified contact destination: enquiry must say it does not send messages and allow copying a brief instead.
+
+This describes the current implementation, not a permanent prohibition on contact integration. The v1.0 plan is Cloudflare Pages, Formspree and GitHub Actions; requirements and launch gates live in `docs/planejamento/`. A real submission flow requires a verified destination, privacy information and demonstrated success/error handling before changing the current non-sending copy. Briefing controls now start in a disabled fieldset; a native-submit guard is installed first and controls are enabled only after initialization succeeds. Without JavaScript the controls remain disabled and show an explanation. Native POST contact without JavaScript remains a future requirement.
+
+An explicit copy script, `scripts/prepare-site.mjs`, prepares the public files and font licenses in ignored `dist/`, without compiling the front-end. It includes a standalone 404 page, excludes internal documentation and copies only used identity assets. Hosting, headers and CI are not configured yet.
 
 ## Brand Commitments
 Preserve MCode-Identidade-Visual unchanged. Use its approved SVG logos, neon #A3FF12, near-black #0B100D, off-white #F1F5EF. Reference image supplied: print-inspired typography, oversized condensed lettering and outlined text. User refinement replaces the anime character and busy collage with a faithful extruded MCode symbol rotating in 3D with neon halftone shading. Keep generous separation and prevent artwork captions colliding with headlines. Original logo files remain untouched; only the derivative 3D scene rotates. No third-party character art, gradients, generic SaaS cards or glow.
 
 ## Evidence on Hand
 Approved brand asset pack and IDENTIDADE-VISUAL.md. User supplied an aesthetic reference image. No real project assets or contact information yet.
+
+Frame now uses `assets/frame-composition.svg`, created directly in code with Codex assistance, instead of the former flower photograph. Provenance is recorded in `assets/README.md`. The artwork illustrates a conceptual editorial project; it is not evidence of a commissioned client case.

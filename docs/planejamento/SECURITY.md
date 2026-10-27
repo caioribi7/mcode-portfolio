@@ -6,6 +6,15 @@ Este documento define os requisitos de segurança do projeto. A existência dest
 
 Escopo: site estático no Cloudflare Pages e formulário processado pelo Formspree.
 
+### Estado atual verificado em 27/10/2026
+
+- Cloudflare Pages e Formspree são a arquitetura planejada; não há configuração de deploy, headers ou endpoint de contato implementada no checkout atual.
+- O formulário prepara um briefing local quando `app.mjs` funciona. Não envia mensagens à MCode. Campos e botões começam em um fieldset desativado; um aviso explica a dependência de JavaScript.
+- O script registra a prevenção da submissão nativa antes de inicializar os demais controles e só habilita os campos ao terminar. Sem JavaScript ou em caso de falha nessa inicialização, os dados não podem ser preenchidos pelos controles desativados. Testes de Node cobrem falhas de inicialização; verificação em navegadores reais continua pendente.
+- Ao integrar o Formspree, usar POST explícito para o endpoint aprovado e restaurar envio HTML básico sem JavaScript. A proteção atual é específica do briefing local, não uma integração de contato.
+- `scripts/prepare-site.mjs` delimita a publicação em `dist/` por lista explícita, inclui licenças e recusa links simbólicos e conteúdo inesperado no destino. A exclusão de arquivos locais não detecta segredos escritos no conteúdo de um arquivo público.
+- MFA, permissões e políticas das contas ainda precisam de verificação nos serviços; a documentação não comprova sua ativação.
+
 ## Princípios
 
 - Manter a superfície de ataque pequena.
