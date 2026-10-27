@@ -2,12 +2,20 @@
 
 Portfólio estático em português, implementado em HTML, CSS e módulos JavaScript nativos. Sem framework, gerenciador de pacotes ou etapa de build.
 
+## Planejamento da versão 1.0
+
+- [Roadmap](docs/planejamento/ROADMAP.md): seis passos de evolução e critérios de progresso.
+- [Política de segurança](docs/planejamento/SECURITY.md): requisitos de infraestrutura, formulário e privacidade.
+- [Definição de pronto](docs/planejamento/DEFINITION-OF-DONE.md): checklist de lançamento, limites de escopo e regra de parada.
+
+Esses documentos descrevem requisitos planejados. Não comprovam implantação nem controles já verificados.
+
 ## Prévia local
 
-Requer Python disponível como `python`. Execute:
+Requer Python disponível como `python`. Na raiz do projeto, execute:
 
 ```sh
-python -m http.server 4173 --bind 127.0.0.1 --directory C:/Users/caior/workspace/portfolio
+python -m http.server 4173 --bind 127.0.0.1
 ```
 
 Abra `http://127.0.0.1:4173` no navegador. O comando serve os arquivos somente na interface local; encerre com Ctrl+C. Use HTTP local para carregar os módulos, não abra apenas o HTML com `file://`. Se a porta já estiver ocupada pela prévia, use o servidor existente ou encerre-o antes de iniciar outro.
