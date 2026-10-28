@@ -18,7 +18,8 @@ let exporting = false;
 
 function resize() {
   // Fixed internal pixel budget keeps the halftone crisp without retina overdraw.
-  const width = Math.min(600, Math.round(canvas.getBoundingClientRect().width));
+  const rect = canvas.getBoundingClientRect();
+  const width = Math.min(600, Math.round(rect.width || 520));
   canvas.width = buffer.width = width;
   canvas.height = buffer.height = Math.round(width * 0.62);
   renderAt(elapsed);
