@@ -5,17 +5,17 @@
   "extensions": {
     "typographyMeta": {
       "display": {
-        "purpose": "Local Barlow 400, 54-96px desktop; synthetic weights disabled."
+        "purpose": "Local Anton 400, condensed headings inspired by the supplied Alethe reference; synthetic weights disabled."
       },
       "body": {
-        "purpose": "Local Barlow 400, 17-18px."
+        "purpose": "Local Space Grotesk variable, 17-18px; Geist Mono variable for navigation, terminals and metadata."
       }
     },
     "motion": [
       {
         "name": "logo",
         "value": "12000ms",
-        "purpose": "30fps cap; static under reduced motion; no pause control."
+        "purpose": "ASCII Matrix autoplay; continuous requestAnimationFrame loop at a 30fps draw cap; no reduced-motion or viewport pause; no pause control. Browser background throttling still applies."
       },
       {
         "name": "ribbon",
@@ -25,7 +25,17 @@
       {
         "name": "cursor",
         "value": "42ms exponential interpolation",
-        "purpose": "Fine mouse only; idle loop stops; native cursor for fields, keyboard and reduced motion."
+        "purpose": "Terminal corner target; fine mouse only; idle loop stops. Reduced motion tracks directly. Fields, keyboard and touch retain native cursor."
+      },
+      {
+        "name": "halftone-background",
+        "value": "90ms exponential response",
+        "purpose": "Canvas dots react to mouse movement and clicks; finite settling loop; static on touch and direct tracking under reduced motion."
+      },
+      {
+        "name": "projects-button",
+        "value": "600ms clip-path expansion",
+        "purpose": "Lime fill from arrow; arrow rotates and cycles on hover; keyboard focus also reveals fill."
       }
     ],
     "breakpoints": [
@@ -45,7 +55,7 @@
   },
   "components": [],
   "narrative": {
-    "northStar": "Lighter digital-studio typography with a terminal-framed halftone identity.",
+    "northStar": "Alethe-inspired condensed typography and a terminal-framed ASCII identity, with an interactive halftone background.",
     "overview": "See DESIGN.md and styles.css for the implemented visual contract. Public contact: mcode.contato@gmail.com. Local brief does not send messages. Original identity assets remain unchanged."
   }
 }

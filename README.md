@@ -2,13 +2,13 @@
 
 ## Refinamento de 28/10/2026
 
-A landing usa títulos em Barlow 400, logo halftone em uma janela de terminal sem botão de pausa, faixa contínua animada e cursor fluido para mouse. A barra de localização/status, a notificação flutuante e o texto técnico do rodapé foram removidos. Movimento reduzido mantém o logo e a faixa estáticos e usa o cursor nativo. Sem JavaScript ou Canvas 2D, o símbolo aparece como SVG.
+A landing usa títulos condensados em Anton, textos em Space Grotesk e detalhes em Geist Mono, logo ASCII com chuva de caracteres no estilo Matrix em uma janela de terminal sem botão de pausa, faixa contínua animada e cursor de mira/terminal e fundo halftone que reage ao mouse. A barra de localização/status, a notificação flutuante e o texto técnico do rodapé foram removidos. Por solicitação explícita, o logo ASCII inicia automaticamente e mantém o loop ativo mesmo com movimento reduzido. Essa preferência deixa a faixa estática; o cursor acompanha diretamente o mouse e o fundo responde sem ondulação. Em telas de toque, o fundo fica estático e o cursor é nativo. Sem JavaScript ou Canvas 2D, o símbolo aparece como SVG.
 
 O contato informado pelo responsável é **mcode.contato@gmail.com**. Os links abrem o aplicativo de e-mail; o formulário continua preparando um briefing local para copiar e colar na mensagem. O visitante precisa enviar o e-mail no próprio aplicativo. Não há confirmação de entrega, backend ou Formspree integrado.
 
-As regras ativas foram consolidadas em `styles.css`; `refinements.css` ficou como arquivo de compatibilidade. `cursor.mjs` é um módulo independente. Barlow e Anton são locais; Georgia e Consolas usam fallbacks instalados. Não há requisições ao Google Fonts.
+As regras ativas foram consolidadas em `styles.css`; `refinements.css` ficou como arquivo de compatibilidade. `cursor.mjs` e `halftone-background.mjs` são módulos independentes. O botão de projetos tem preenchimento verde expansivo e não usa o indicador // 01. Anton, Space Grotesk e Geist Mono são locais, com licenças OFL incluídas. A tipografia segue a referência visual da Alethe em `refs/`. O halftone em repouso usa opacidade de 18% para continuar visível longe do cursor. Não há requisições ao Google Fonts.
 
-O pacote agora contém 19 arquivos, incluindo `cursor.mjs`, `robots.txt` e `assets/social-preview.jpg`. As ferramentas de auditoria e screenshots ficam em `tmp/`, ignorado pelo Git e fora de `dist/`. Nenhuma dependência foi adicionada ao projeto. Veja `melhorias.md` para resultados, limitações e pendências de publicação.
+O pacote agora contém 24 arquivos, incluindo `cursor.mjs`, `robots.txt` e `assets/social-preview.jpg`. As ferramentas de auditoria e screenshots ficam em `tmp/`, ignorado pelo Git e fora de `dist/`. Nenhuma dependência foi adicionada ao projeto. Veja `melhorias.md` para resultados, limitações e pendências de publicação.
 
 Portfólio estático em português, implementado em HTML, CSS e módulos JavaScript nativos. Sem framework, gerenciador de pacotes ou etapa de build.
 
@@ -39,7 +39,7 @@ node scripts/prepare-site.mjs
 python -m http.server 4174 --bind 127.0.0.1 --directory dist
 ```
 
-Abra `http://127.0.0.1:4174`. O diretório `dist/` é gerado e ignorado pelo Git. O script copia 19 arquivos por lista explícita, incluindo as licenças das fontes e somente três SVGs da identidade. Não compila, transforma nem minifica o front-end. Execute novamente após alterar arquivos públicos; a prévia da raiz na porta 4173 continua disponível para desenvolvimento.
+Abra `http://127.0.0.1:4174`. O diretório `dist/` é gerado e ignorado pelo Git. O script copia 24 arquivos por lista explícita, incluindo as licenças das fontes e somente três SVGs da identidade. Não compila, transforma nem minifica o front-end. Execute novamente após alterar arquivos públicos; a prévia da raiz na porta 4173 continua disponível para desenvolvimento.
 
 Documentação, testes, histórico Git e arquivos locais ficam fora do pacote. O script recusa links simbólicos e arquivos/diretórios inesperados em `dist/`, sem removê-los automaticamente. Em caso de recusa, revise os caminhos informados antes de limpar qualquer arquivo manualmente. Novos assets públicos exigem atualização da lista `PUBLIC_FILES` em `scripts/prepare-site.mjs`.
 
@@ -61,7 +61,7 @@ Os testes estão em `tests/`: verificam a página, o briefing, a geometria/rota�
 - `styles.css`: fontes locais, tokens CSS, composição, estados, responsividade e redução de movimento.
 - `refinements.css`: arquivo de compatibilidade; regras ativas em `styles.css`.
 - `logo-geometry.mjs`: contornos fiéis ao símbolo SVG original, extrusão com faces e rotação 3D.
-- `logo-animation.mjs`: projeção em perspectiva e iluminação de faces, seguida de halftone em Canvas 2D; não é uma imagem plana girando em CSS. Loop de 12 segundos, sem controle de pausa, respeito a movimento reduzido e suspensão fora de tela.
+- `logo-animation.mjs`: projeção em perspectiva e iluminação de faces, seguida de caracteres ASCII e chuva de código em Canvas 2D; não é uma imagem plana girando em CSS. Loop de 12 segundos, sem controle de pausa, reprodução automática contínua; o navegador pode limitar frames em abas em segundo plano.
 - `app.mjs`: menu móvel, abertura dos detalhes de projetos, preparação e cópia do briefing.
 - `brief.mjs`: formatação do texto do briefing.
 - `404.html`: página de erro sem dependência de JavaScript.

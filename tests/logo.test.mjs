@@ -1,6 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { runInNewContext } from 'node:vm';
+import { extrudeLogo, rotatePoint, faceNormal } from '../logo-geometry.mjs';
 
 test('logo extrusion preserves the two original SVG contours and has front, back and depth', async () => {
  const { LOGO_CONTOURS, extrudeLogo } = await import('../logo-geometry.mjs');
@@ -26,4 +28,48 @@ test('hero uses the logo in a terminal without a pause control',()=>{
  assert.doesNotMatch(html,/id="logo-motion"/);
  assert.match(html,/logo-terminal-bar/);
  assert.doesNotMatch(html,/reference-character|class="character"/);
+});
+
+test('ASCII starts automatically and keeps animating regardless of reduced motion or viewport visibility', () => {
+ const frames = [];
+ const ctx = { clearRect() {}, fillText(character,x,y) { frames.push([character,x,y,this.fillStyle,this.globalAlpha]); } };
+ const surface = {
+  clearRect() {}, beginPath() {}, moveTo() {}, lineTo() {}, closePath() {}, fill() {},
+  getImageData(_x,_y,w,h) {
+   const data = new Uint8ClampedArray(w*h*4);
+   // A small solid mask exercises the logo glyphs separately from background rain.
+   for(let y=10;y<30;y++) for(let x=12;x<40;x++) {
+    const offset=(y*w+x)*4; data[offset]=200; data[offset+3]=255;
+   }
+   return { data };
+  },
+ };
+ const canvas = { dataset:{}, getContext:()=>ctx, getBoundingClientRect:()=>({width:120}) };
+ const scheduled = new Map();
+ let nextFrame = 0;
+ const window = {};
+ runInNewContext(readFileSync(new URL('../logo-animation.mjs',import.meta.url),'utf8').replace(/^import[^\n]*\n/,''), {
+  extrudeLogo, rotatePoint, faceNormal, window, Uint8ClampedArray,
+  document:{hidden:true,querySelector:()=>canvas,createElement:()=>({getContext:()=>surface}),addEventListener(){}},
+  matchMedia:()=>({matches:true,addEventListener(){}}),
+  IntersectionObserver:class {observe(){}}, ResizeObserver:class {observe(){}},
+  requestAnimationFrame(callback){scheduled.set(++nextFrame,callback);return nextFrame;},
+  cancelAnimationFrame(id){scheduled.delete(id);},
+ });
+ assert.equal(scheduled.size,1,'Animation starts immediately even when reduced motion is set');
+ assert.ok(Number(canvas.dataset.glyphs)>0);
+ const first = [...frames]; frames.length=0;
+ window.mcodeLogo.renderAt(0);
+ assert.deepEqual(frames,first);
+ frames.length=0;
+ window.mcodeLogo.renderAt(600);
+ assert.notDeepEqual(frames,first,'Rain and characters evolve with time');
+ assert.ok(frames.every(([character])=>/^[\x20-\x7E]$/.test(character)));
+ for (const time of [16, 64, 112]) {
+  const [id, callback] = scheduled.entries().next().value;
+  scheduled.delete(id);
+  callback(time);
+  assert.equal(scheduled.size,1,'Each frame schedules the next frame');
+ }
+ assert.ok(window.mcodeLogo.time>0,'Animation time advances without user interaction');
 });

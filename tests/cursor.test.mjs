@@ -51,8 +51,8 @@ test('cursor adapts to projects and links, and restores the native cursor for fi
   assert.equal(state.classes.has('cursor-ready'), false);
 });
 
-test('touch pointers and reduced motion keep the native cursor and do not schedule animation', () => {
-  for (const options of [{ reduced: true }, { fine: false }]) {
+test('touch pointers keep the native cursor and do not schedule animation', () => {
+  for (const options of [{ fine: false }]) {
     const state = setup(options);
     state.move();
     assert.equal(state.classes.has('cursor-ready'), false);
@@ -64,4 +64,13 @@ test('touch pointers and reduced motion keep the native cursor and do not schedu
   state.prefs.change();
   assert.equal(state.classes.has('cursor-ready'), false);
   assert.equal(state.frames.size, 0);
+});
+
+test('reduced motion still shows the terminal cursor but tracks directly without an animation loop', () => {
+  const state = setup({ reduced: true });
+  state.move('button');
+  assert.equal(state.classes.has('cursor-ready'), true);
+  assert.equal(state.cursor.dataset.mode, 'link');
+  assert.equal(state.frames.size, 0);
+  assert.equal(state.cursor.style.transform, 'translate3d(100px, 120px, 0)');
 });

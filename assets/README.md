@@ -16,6 +16,10 @@ Ao substituir a arte, atualizar a origem aqui, o texto alternativo e as dimensõ
 
 - Anton: [licença SIL OFL 1.1](fonts/OFL-Anton.txt), com identificação dos autores e repositório de origem.
 - Barlow: [licença SIL OFL 1.1](fonts/OFL-Barlow.txt), com identificação dos autores e repositório de origem.
+- Space Grotesk: texto e interface, arquivo variável `space-grotesk.ttf`, pesos 300–700. [Origem oficial](https://github.com/google/fonts/tree/main/ofl/spacegrotesk) e [licença OFL](fonts/OFL-SpaceGrotesk.txt).
+- Geist Mono: navegação, metadados e terminais, arquivo variável `geist-mono.ttf`, pesos 100–900. [Origem oficial](https://github.com/google/fonts/tree/main/ofl/geistmono) e [licença OFL](fonts/OFL-GeistMono.txt).
+
+As duas novas famílias foram obtidas do repositório oficial Google Fonts em 28/10/2026 e são servidas localmente, sem chamadas ao serviço de fontes durante o uso. A combinação visual se inspira na captura da Alethe em `refs/Captura de tela 2026-10-28 140314.png`; não afirma identificação exata das fontes da referência. Anton passou a compor os títulos principais; Barlow permanece como asset legado.
 
 Preservar as licenças ao publicar ou converter as fontes.
 

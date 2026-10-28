@@ -8,18 +8,15 @@ if (!ctx) {
   const buffer = document.createElement('canvas');
   const surface = buffer.getContext('2d', {willReadFrequently: true});
   const faces = extrudeLogo(48);
-  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
   const CYCLE_MS = 12000;
   let elapsed = 0;
   let previous = 0;
   let lastDraw = 0;
-  let inView = true;
-  let paused = reducedMotion.matches;
   let raf = 0;
   let exporting = false;
 
   function resize() {
-    // Fixed internal pixel budget keeps the halftone crisp without retina overdraw.
+    // Fixed pixel budget keeps the ASCII grid crisp without retina overdraw.
     const rect = canvas.getBoundingClientRect();
     const width = Math.min(600, Math.round(rect.width || 520));
     canvas.width = buffer.width = width;
@@ -59,53 +56,60 @@ if (!ctx) {
       surface.fill();
     }
     const pixels=surface.getImageData(0,0,w,h).data;
-    // A dense green underprint holds the real silhouette, then luminance drives dots.
-    ctx.globalAlpha=0.15;
-    ctx.drawImage(buffer,0,0);
-    ctx.globalCompositeOperation='source-in';
-    ctx.fillStyle='#a3ff12';ctx.fillRect(0,0,w,h);
-    ctx.globalCompositeOperation='source-over';ctx.globalAlpha=1;
-    const spacing = w < 380 ? 3 : 3.4;
-    ctx.fillStyle='#a3ff12';ctx.beginPath();
-    let dots=0;
-    for(let y=spacing/2;y<h;y+=spacing) {
-      for(let x=spacing/2;x<w;x+=spacing) {
-        const offset=(Math.floor(y)*w+Math.floor(x))*4;
-        if(pixels[offset+3]<150) continue;
-        const luminance=pixels[offset]/255;
-        const radius=spacing*(0.16+0.34*luminance);
-        ctx.moveTo(x+radius,y);ctx.arc(x,y,radius,0,Math.PI*2);dots++;
+    const cellWidth = Math.max(6, Math.round(w / 70));
+    const cellHeight = cellWidth * 1.5;
+    const columns = Math.floor(w / cellWidth);
+    const rows = Math.floor(h / cellHeight);
+    const phase = ((milliseconds % CYCLE_MS) + CYCLE_MS) % CYCLE_MS;
+    const tick = Math.floor(phase / 120);
+    const alphabet = '01MCD<>/{}[]=+:#';
+    const density = '.:+*#%@';
+    ctx.font = `${Math.round(cellHeight * 0.92)}px Consolas, monospace`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    let glyphs = 0;
+    for (let column = 0; column < columns; column++) {
+      const seed = (column * 7919 + 104729) % 65521;
+      const head = (phase / CYCLE_MS * (rows + 18) * (1 + column % 3) + seed % (rows + 18)) % (rows + 18);
+      for (let row = 0; row < rows; row++) {
+        const x = (column + 0.5) * cellWidth;
+        const y = (row + 0.5) * cellHeight;
+        const offset = (Math.floor(y) * w + Math.floor(x)) * 4;
+        const onLogo = pixels[offset + 3] > 150;
+        const trail = (head - row + rows + 18) % (rows + 18);
+        const rain = trail < 14 ? 1 - trail / 14 : 0;
+        if (!onLogo && !rain) continue;
+        const noise = (seed + row * 31 + tick * (1 + column % 4)) % alphabet.length;
+        const luminance = pixels[offset] / 255;
+        const character = onLogo && (row + column) % 3 === 0
+          ? density[Math.round(luminance * (density.length - 1))]
+          : alphabet[noise];
+        ctx.globalAlpha = onLogo ? 0.55 + luminance * 0.35 + rain * 0.1 : rain * 0.25;
+        ctx.fillStyle = onLogo && rain > 0.9 ? '#e1ffc4' : '#a3ff12';
+        ctx.fillText(character, x, y);
+        glyphs++;
       }
     }
-    ctx.fill();
+    ctx.globalAlpha = 1;
     canvas.dataset.rendered='true';
-    canvas.dataset.dots=String(dots);
+    canvas.dataset.glyphs=String(glyphs);
   }
 
   function loop(timestamp) {
     raf=0;
-    if(paused || !inView || document.hidden || exporting) {previous=0;return;}
+    if(exporting) {previous=0;return;}
     if(previous) elapsed+=Math.min(timestamp-previous,100);
     previous=timestamp;
     if(timestamp-lastDraw>=1000/30) {renderAt(elapsed);lastDraw=timestamp;}
     raf=requestAnimationFrame(loop);
   }
-  function wake() {if(!raf&&!paused&&inView&&!document.hidden&&!exporting)raf=requestAnimationFrame(loop);}
-  function setPaused(value) {
-    paused=value;previous=0;
-    if(paused&&raf) {cancelAnimationFrame(raf);raf=0;} else wake();
-  }
-  reducedMotion.addEventListener('change',()=>setPaused(reducedMotion.matches));
-  document.addEventListener('visibilitychange',()=>{previous=0;wake();});
-  new IntersectionObserver(([entry])=>{inView=entry.isIntersecting;previous=0;wake();},{threshold:0.05}).observe(canvas);
+  function wake() {if(!raf&&!exporting)raf=requestAnimationFrame(loop);}
   new ResizeObserver(resize).observe(canvas);
 
   // Deterministic capture interface used by regression tests and local video export.
   window.mcodeLogo={
     cycleMs:CYCLE_MS,
     renderAt,
-    setPaused,
-    get paused(){return paused;},
     get time(){return elapsed;},
     setExportMode(value){exporting=value;previous=0;if(value&&raf){cancelAnimationFrame(raf);raf=0;}else wake();},
   };

@@ -25,7 +25,7 @@ if (cursor && label) {
     x += dx * follow;
     y += dy * follow;
     const stretch = Math.min(Math.hypot(dx, dy) / 200, 0.22);
-    const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+    const angle = Math.max(-12, Math.min(12, dx * 0.15));
     cursor.style.transform = `translate3d(${x}px, ${y}px, 0)`;
     cursor.style.setProperty('--cursor-angle', `${angle}deg`);
     cursor.style.setProperty('--cursor-stretch', 1 + stretch);
@@ -34,7 +34,7 @@ if (cursor && label) {
   }
 
   document.addEventListener('pointermove', (event) => {
-    if (!finePointer.matches || reducedMotion.matches || event.pointerType !== 'mouse') {
+    if (!finePointer.matches || event.pointerType !== 'mouse') {
       hide();
       return;
     }
@@ -48,7 +48,15 @@ if (cursor && label) {
     const interactive = event.target.closest('a, button, summary');
     cursor.dataset.mode = project ? 'project' : interactive ? 'link' : 'default';
     label.textContent = project ? 'Explorar' : '';
-    if (!frame) frame = requestAnimationFrame(draw);
+    if (reducedMotion.matches) {
+      cancelAnimationFrame(frame);
+      frame = 0;
+      x = targetX;
+      y = targetY;
+      cursor.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+      cursor.style.setProperty('--cursor-angle', '0deg');
+      cursor.style.setProperty('--cursor-stretch', 1);
+    } else if (!frame) frame = requestAnimationFrame(draw);
     document.documentElement.classList.add('cursor-ready');
   }, { passive: true });
 

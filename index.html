@@ -20,13 +20,16 @@
   <meta name="twitter:description" content="Design e desenvolvimento para dar forma à sua presença digital.">
   <meta name="twitter:image" content="assets/social-preview.jpg">
   <link rel="icon" href="MCode-Identidade-Visual/03-Web/favicon.svg" type="image/svg+xml">
-  <link rel="preload" href="assets/fonts/barlow.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="assets/fonts/anton.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="assets/fonts/space-grotesk.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="stylesheet" href="styles.css">
   <script src="app.mjs" type="module"></script>
   <script src="logo-animation.mjs" type="module"></script>
   <script src="cursor.mjs" type="module"></script>
+  <script src="halftone-background.mjs" type="module"></script>
 </head>
 <body>
+<canvas id="halftone-background" aria-hidden="true"></canvas>
 <div class="custom-cursor" aria-hidden="true"><span class="cursor-dot"></span><span class="cursor-label"></span></div>
 <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 
@@ -75,20 +78,20 @@
       <h1 id="hero-title">
         <span class="hero-title-line">SUA MARCA.</span>
         <span class="hero-title-line hero-title-accent">
-          <em class="serif-accent">COM</em>
+          <em class="hero-word-accent">COM</em>
         </span>
         <span class="hero-title-line">PRESENÇA.</span>
       </h1>
     </div>
 
-    <!-- 3D Interactive Halftone Logo Stage -->
-    <div class="logo-stage" aria-label="Visualização 3D do símbolo MCode">
+    <!-- ASCII logo and Matrix-style character rain -->
+    <div class="logo-stage" aria-label="Animação ASCII do símbolo MCode">
       <div class="terminal-bar logo-terminal-bar" aria-hidden="true">
         <div class="terminal-dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
-        <span class="terminal-title">mcode — identidade em movimento</span>
+        <span class="terminal-title">mcode — ascii matrix</span>
         <svg><use href="#terminal"/></svg>
       </div>
-      <canvas id="logo-canvas" width="560" height="347" role="img" aria-label="Símbolo da MCode em três dimensões, com extrusão e textura halftone verde">
+      <canvas id="logo-canvas" width="560" height="347" role="img" aria-label="Símbolo MCode em caracteres ASCII verdes, com rotação 3D e chuva de código no estilo Matrix">
         <img src="MCode-Identidade-Visual/01-Logos-SVG/mcode-simbolo-verde.svg" alt="Símbolo MCode" width="256" height="256">
       </canvas>
       <img class="logo-fallback" src="MCode-Identidade-Visual/01-Logos-SVG/mcode-simbolo-verde.svg" alt="Símbolo MCode" width="256" height="256">
@@ -109,8 +112,7 @@
               <svg><use href="#arrow"/></svg>
             </span>
           </a>
-          <a class="secondary-button" href="#trabalhos">
-            <span class="btn-indicator">// 01</span>
+          <a class="secondary-button projects-button" href="#trabalhos">
             <span class="btn-text">Explorar os projetos</span>
             <span class="btn-arrow-bubble" aria-hidden="true">
               <svg><use href="#arrow-down"/></svg>
