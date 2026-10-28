@@ -438,69 +438,146 @@ svg {
 
 .hero-actions {
   display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.hero-btn-group {
+  display: flex;
   flex-direction: row;
-  gap: 14px;
   align-items: center;
+  gap: 16px;
   flex-wrap: wrap;
 }
 
-.solid-button {
+/* Common base geometry for unified optical rhythm */
+.solid-button,
+.secondary-button {
   display: inline-flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  padding: 14px 22px;
+  height: 52px;
+  border-radius: 999px;
+  font-family: var(--body);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  white-space: nowrap;
+  box-sizing: border-box;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+/* Inset icon circular bubble (Kauã Miguel & OpenClaw inspiration) */
+.btn-arrow-bubble {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+.btn-arrow-bubble svg {
+  width: 14px;
+  height: 14px;
+  stroke-width: 2;
+  transition: transform 0.25s ease;
+}
+
+/* Primary Button (Neon Lime Solid) */
+.solid-button {
   background: var(--accent);
   color: var(--bg);
   border: 1px solid var(--accent);
-  border-radius: 999px;
-  font-size: 15px;
-  font-weight: 400;
-  letter-spacing: 0.03em;
-  text-transform: none;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 0 8px 0 22px;
+  gap: 14px;
+  box-shadow: 0 4px 18px var(--accent-glow);
+}
+
+.solid-button .btn-arrow-bubble {
+  background: var(--bg);
+  color: var(--accent);
 }
 
 .solid-button:hover {
   background: #B9FF36;
+  border-color: #B9FF36;
   transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(163, 255, 18, 0.32);
 }
 
-.solid-button svg {
-  width: 18px;
-  height: 18px;
-  transition: transform 0.2s;
+.solid-button:hover .btn-arrow-bubble {
+  transform: scale(1.05);
 }
 
-.solid-button:hover svg {
-  transform: translate(3px, -3px);
+.solid-button:hover .btn-arrow-bubble svg {
+  transform: translate(2px, -2px);
 }
 
+/* Secondary Button — Engineered Tactical Glass (Matches OpenClaw & Kauã Miguel) */
 .secondary-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 14px;
-  padding: 14px 0;
-  background: transparent;
-  border: 0;
-  border-bottom: 1px solid var(--line-strong);
-  border-radius: 0;
+  background: rgba(17, 26, 20, 0.85);
+  backdrop-filter: blur(12px);
   color: var(--ink);
-  font-size: 14px;
-  font-weight: 400;
-  letter-spacing: 0.03em;
-  transition: all 0.2s;
+  border: 1px solid var(--line-strong);
+  padding: 0 8px 0 14px;
+  gap: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+}
+
+.secondary-button .btn-indicator {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent);
+  background: rgba(163, 255, 18, 0.08);
+  border: 1px solid rgba(163, 255, 18, 0.2);
+  border-radius: 4px;
+  padding: 3px 7px;
+  letter-spacing: 0.06em;
+  line-height: 1;
+}
+
+.secondary-button .btn-text {
+  color: var(--ink);
+  transition: color 0.2s ease;
+}
+
+.secondary-button .btn-arrow-bubble {
+  background: #152219;
+  border: 1px solid var(--line-strong);
+  color: var(--muted-light);
 }
 
 .secondary-button:hover {
-  border-color: var(--ink);
-  background: var(--panel-hover);
-  color: var(--accent);
+  background: rgba(22, 34, 26, 0.95);
+  border-color: var(--accent);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(163, 255, 18, 0.16);
 }
 
-.secondary-button svg {
-  width: 16px;
-  height: 16px;
+.secondary-button:hover .btn-text {
+  color: #FFFFFF;
+}
+
+.secondary-button:hover .btn-indicator {
+  background: rgba(163, 255, 18, 0.15);
+  border-color: var(--accent);
+}
+
+.secondary-button:hover .btn-arrow-bubble {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg);
+  transform: scale(1.05);
+}
+
+.secondary-button:hover .btn-arrow-bubble svg {
+  transform: translateY(2px);
 }
 
 /* Attributes Bar */

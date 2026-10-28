@@ -68,10 +68,6 @@
 <main id="conteudo">
 
   <section class="hero" id="inicio" aria-labelledby="hero-title">
-    <div class="corner-tick top-left" aria-hidden="true"></div>
-    <div class="corner-tick top-right" aria-hidden="true"></div>
-    <div class="corner-tick bottom-left" aria-hidden="true"></div>
-    <div class="corner-tick bottom-right" aria-hidden="true"></div>
 
 
     <!-- Monumental Typography with Editorial Accent Word -->
@@ -106,15 +102,21 @@
       </div>
 
       <div class="hero-actions">
-        <a class="solid-button hero-cta" href="#contato">
-          <span>Falar sobre meu projeto</span>
-          <svg aria-hidden="true"><use href="#arrow"/></svg>
-        </a>
-        <a class="secondary-button" href="#trabalhos">
-          <span>Explorar os projetos</span>
-          <svg aria-hidden="true"><use href="#arrow"/></svg>
-        </a>
-        <p class="cta-note">Conte sua ideia e fale com a gente por e-mail.</p>
+        <div class="hero-btn-group">
+          <a class="solid-button hero-cta" href="#contato">
+            <span class="btn-text">Preparar meu briefing</span>
+            <span class="btn-arrow-bubble" aria-hidden="true">
+              <svg><use href="#arrow"/></svg>
+            </span>
+          </a>
+          <a class="secondary-button" href="#trabalhos">
+            <span class="btn-indicator">// 01</span>
+            <span class="btn-text">Explorar os projetos</span>
+            <span class="btn-arrow-bubble" aria-hidden="true">
+              <svg><use href="#arrow-down"/></svg>
+            </span>
+          </a>
+        </div>
       </div>
     </div>
 
