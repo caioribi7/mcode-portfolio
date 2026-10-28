@@ -29,46 +29,18 @@ if (menuButton && navigation) {
 
 // Project links to expandable details
 for (const link of document.querySelectorAll('.project')) {
-  link.addEventListener('click', () => {
+  link.addEventListener('click', (event) => {
     const targetId = link.getAttribute('href');
     if (targetId && targetId.startsWith('#')) {
       const detail = document.querySelector(targetId);
-      if (detail && 'open' in detail) detail.open = true;
+      if (detail && 'open' in detail) {
+        event.preventDefault();
+        detail.open = true;
+        history.pushState(null, '', targetId);
+        detail.querySelector('summary')?.focus({ preventScroll: true });
+        detail.scrollIntoView();
+      }
     }
-  });
-}
-
-// Live Local Time in São Paulo (Kauã Miguel inspiration)
-function updateClock() {
-  const timeElem = document.querySelector('#local-time');
-  if (!timeElem) return;
-  try {
-    if (typeof Intl !== 'undefined' && Intl.DateTimeFormat) {
-      const formatter = new Intl.DateTimeFormat('pt-BR', {
-        timeZone: 'America/Sao_Paulo',
-        hour: '2-digit',
-        minute: '2-digit',
-        hour12: false,
-      });
-      timeElem.textContent = `${formatter.format(new Date())} BRT`;
-    } else {
-      timeElem.textContent = '14:02 BRT';
-    }
-  } catch {
-    timeElem.textContent = '14:02 BRT';
-  }
-}
-updateClock();
-if (typeof setInterval === 'function') {
-  setInterval(updateClock, 15000);
-}
-
-// Floating widget dismissal (OpenClaw inspiration)
-const floatingCard = document.querySelector('#floating-status-card');
-const closeFloatingBtn = document.querySelector('#close-floating-card');
-if (floatingCard && closeFloatingBtn) {
-  closeFloatingBtn.addEventListener('click', () => {
-    floatingCard.hidden = true;
   });
 }
 
@@ -93,7 +65,7 @@ if (copyBtn && briefText && status) {
   copyBtn.addEventListener('click', async () => {
     try {
       await navigator.clipboard.writeText(briefText.value);
-      status.textContent = 'Briefing copiado. Guarde o texto para compartilhar quando o canal oficial estiver disponível.';
+      status.textContent = 'Briefing copiado. Cole o texto no seu e-mail e envie para mcode.contato@gmail.com.';
     } catch {
       briefText.focus();
       briefText.select();

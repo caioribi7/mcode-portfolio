@@ -6,19 +6,28 @@
   <meta name="theme-color" content="#0B100D">
   <meta name="description" content="Sua marca tem algo a dizer. A MCode une design e desenvolvimento para dar forma à sua presença digital. Explore os conceitos e prepare seu briefing.">
   <title>MCode — Design e código para sua marca marcar presença.</title>
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="MCode">
+  <meta property="og:title" content="MCode — Sua marca. Com presença.">
+  <meta property="og:description" content="Design e desenvolvimento para dar forma à sua presença digital. Explore os projetos conceituais da MCode.">
+  <meta property="og:image" content="assets/social-preview.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="MCode: Sua marca. Com presença. Símbolo verde em uma janela de terminal.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MCode — Sua marca. Com presença.">
+  <meta name="twitter:description" content="Design e desenvolvimento para dar forma à sua presença digital.">
+  <meta name="twitter:image" content="assets/social-preview.jpg">
   <link rel="icon" href="MCode-Identidade-Visual/03-Web/favicon.svg" type="image/svg+xml">
-  <link rel="preload" href="assets/fonts/anton.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="preload" href="assets/fonts/barlow.ttf" as="font" type="font/ttf" crossorigin>
-  <!-- Google Fonts for editorial italic and precise mono accents (matches OpenClaw & Kauã Miguel refs) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="refinements.css">
   <script src="app.mjs" type="module"></script>
   <script src="logo-animation.mjs" type="module"></script>
+  <script src="cursor.mjs" type="module"></script>
 </head>
 <body>
+<div class="custom-cursor" aria-hidden="true"><span class="cursor-dot"></span><span class="cursor-label"></span></div>
 <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 
 <!-- Shared SVG Defs -->
@@ -26,33 +35,11 @@
   <symbol id="arrow" viewBox="0 0 24 24"><path d="M5 19 19 5M5 5h14v14"/></symbol>
   <symbol id="arrow-down" viewBox="0 0 24 24"><path d="M12 4v16M5 13l7 7 7-7"/></symbol>
   <symbol id="plus" viewBox="0 0 24 24"><path d="M12 4v16M4 12h16"/></symbol>
-  <symbol id="pause" viewBox="0 0 24 24"><path d="M9 5v14M15 5v14"/></symbol>
-  <symbol id="play" viewBox="0 0 24 24"><path d="m8 5 11 7-11 7Z"/></symbol>
   <symbol id="asterisk" viewBox="0 0 24 24"><path d="M12 2v20M2 12h20M5 5l14 14M5 19 19 5"/></symbol>
   <symbol id="crosshair" viewBox="0 0 16 16"><path d="M8 1v14M1 8h14"/></symbol>
   <symbol id="terminal" viewBox="0 0 24 24"><path d="m4 17 6-6-6-6M12 19h8"/></symbol>
   <symbol id="copy-icon" viewBox="0 0 24 24"><rect width="13" height="13" x="9" y="9" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
-  <symbol id="close" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
 </svg>
-
-<!-- Architectural Top Status Bar (Inspired by Kauã Miguel reference) -->
-<aside class="status-grid-bar" aria-label="Informações de estúdio e status">
-  <div class="status-cell">
-    <span class="meta-label">BASE</span>
-    <span class="meta-val">São Paulo, BR</span>
-  </div>
-  <div class="status-cell">
-    <span class="meta-label">HORA LOCAL</span>
-    <span class="meta-val"><span class="pulse-dot" aria-hidden="true"></span><span id="local-time">14:06 BRT</span></span>
-  </div>
-  <div class="status-cell status-cell-wide">
-    <span class="meta-label">ESTÚDIO</span>
-    <span class="meta-val">Design de interfaces & Código moderno</span>
-  </div>
-  <div class="status-cell status-badge-cell">
-    <span class="availability-badge"><span class="live-indicator"></span>DISPONÍVEL P/ PROJETOS</span>
-  </div>
-</aside>
 
 <!-- Masthead & Navigation -->
 <header class="masthead">
@@ -72,30 +59,20 @@
     <a href="#trabalhos" class="nav-link">Projetos</a>
     <a href="#estudio" class="nav-link">Estúdio</a>
     <a class="nav-cta-btn" href="#contato">
-      <span>Preparar meu briefing</span>
+      <span>Falar com a MCode</span>
       <svg aria-hidden="true"><use href="#arrow-down"/></svg>
     </a>
   </nav>
 </header>
 
 <main id="conteudo">
-  <!-- Hero Section (OpenClaw + Alethe + Kauã Miguel synthesis) -->
+
   <section class="hero" id="inicio" aria-labelledby="hero-title">
     <div class="corner-tick top-left" aria-hidden="true"></div>
     <div class="corner-tick top-right" aria-hidden="true"></div>
     <div class="corner-tick bottom-left" aria-hidden="true"></div>
     <div class="corner-tick bottom-right" aria-hidden="true"></div>
 
-    <!-- Tech Badges Dock (Alethe / OpenClaw inspiration) -->
-    <div class="hero-dock" aria-label="Competências essenciais">
-      <div class="dock-pill"><span class="dock-sym">✦</span> Interface</div>
-      <div class="dock-pill"><span class="dock-sym">⚡</span> Desenvolvimento</div>
-      <div class="dock-pill"><span class="dock-sym">◈</span> Identidade</div>
-      <div class="dock-pill"><span class="dock-sym">&gt;_</span> Experiência</div>
-    </div>
-
-    <!-- Hero Tape (from copy.md) -->
-    <div class="tape">Design de interfaces • Desenvolvimento web • Identidade digital</div>
 
     <!-- Monumental Typography with Editorial Accent Word -->
     <div class="hero-heading">
@@ -110,89 +87,78 @@
 
     <!-- 3D Interactive Halftone Logo Stage -->
     <div class="logo-stage" aria-label="Visualização 3D do símbolo MCode">
-      <div class="stage-frame-decor" aria-hidden="true">
-        <span class="stage-tag">// MC-3D.HALFTONE-RENDER</span>
-        <span class="stage-coords">45° GEOMETRY · ROTATING</span>
+      <div class="terminal-bar logo-terminal-bar" aria-hidden="true">
+        <div class="terminal-dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+        <span class="terminal-title">mcode — identidade em movimento</span>
+        <svg><use href="#terminal"/></svg>
       </div>
       <canvas id="logo-canvas" width="560" height="347" role="img" aria-label="Símbolo da MCode em três dimensões, com extrusão e textura halftone verde">
         <img src="MCode-Identidade-Visual/01-Logos-SVG/mcode-simbolo-verde.svg" alt="Símbolo MCode" width="256" height="256">
       </canvas>
-      <button id="logo-motion" class="motion-button" type="button" aria-pressed="false">
-        <svg aria-hidden="true"><use href="#pause"/></svg>
-        <span>Pausar rotação</span>
-      </button>
+      <img class="logo-fallback" src="MCode-Identidade-Visual/01-Logos-SVG/mcode-simbolo-verde.svg" alt="Símbolo MCode" width="256" height="256">
+
     </div>
 
-    <!-- Hero Pitch & Action Group (OpenClaw / Rentable agency presentation) -->
+
     <div class="hero-bottom">
       <div class="hero-copy">
-        <p class="hero-lead">Você sabe o valor do seu negócio. Quem chega ao seu site também precisa perceber.</p>
         <p class="hero-sub">A MCode une design e desenvolvimento para transformar a personalidade da sua marca em uma experiência clara, envolvente e fácil de navegar.</p>
       </div>
 
       <div class="hero-actions">
         <a class="solid-button hero-cta" href="#contato">
-          <span>Preparar meu briefing</span>
+          <span>Falar sobre meu projeto</span>
           <svg aria-hidden="true"><use href="#arrow"/></svg>
         </a>
         <a class="secondary-button" href="#trabalhos">
           <span>Explorar os projetos</span>
           <svg aria-hidden="true"><use href="#arrow"/></svg>
         </a>
+        <p class="cta-note">Conte sua ideia e fale com a gente por e-mail.</p>
       </div>
     </div>
 
-    <!-- Studio Quality Bar (Modern SaaS / Studio confidence) -->
-    <div class="hero-attributes" aria-label="Diferenciais">
-      <div class="attr-item"><span class="attr-tick">+</span> Feito sob medida</div>
-      <div class="attr-item"><span class="attr-tick">+</span> Sem templates genéricos</div>
-      <div class="attr-item"><span class="attr-tick">+</span> Foco em percepção e valor</div>
-      <div class="attr-item"><span class="attr-tick">+</span> Engenharia e design alinhados</div>
-    </div>
   </section>
 
   <!-- Ticker Ribbon (from copy.md) -->
-  <div class="ticker" aria-label="Princípios: Personalidade, Clareza e Experiência">
+  <div class="ticker" role="img" aria-label="Princípios: Personalidade, Clareza e Experiência">
     <div class="ticker-track">
-      <span class="ticker-item">PERSONALIDADE</span>
-      <svg class="ticker-bullet" aria-hidden="true"><use href="#asterisk"/></svg>
-      <span class="ticker-item ticker-outline">CLAREZA</span>
-      <svg class="ticker-bullet" aria-hidden="true"><use href="#asterisk"/></svg>
-      <span class="ticker-item">EXPERIÊNCIA</span>
-      <svg class="ticker-bullet" aria-hidden="true"><use href="#asterisk"/></svg>
-      <span class="ticker-item">PERSONALIDADE</span>
-      <svg class="ticker-bullet" aria-hidden="true"><use href="#asterisk"/></svg>
-      <span class="ticker-item ticker-outline">CLAREZA</span>
-      <svg class="ticker-bullet" aria-hidden="true"><use href="#asterisk"/></svg>
-      <span class="ticker-item">EXPERIÊNCIA</span>
-      <svg class="ticker-bullet" aria-hidden="true"><use href="#asterisk"/></svg>
+      <div class="ticker-group" aria-hidden="true">
+        <span class="ticker-item">PERSONALIDADE</span><svg class="ticker-bullet"><use href="#asterisk"/></svg>
+        <span class="ticker-item ticker-outline">CLAREZA</span><svg class="ticker-bullet"><use href="#asterisk"/></svg>
+        <span class="ticker-item">EXPERIÊNCIA</span><svg class="ticker-bullet"><use href="#asterisk"/></svg>
+      </div>
+      <div class="ticker-group" aria-hidden="true">
+        <span class="ticker-item">PERSONALIDADE</span><svg class="ticker-bullet"><use href="#asterisk"/></svg>
+        <span class="ticker-item ticker-outline">CLAREZA</span><svg class="ticker-bullet"><use href="#asterisk"/></svg>
+        <span class="ticker-item">EXPERIÊNCIA</span><svg class="ticker-bullet"><use href="#asterisk"/></svg>
+      </div>
     </div>
   </div>
 
-  <!-- Projects Section (from copy.md with Kauã Miguel / OpenClaw cards) -->
+
   <section class="work section-shell" id="trabalhos" aria-labelledby="work-title">
-    <div class="section-meta-badge">// 01 · PROJETOS CONCEITUAIS</div>
-    
+
     <div class="section-heading">
       <div class="heading-col">
         <h2 id="work-title">IDEIAS QUE<br><span class="outlined">GANHAM PRESENÇA.</span></h2>
       </div>
       <div class="heading-desc">
         <p>Explore diferentes formas de dar voz a uma marca na tela. Cada conceito mostra como imagem, tipografia e navegação podem trabalhar juntas.</p>
-        <span class="honesty">Projetos conceituais. Demonstrações criativas, sem vínculo com clientes reais.</span>
+        <span class="honesty">Projetos conceituais, sem vínculo com clientes reais.</span>
       </div>
     </div>
 
     <div class="work-grid">
       <!-- Project 1: Órbita -->
       <article class="project-card">
-        <a class="project project-orbit" href="#projeto-orbit" aria-label="Conheça Órbita, projeto conceitual de interface">
+        <a class="project project-orbit" href="#projeto-orbit">
           <div class="project-art orbit-art">
             <div class="project-card-header">
-              <span class="project-badge">CONCEITO 01</span>
-              <span class="project-metric">★ 1057</span>
+              <span class="project-badge">PROJETO CONCEITUAL</span>
+              <span class="project-metric">INTERFACE</span>
             </div>
-            
+
             <div class="mock-top">
               <b>órbita®</b>
               <span>MOVE DIFFERENT.</span>
@@ -228,10 +194,10 @@
 
       <!-- Project 2: Frame -->
       <article class="project-card">
-        <a class="project project-frame" href="#projeto-frame" aria-label="Conheça Frame, projeto conceitual editorial">
+        <a class="project project-frame" href="#projeto-frame">
           <div class="project-art frame-art">
             <div class="project-card-header">
-              <span class="project-badge">CONCEITO 02</span>
+              <span class="project-badge">PROJETO CONCEITUAL</span>
               <span class="project-metric">EDITORIAL</span>
             </div>
 
@@ -261,10 +227,10 @@
 
       <!-- Project 3: Pulse -->
       <article class="project-card project-card-full">
-        <a class="project project-pulse" href="#projeto-pulse" aria-label="Conheça Pulse, projeto conceitual de identidade">
+        <a class="project project-pulse" href="#projeto-pulse">
           <div class="project-art pulse-art">
             <div class="project-card-header">
-              <span class="project-badge">CONCEITO 03</span>
+              <span class="project-badge">PROJETO CONCEITUAL</span>
               <span class="project-metric">CULTURA & SOM</span>
             </div>
 
@@ -298,7 +264,7 @@
     <!-- Deep-dive details panel (accessible disclosure elements) -->
     <div class="project-details" aria-label="Detalhes aprofundados dos projetos conceituais">
       <div class="details-heading">
-        <span class="terminal-tag"><svg class="inline-icon" aria-hidden="true"><use href="#terminal"/></svg> ESPECIFICAÇÕES DOS CONCEITOS</span>
+        <span class="terminal-tag"><svg class="inline-icon" aria-hidden="true"><use href="#terminal"/></svg> POR DENTRO DOS PROJETOS</span>
       </div>
 
       <details id="projeto-orbit">
@@ -342,8 +308,7 @@
   <!-- Studio & Services Section (from copy.md) -->
   <section class="studio section-shell" id="estudio" aria-labelledby="studio-title">
     <div class="studio-col-left">
-      <div class="section-meta-badge">// 02 · ESTÚDIO & SERVIÇOS</div>
-      
+
       <div class="studio-title">
         <h2 id="studio-title">
           CHAME ATENÇÃO.<br>
@@ -372,7 +337,6 @@
         <div class="services-stack">
           <div class="service-box">
             <div class="service-head">
-              <span class="service-index">01</span>
               <h3>Design de interfaces</h3>
             </div>
             <p>Organize sua mensagem e dê destaque ao que importa. Composição, tipografia e navegação pensadas para apresentar sua oferta e orientar quem chega.</p>
@@ -380,7 +344,6 @@
 
           <div class="service-box">
             <div class="service-head">
-              <span class="service-index">02</span>
               <h3>Desenvolvimento web</h3>
             </div>
             <p>Leve a experiência do layout para o navegador. Interfaces responsivas, com atenção ao desempenho e à acessibilidade, para diferentes tamanhos de tela.</p>
@@ -388,7 +351,6 @@
 
           <div class="service-box">
             <div class="service-head">
-              <span class="service-index">03</span>
               <h3>Identidade digital</h3>
             </div>
             <p>Faça sua marca ser reconhecida em cada detalhe. Cores, letras e elementos visuais que falam a mesma língua e dão consistência à sua presença digital.</p>
@@ -402,7 +364,6 @@
 
   <!-- Briefing & Contact Section (from copy.md) -->
   <section class="contact section-shell" id="contato" aria-labelledby="contact-title">
-    <div class="section-meta-badge">// 03 · BRIEFING DE PROJETO</div>
 
     <div class="contact-header">
       <div class="contact-heading">
@@ -414,6 +375,7 @@
       </div>
       <div class="contact-intro">
         <p>O que você quer criar — e o que precisa mudar para o seu negócio? Organize sua ideia em um briefing para dar o primeiro passo.</p>
+        <p class="contact-email">Prefere escrever direto?<br><a href="mailto:mcode.contato@gmail.com">mcode.contato@gmail.com <svg aria-hidden="true"><use href="#arrow"/></svg></a></p>
       </div>
     </div>
 
@@ -426,10 +388,10 @@
           <span class="dot green"></span>
         </div>
         <span class="terminal-title">mcode-briefing-builder.sh</span>
-        <span class="terminal-mode">MODO LOCAL · PRIVACIDADE TOTAL</span>
+        <span class="terminal-mode">PREPARAÇÃO LOCAL</span>
       </div>
 
-      <form id="brief-form" aria-describedby="brief-availability">
+      <form id="brief-form" aria-describedby="brief-availability brief-notice">
         <p id="brief-availability" role="status">Para preparar seu briefing, habilite o JavaScript no navegador e recarregue a página.</p>
 
         <fieldset id="brief-fields" class="brief-fields" aria-label="Dados para preparar seu briefing" disabled>
@@ -451,7 +413,7 @@
 
           <div class="form-notice">
             <svg class="notice-icon" aria-hidden="true"><use href="#terminal"/></svg>
-            <p>Este formulário apenas organiza suas respostas em um briefing para copiar. Nenhuma mensagem é enviada à MCode. O canal oficial de contato ainda será disponibilizado nesta página.</p>
+            <p id="brief-notice">Todos os campos são obrigatórios. Este formulário prepara um briefing para copiar, sem enviar mensagens. Depois, envie o texto para mcode.contato@gmail.com pelo seu aplicativo de e-mail.</p>
           </div>
 
           <div class="form-bottom">
@@ -467,7 +429,7 @@
               <h3 class="result-title">Seu briefing está pronto para copiar.</h3>
               <p id="copy-status" role="status" aria-live="polite">Briefing preparado. Nenhuma mensagem foi enviada à MCode.</p>
             </div>
-            
+
             <label class="result-field">
               <span class="sr-only">Texto do briefing</span>
               <textarea id="brief-text" readonly rows="8"></textarea>
@@ -478,32 +440,15 @@
                 <svg aria-hidden="true"><use href="#copy-icon"/></svg>
                 <span>Copiar meu briefing</span>
               </button>
+              <a class="secondary-button" href="mailto:mcode.contato@gmail.com?subject=Novo%20projeto%20MCode">Abrir meu e-mail <svg aria-hidden="true"><use href="#arrow"/></svg></a>
             </div>
+            <p class="result-help">Copie o briefing, abra seu e-mail e cole o texto na mensagem para enviar à MCode.</p>
           </div>
         </fieldset>
       </form>
     </div>
   </section>
 </main>
-
-<!-- Floating Live Status Widget (Inspired by OpenClaw community widget) -->
-<aside id="floating-status-card" class="floating-studio-widget" aria-label="Status do estúdio MCode">
-  <button id="close-floating-card" class="widget-close-btn" type="button" aria-label="Fechar aviso">
-    <svg aria-hidden="true"><use href="#close"/></svg>
-  </button>
-  <div class="widget-header">
-    <img src="MCode-Identidade-Visual/01-Logos-SVG/mcode-simbolo-verde.svg" alt="" width="28" height="28" aria-hidden="true">
-    <div>
-      <div class="widget-title">MCode Studio</div>
-      <div class="widget-sub"><span class="pulse-dot"></span> São Paulo · Aberto p/ projetos</div>
-    </div>
-  </div>
-  <p class="widget-copy">Tem um projeto em mente? Prepare um briefing estruturado em menos de 2 minutos.</p>
-  <a class="widget-cta" href="#contato">
-    <span>Preparar briefing</span>
-    <span class="widget-arrow">→</span>
-  </a>
-</aside>
 
 <!-- Footer (from copy.md) -->
 <footer class="site-footer">
@@ -527,7 +472,6 @@
 
   <div class="footer-bottom">
     <span class="footer-note">MCode · Portfólio conceitual</span>
-    <span class="footer-specs">Arquitetura estática · HTML5 nativo · CSS3 puro · Zero-bloat</span>
     <span class="footer-copyright">© 2026 MCode. Todos os direitos reservados.</span>
   </div>
 </footer>

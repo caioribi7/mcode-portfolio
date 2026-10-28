@@ -4,7 +4,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const root = path.resolve(__dirname, '..');
+const root = path.resolve(__dirname, '..', process.argv.includes('--production') ? 'dist' : '.');
 const PORT = process.env.PORT || 3000;
 
 const MIME_TYPES = {
@@ -23,11 +23,14 @@ const MIME_TYPES = {
 };
 
 const server = http.createServer((req, res) => {
-  const urlPath = decodeURIComponent(req.url.split('?')[0]);
+  let urlPath;
+  try { urlPath = decodeURIComponent(req.url.split('?')[0]); }
+  catch { res.writeHead(400); res.end('URL inválida'); return; }
   let filePath = path.join(root, urlPath === '/' ? 'index.html' : urlPath);
 
   // Security: prevent path traversal out of root
-  if (!filePath.startsWith(root)) {
+  const relative = path.relative(root, filePath);
+  if (relative === '..' || relative.startsWith(`..${path.sep}`) || path.isAbsolute(relative)) {
     res.writeHead(403);
     res.end('Acesso negado');
     return;
@@ -57,6 +60,6 @@ const server = http.createServer((req, res) => {
   });
 });
 
-server.listen(PORT, () => {
-  console.log(`\n  ✦ MCode Landing Page rodando em:\n  ➜  http://localhost:${PORT}\n`);
+server.listen(PORT, '127.0.0.1', () => {
+  console.log(`\n  ✦ MCode Landing Page rodando em:\n  ➜  http://localhost:${server.address().port}\n`);
 });

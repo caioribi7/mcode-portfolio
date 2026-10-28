@@ -1,5 +1,15 @@
 # MCode — portfólio conceitual
 
+## Refinamento de 28/10/2026
+
+A landing usa títulos em Barlow 400, logo halftone em uma janela de terminal sem botão de pausa, faixa contínua animada e cursor fluido para mouse. A barra de localização/status, a notificação flutuante e o texto técnico do rodapé foram removidos. Movimento reduzido mantém o logo e a faixa estáticos e usa o cursor nativo. Sem JavaScript ou Canvas 2D, o símbolo aparece como SVG.
+
+O contato informado pelo responsável é **mcode.contato@gmail.com**. Os links abrem o aplicativo de e-mail; o formulário continua preparando um briefing local para copiar e colar na mensagem. O visitante precisa enviar o e-mail no próprio aplicativo. Não há confirmação de entrega, backend ou Formspree integrado.
+
+As regras ativas foram consolidadas em `styles.css`; `refinements.css` ficou como arquivo de compatibilidade. `cursor.mjs` é um módulo independente. Barlow e Anton são locais; Georgia e Consolas usam fallbacks instalados. Não há requisições ao Google Fonts.
+
+O pacote agora contém 19 arquivos, incluindo `cursor.mjs`, `robots.txt` e `assets/social-preview.jpg`. As ferramentas de auditoria e screenshots ficam em `tmp/`, ignorado pelo Git e fora de `dist/`. Nenhuma dependência foi adicionada ao projeto. Veja `melhorias.md` para resultados, limitações e pendências de publicação.
+
 Portfólio estático em português, implementado em HTML, CSS e módulos JavaScript nativos. Sem framework, gerenciador de pacotes ou etapa de build.
 
 ## Planejamento da versão 1.0
@@ -29,7 +39,7 @@ node scripts/prepare-site.mjs
 python -m http.server 4174 --bind 127.0.0.1 --directory dist
 ```
 
-Abra `http://127.0.0.1:4174`. O diretório `dist/` é gerado e ignorado pelo Git. O script copia 16 arquivos por lista explícita, incluindo as licenças das fontes e somente três SVGs da identidade. Não compila, transforma nem minifica o front-end. Execute novamente após alterar arquivos públicos; a prévia da raiz na porta 4173 continua disponível para desenvolvimento.
+Abra `http://127.0.0.1:4174`. O diretório `dist/` é gerado e ignorado pelo Git. O script copia 19 arquivos por lista explícita, incluindo as licenças das fontes e somente três SVGs da identidade. Não compila, transforma nem minifica o front-end. Execute novamente após alterar arquivos públicos; a prévia da raiz na porta 4173 continua disponível para desenvolvimento.
 
 Documentação, testes, histórico Git e arquivos locais ficam fora do pacote. O script recusa links simbólicos e arquivos/diretórios inesperados em `dist/`, sem removê-los automaticamente. Em caso de recusa, revise os caminhos informados antes de limpar qualquer arquivo manualmente. Novos assets públicos exigem atualização da lista `PUBLIC_FILES` em `scripts/prepare-site.mjs`.
 
@@ -49,9 +59,9 @@ Os testes estão em `tests/`: verificam a página, o briefing, a geometria/rota�
 
 - `index.html`: conteúdo, navegação, projetos conceituais, serviços e formulário.
 - `styles.css`: fontes locais, tokens CSS, composição, estados, responsividade e redução de movimento.
-- `refinements.css`: refinamento da composição, separação do logo/textos e correção dos conflitos nos projetos.
+- `refinements.css`: arquivo de compatibilidade; regras ativas em `styles.css`.
 - `logo-geometry.mjs`: contornos fiéis ao símbolo SVG original, extrusão com faces e rotação 3D.
-- `logo-animation.mjs`: projeção em perspectiva e iluminação de faces, seguida de halftone em Canvas 2D; não é uma imagem plana girando em CSS. Loop de 12 segundos, botão de pausa, respeito a movimento reduzido e suspensão fora de tela.
+- `logo-animation.mjs`: projeção em perspectiva e iluminação de faces, seguida de halftone em Canvas 2D; não é uma imagem plana girando em CSS. Loop de 12 segundos, sem controle de pausa, respeito a movimento reduzido e suspensão fora de tela.
 - `app.mjs`: menu móvel, abertura dos detalhes de projetos, preparação e cópia do briefing.
 - `brief.mjs`: formatação do texto do briefing.
 - `404.html`: página de erro sem dependência de JavaScript.
@@ -77,11 +87,11 @@ Mudanças visuais devem partir dos valores de `styles.css`. Atualize `DESIGN.md`
 
 ## Contato: não envia mensagens
 
-O formulário não tem backend, serviço de e-mail nem destino de contato configurado. Com JavaScript ativo, o envio é interceptado: nome, e-mail e ideia são formatados localmente em um briefing somente-leitura. O visitante pode copiar o texto. Nada é enviado à MCode por essa implementação, e não existe confirmação de recebimento.
+O formulário não tem backend nem serviço de envio configurado. O contato direto usa mailto:mcode.contato@gmail.com. Com JavaScript ativo, o envio é interceptado: nome, e-mail e ideia são formatados localmente em um briefing somente-leitura. O visitante pode copiar o texto. Nada é enviado à MCode por essa implementação, e não existe confirmação de recebimento.
 
 A cópia automática depende da Clipboard API e das permissões/contexto do navegador. Em caso de falha, o texto é selecionado e a interface orienta a cópia manual. Não remova o aviso de não envio nem altere a mensagem para “enviado” sem implementar e verificar um destino real. Sem JavaScript, não há preparação/cópia do briefing; não trate o formulário como um canal de contato funcional.
 
-Os campos e botões do briefing ficam dentro de um `fieldset` desativado no HTML. O JavaScript registra primeiro a prevenção do envio nativo e habilita o grupo somente ao terminar a inicialização dos controles. Sem JavaScript ou em caso de falha na inicialização, os campos continuam desativados e um aviso explica a dependência. Isso evita coletar e enviar campos pela submissão HTML padrão nesse modo local. O formulário ainda não tem destino real; POST e envio sem JavaScript fazem parte da futura integração do Formspree.
+Os campos e botões do briefing ficam dentro de um `fieldset` desativado no HTML. O JavaScript registra primeiro a prevenção do envio nativo e habilita o grupo somente ao terminar a inicialização dos controles. Sem JavaScript ou em caso de falha na inicialização, os campos continuam desativados e um aviso explica a dependência. Isso evita coletar e enviar campos pela submissão HTML padrão nesse modo local. O formulário continua sem envio automático; POST e envio sem JavaScript fazem parte da futura integração do Formspree.
 
 ## Imagens e direitos: pendência antes de lançamento público comercial
 

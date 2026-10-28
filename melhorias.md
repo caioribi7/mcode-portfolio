@@ -1,60 +1,59 @@
-# Melhorias possíveis — landing page MCode
+# Melhorias — landing page MCode
 
-Avaliação do código atual da landing, após a atualização de 28/10/2026. As sugestões estão organizadas por impacto; itens que dependem de decisões ou informações reais da MCode estão marcados como pendentes de validação.
+Atualizado em 28/10/2026 após a implementação e revisão local. Os itens abertos exigem informações reais, decisões de negócio ou acesso à hospedagem; o restante foi aplicado e verificado no escopo indicado abaixo.
 
 ## Prioridade 1 — Conversão e confiança
 
-- [ ] **Oferecer um próximo passo de contato real.** Hoje o formulário apenas monta um briefing para copiar; não envia a ninguém, e a página informa que o canal oficial ainda será disponibilizado. Antes de promover a landing comercialmente, definir e implementar um destino funcional: e-mail, WhatsApp, agenda ou backend seguro. Até lá, deixar essa limitação visível junto ao CTA, sem sugerir que o briefing foi enviado.
-- [ ] **Revisar as chamadas para ação.** “Preparar meu briefing” é coerente com o formulário atual, mas pode frustrar quem espera falar com o estúdio. Alinhar rótulo, microcopy e ação ao canal que realmente existir.
-- [ ] **Validar alegações de disponibilidade e diferenciais.** Confirmar “Disponível p/ projetos”, “Feito sob medida”, “Sem templates genéricos” e “Foco em percepção e valor” antes de publicar. Remover ou ajustar qualquer afirmação que não seja sempre verdadeira.
-- [ ] **Transformar a vitrine conceitual em prova de trabalho.** Os projetos estão identificados como conceitos, o que é transparente. Quando houver autorização, substituir ou complementar por cases reais com contexto, problema, papel da MCode, decisões e resultado verificável. Não atribuir métricas sem evidência.
-- [ ] **Conferir informações institucionais.** Validar endereço/base “São Paulo, BR”, horário exibido, serviços oferecidos e identificação do estúdio.
+- [x] **Oferecer contato real.** E-mail confirmado pelo usuário: mcode.contato@gmail.com. Há link direto independente de JavaScript e opção de abrir o e-mail após copiar o briefing. O site não envia mensagens nem confirma entrega; o visitante envia pelo próprio aplicativo.
+- [x] **Revisar as chamadas para ação.** Navegação: “Falar com a MCode”; hero: “Falar sobre meu projeto”; formulário: “Preparar meu briefing”. Os rótulos distinguem contato, preparação, cópia e abertura do aplicativo de e-mail.
+- [x] **Retirar alegações não verificadas.** Removidos disponibilidade para projetos, badges de diferenciais e a contagem fictícia do projeto Órbita.
+- [ ] **Substituir conceitos por cases reais.** Faltam trabalhos autorizados, contexto do cliente, papel da MCode e resultados verificáveis. Os três projetos continuam explicitamente conceituais.
+- [ ] **Validar informações institucionais e serviços.** A localização e o relógio foram removidos. O e-mail foi confirmado; público, escopo comercial dos serviços e identificação institucional completa continuam sem validação. A indicação de serviços ilustrativos permanece.
 
 ## Prioridade 2 — Hierarquia e conteúdo
 
-- [ ] **Enxugar o primeiro viewport.** O hero reúne barra de status, navegação, dock de competências, faixa de serviços, título, render 3D, texto, duas ações e lista de diferenciais. Testar uma versão mais curta, preservando título, uma frase de valor, CTA principal e um elemento visual distintivo.
-- [ ] **Reduzir mensagens repetidas.** “Design”, “desenvolvimento”, “identidade”, “experiência” e “personalidade” aparecem em vários componentes próximos. Manter cada promessa uma vez onde ajuda a decisão; remover badges que apenas repetem a faixa ou o texto.
-- [ ] **Reavaliar o widget flutuante.** Ele ocupa espaço fixo, repete o status/CTA e pode cobrir conteúdo, especialmente em telas pequenas. Preferir removê-lo ou exibi-lo só após interação/rolagem, sem obstruir formulário, navegação ou controles. Se permanecer, testar teclado, leitores de tela e persistência do fechamento.
-- [ ] **Dar mais contexto aos cases.** Garantir que o caráter conceitual esteja claro antes de qualquer interação e manter esse aviso legível nos próprios cards, não só em detalhes expansíveis.
-- [ ] **Simplificar o vocabulário de interface.** Revisar termos em inglês e rótulos técnicos decorativos (`HALFTONE-RENDER`, `45° GEOMETRY`, etc.) para confirmar que ajudam o público-alvo e não parecem status funcional fictício.
-- [ ] **Validar a nova copy com o posicionamento da marca.** A promessa “Sua marca. Com presença.” é mais explícita que “Fora da caixa”; confirmar se representa a personalidade desejada e se o texto fala com o perfil de cliente que a MCode quer atrair.
+- [x] **Enxugar o primeiro viewport.** Removidos barra de status, dock de competências, faixa de serviços repetida e lista de diferenciais. No desktop, mensagem e ações ficam ao lado do terminal; no celular, aparecem antes dele.
+- [x] **Reduzir mensagens repetidas.** Hero com uma frase de valor; badges e parágrafo introdutório redundantes removidos. A estrutura principal da copy foi preservada.
+- [x] **Remover o widget flutuante.** Excluídos markup, script e estilos, sem sobreposição fixa no canto inferior direito.
+- [x] **Identificar os conceitos antes da interação.** Cada card mostra “PROJETO CONCEITUAL”. Os detalhes mantêm o aviso de ausência de vínculo com clientes reais.
+- [x] **Simplificar o vocabulário.** Moldura do logo convertida em terminal; retirados códigos decorativos de renderização, seções numeradas e alegação de “privacidade total”. O rodapé não apresenta a arquitetura técnica.
+- [ ] **Validar posicionamento comercial com a marca.** A mensagem existente “Sua marca. Com presença.” foi mantida. Sua adequação ao perfil de cliente exige uma decisão dos responsáveis, sem ser presumida pelo código.
+- [x] **Conferir copy e HTML.** Mantida a proposta de `copy.md` com os ajustes desta solicitação: hero mais curto, títulos mais leves e contato por e-mail confirmado nesta conversa. `copy.md` permanece como proposta original; o HTML representa a versão atual.
 
 ## Prioridade 3 — Acessibilidade e comportamento
 
-- [ ] **Fazer auditoria WCAG prática.** Conferir contraste de textos pequenos e estados, foco visível, ordem de tabulação, nomes acessíveis, links/controles, zoom a 200% e uso com leitor de tela.
-- [ ] **Verificar o menu móvel com teclado e leitor de tela.** Testar abrir/fechar por Enter/Espaço/Escape, foco após abrir/fechar, fechamento ao navegar e comportamento ao redimensionar.
-- [ ] **Garantir que movimento reduzido cubra todos os efeitos.** Há regra `prefers-reduced-motion` em `refinements.css` e tratamento no canvas; confirmar que ticker, widget de entrada, rotação e scroll funcionam sem movimento e que a configuração não deixa conteúdo inacessível.
-- [ ] **Testar formulário em estados reais.** Campos inválidos, e-mail malformado, texto longo, falha de clipboard, JavaScript indisponível e retorno de foco/leitura das mensagens. Confirmar que o texto preparado preserva com segurança caracteres e que não há envio de rede não intencional.
-- [ ] **Rever semântica de elementos interativos.** Itens clicáveis que apontam para detalhes expansíveis devem ter destino e comportamento previsíveis, abrir o detalhe correspondente e permitir navegação acessível.
-- [ ] **Validar áreas de toque e sobreposição no mobile.** Em especial widget, CTA, botão de pausa e menu; verificar telas estreitas e orientação horizontal.
+- [ ] **Concluir auditoria WCAG prática.** Axe em desktop e celular: nenhuma violação nos critérios automatizados WCAG 2 A/AA e 2.1 A/AA avaliados. Teclado, reflow, foco e estados foram verificados. Ainda faltam leitor de tela real, zoom nativo a 200% e conferência humana completa. Axe pede revisão manual de texto contornado/contraste e alguns atributos. O modo de movimento reduzido foi validado; a ausência de botão de pausa é uma escolha explícita do usuário, não uma declaração de conformidade integral.
+- [x] **Verificar menu móvel com teclado.** Enter e Espaço abrem; Escape fecha e restaura o foco; links e mudança de largura fecham o menu. O botão nativo mantém `aria-expanded` sincronizado.
+- [x] **Cobrir movimento reduzido.** Logo estático, faixa parada com um único grupo legível e cursor nativo. As mudanças da preferência em tempo real são atendidas. Não há botão de pausa no logo, conforme solicitado.
+- [x] **Testar formulário.** Validação nativa de obrigatoriedade e e-mail, limites dos campos, conteúdo com caracteres especiais como texto, briefing local, fallback de clipboard e estado sem JavaScript. Nenhum POST foi emitido. O e-mail direto continua disponível sem JavaScript.
+- [x] **Rever semântica e foco.** Projetos abrem o `details` correspondente, atualizam o fragmento e focam o `summary`. Corrigida a divergência entre nomes acessíveis e texto dos cards. Campos têm rótulos persistentes; resultado e falha de cópia são anunciados.
+- [x] **Verificar toque e sobreposições.** Menu e ações permanecem acessíveis em 320 e 390px; cursor decorativo não captura eventos e não é habilitado por toque. Não há widget ou controle de pausa cobrindo conteúdo.
 
 ## Prioridade 4 — Responsividade e qualidade visual
 
-- [ ] **Comparar screenshots em larguras representativas.** Desktop largo, laptop, tablet, celular estreito e celular largo. Conferir quebras de título, canvas, cards, faixa animada, formulário e widget; ajustar pontos de quebra conforme o conteúdo, não só por dispositivo.
-- [ ] **Revisar o peso do hero em telas pequenas.** O título em escala grande e o canvas podem empurrar a mensagem/CTA para baixo. Medir quantas telas são necessárias até a primeira ação e priorizar o objetivo principal.
-- [ ] **Revisar o grid dos projetos.** Confirmar consistência de altura, recorte, contraste e hierarquia dos cards em desktop e mobile; evitar que o card visual domine a informação sobre o projeto.
-- [ ] **Consolidar CSS.** `styles.css` cresceu bastante e algumas regras/estilos parecem duplicados entre a folha principal e `refinements.css`. Identificar regras realmente ativas, remover duplicatas e agrupar media queries sem alterar visual por acidente.
-- [ ] **Conferir alinhamento entre copy aprovada e HTML.** `copy.md` é uma proposta de copy; verificar que o texto publicado corresponde à versão aprovada e que não sobrou conteúdo experimental ou contraditório.
+- [x] **Revisar larguras representativas.** Layout exercitado em 1920, 1440, 1280, 1024, 844 em paisagem, 768, 720, 390 e 320px, sem overflow horizontal. Capturas completas de desktop e celulares, incluindo movimento reduzido, foram inspecionadas.
+- [x] **Priorizar o CTA no celular.** A primeira ação termina aproximadamente a 492px do topo em 390px de largura e a 506px em 320px, antes da animação.
+- [x] **Revisar projetos.** Metadados quebram linha; as legendas e imagens mantêm áreas separadas. Altura de Pulse alinhada aos demais cards e tipografia de sua arte reduzida para não colidir com a legenda.
+- [x] **Consolidar CSS.** Regras ativas em `styles.css`; eliminados estilos dos elementos removidos e unificados os blocos mobile. `refinements.css` permanece apenas como compatibilidade da página 404 e do manifesto de publicação.
+- [x] **Aliviar a tipografia.** Barlow 400 nos títulos, corpo e botões, sem negrito sintético. Georgia em itálico no destaque; Anton limitada às artes conceituais.
 
 ## Prioridade 5 — Desempenho, SEO e publicação
 
-- [ ] **Reduzir dependência de fontes externas.** Instrument Serif e JetBrains Mono vêm do Google Fonts enquanto Anton/Barlow são locais. Avaliar hospedar localmente os arquivos licenciados, limitar pesos e famílias, manter fallback e testar com rede lenta/offline.
-- [ ] **Revisar preloads.** Precarregar só fontes usadas acima da dobra e confirmar nomes, pesos e formatos efetivamente necessários para evitar downloads prioritários inúteis.
-- [ ] **Otimizar mídia e animação.** Medir peso das imagens/SVGs e custo do canvas; reduzir custo em dispositivos móveis, respeitar economia de bateria e confirmar fallback se Canvas/JS falhar.
-- [ ] **Medir Core Web Vitals e acessibilidade automatizada.** Rodar Lighthouse ou ferramenta equivalente em build de produção; tratar LCP, CLS, INP e problemas encontrados, sem perseguir pontuação às custas da experiência.
-- [ ] **Completar SEO e compartilhamento.** Revisar title/description, canonical quando houver domínio definitivo, Open Graph/Twitter cards, ícone, sitemap e robots conforme o modo de publicação. Usar imagem social otimizada e coerente com a marca.
-- [ ] **Adicionar análise de conversão com privacidade.** Só depois de definir o canal de contato, medir clique no CTA, início/conclusão do briefing e contato concluído. Configurar consentimento e política de privacidade conforme a ferramenta e a legislação aplicável.
-- [ ] **Verificar configuração de produção.** Testar 404, MIME types, cache, HTTPS, caminhos de assets e publicação do diretório `dist`; garantir que arquivos locais, screenshots de referência e briefing não sejam publicados por engano.
+- [x] **Eliminar fontes externas.** Google Fonts removido. Barlow/Anton locais; Georgia e Consolas usam fontes instaladas. Nenhuma requisição externa no carregamento da landing durante o teste.
+- [x] **Revisar preloads.** Somente Barlow, usada acima da dobra, é pré-carregada.
+- [x] **Verificar mídia e animação.** Canvas limitado a 600px internos e 30fps, suspenso fora da tela e em aba oculta. Cursor usa interpolação fluida e encerra seu loop ao estabilizar. SVG aparece quando JavaScript ou Canvas 2D não renderizam. O teste local não equivale a medição de bateria em celular físico.
+- [x] **Medir desempenho e acessibilidade.** Lighthouse mobile no `dist` local: desempenho 100, acessibilidade 100, boas práticas 100 e SEO 100. FCP/LCP de 1,1s, CLS 0 e TBT 0ms. São resultados de laboratório; INP e Core Web Vitals de visitantes reais dependem da publicação. Oportunidades residuais: minificação, compressão e cache na hospedagem; não foi criada uma etapa de build ou dependência de produção só para pontuação.
+- [ ] **Concluir SEO e compartilhamento.** Title/description revisados; Open Graph, Twitter card, imagem JPG 1200 × 630, ícone e `robots.txt` preparados. Canonical, `og:url`, URLs absolutas das imagens e sitemap aguardam o domínio definitivo, ainda não definido pelo usuário.
+- [ ] **Adicionar análise de conversão com privacidade.** Nenhum serviço de analytics foi escolhido. Definir ferramenta, finalidade, política e consentimento antes da integração. Um clique em `mailto:` não comprova entrega e não deve ser contado como contato concluído.
+- [ ] **Validar produção hospedada.** Build por lista explícita contém 19 arquivos; testes garantem que documentos, screenshots, credenciais locais e auditorias ficam fora. Prévia Node com `--production` serve somente `dist`, usa MIME correto, retorna a 404 com status real, rejeita URLs inválidas/traversal e escuta apenas no loopback. HTTPS, cache, compressão e headers precisam ser configurados e verificados no provedor real. Não houve deploy.
 
-## Plano curto recomendado
+## Verificação e reprodução
 
-1. Definir canal de contato real e ajustar CTA/formulário para refletir exatamente o que acontece.
-2. Confirmar as alegações de disponibilidade e serviços; remover as não verificadas.
-3. Fazer uma variante de hero mais enxuta e comparar em desktop/mobile.
-4. Rodar revisão manual de acessibilidade e visual em vários tamanhos.
-5. Medir desempenho/SEO do build e corrigir o que impactar visitantes.
-6. Trocar os conceitos por cases reais à medida que houver material autorizado.
+- `node --test`: 16 testes aprovados, incluindo formulário, cursor, geometria, faixa, pacote público e servidor de prévia.
+- `node scripts/prepare-site.mjs`: gera `dist/` por lista explícita, sem compilar ou publicar o repositório.
+- `npm run preview`: serve o pacote em `http://localhost:3000` depois do build, com página 404 e tipos MIME corretos.
+- Relatórios locais, screenshots e ferramentas transitórias: `tmp/review/` e `tmp/audit/`, ignorados pelo Git. Nenhuma dependência foi adicionada ao `package.json` da landing.
 
-## Limites desta avaliação
+## Pendências que exigem dados ou decisões externas
 
-Esta lista é uma revisão do código, copy e estrutura disponíveis no repositório. Não inclui dados de analytics, testes com usuários, auditoria jurídica nem validação de claims com a equipe MCode. Priorizar itens depois de confirmar o público, o canal de contato e o posicionamento comercial.
+Domínio e hospedagem definitivos; cases reais autorizados; validação dos serviços e do público; ferramenta e política de analytics; auditoria manual com leitor de tela e zoom nativo. O contato por e-mail está configurado, mas a entrega depende do aplicativo do visitante e não foi simulada como sucesso.

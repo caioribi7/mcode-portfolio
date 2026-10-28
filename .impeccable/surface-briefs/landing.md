@@ -1,5 +1,11 @@
 # Landing page MCode
 
+## Current direction — 28 October 2026
+
+Latest explicit user request supersedes the older composition below: lighter local Barlow 400 headings, italic Georgia accent, terminal-framed logo without a pause control, no location/status bar, no floating notification and no technical footer tagline. The desktop hero uses two columns; mobile places the CTA before the terminal. The ribbon now loops seamlessly in 26 seconds. A progressive-enhancement cursor responds to mouse velocity, links and projects, restoring the native cursor for fields, keyboard, touch and reduced motion.
+
+User-confirmed contact: mcode.contato@gmail.com, available through mailto links independently of JavaScript. The local brief can be copied and pasted into an email; it is not automatically delivered. The domain and hosting configuration remain undefined. Concept labels remain visible on every project. DESIGN.md documents the active implementation; the earlier narrative below is historical context.
+
 Mode: Experience / Persuade. User-pinned composition from supplied reference. Code-led; no generated image comp.
 
 ## Direction contract

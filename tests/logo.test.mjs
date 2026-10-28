@@ -20,9 +20,10 @@ test('3D rotation is deterministic and returns to the initial shape after a full
  assert.ok(Math.abs(rotatePoint(p,Math.PI/2)[0]-a[0])>10);
 });
 
-test('hero uses an accessible, pausable logo animation instead of the reference character',()=>{
+test('hero uses the logo in a terminal without a pause control',()=>{
  const html=readFileSync(new URL('../index.html',import.meta.url),'utf8');
  assert.match(html,/id="logo-canvas"/);
- assert.match(html,/id="logo-motion"/);
+ assert.doesNotMatch(html,/id="logo-motion"/);
+ assert.match(html,/logo-terminal-bar/);
  assert.doesNotMatch(html,/reference-character|class="character"/);
 });

@@ -24,3 +24,7 @@ Preservar as licenças ao publicar ou converter as fontes.
 Os arquivos utilizados pela página vêm de [MCode-Identidade-Visual](../MCode-Identidade-Visual/IDENTIDADE-VISUAL.md). Os originais são preservados; a confirmação de titularidade/autorização comercial pelos responsáveis continua pendente no planejamento.
 
 Este documento é um registro de origem e deve ficar fora do pacote público de publicação, conforme o Roadmap.
+
+## Imagem de compartilhamento
+
+`social-preview.jpg` é uma captura da própria landing em 1200 × 630 px, preparada em 28/10/2026. Usa os assets existentes da MCode e fontes locais, sem fotografia ou conteúdo externo. Deve ser regenerada quando o hero mudar. O domínio definitivo ainda precisa ser definido para converter os metadados de imagem em URLs absolutas.

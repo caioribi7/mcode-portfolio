@@ -9,6 +9,8 @@ import {readFileSync, existsSync} from 'node:fs';
  assert.match(html,/<main/);
  for (const id of ['trabalhos','estudio','contato']) assert.ok(html.includes(`id="${id}"`),`Missing ${id}`);
  assert.match(html,/conceituais/i);
+ assert.match(html,/href="mailto:mcode\.contato@gmail\.com"/);
+ assert.doesNotMatch(html,/floating-status-card|status-grid-bar|footer-specs|fonts\.googleapis\.com/);
  assert.match(html,/MCode-Identidade-Visual\/01-Logos-SVG\/mcode-horizontal-cor-escuro.svg/);
  for (const match of html.matchAll(/(?:src|href)="([^"#]+)"/g)) {
   if (!/^(?:http|mailto:|tel:)/.test(match[1])) assert.ok(existsSync(new URL('../'+match[1],import.meta.url)),`Missing asset ${match[1]}`);
