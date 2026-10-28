@@ -2,7 +2,7 @@
 
 ## Current direction — 28 October 2026
 
-Latest explicit user request supersedes the older composition below: Alethe-inspired local Anton headings, upright green COM, Space Grotesk body and Geist Mono navigation, terminal-framed ASCII logo with Matrix-style falling code, without a pause control, no location/status bar, no floating notification and no technical footer tagline. The desktop hero uses two columns; mobile places the CTA before the terminal. The ribbon now loops seamlessly in 26 seconds. Latest user instruction: the ASCII logo always starts and keeps looping, including under reduced motion; it has no automatic viewport pause. The cursor now uses terminal corner brackets, with direct tracking under reduced motion and native behavior for fields, keyboard and touch. A reactive halftone canvas sits behind the page; nearby dots shift and brighten on mouse movement with a short click ripple. The projects button drops // 01 and uses an expanding lime fill.
+Latest explicit user request supersedes the older composition below: Alethe-inspired local Anton headings, upright green COM, Space Grotesk body and Geist Mono navigation, terminal-framed ASCII logo with Matrix-style falling code, without a pause control, no location/status bar, no floating notification and no technical footer tagline. The desktop hero uses two columns; mobile places the CTA before the terminal. The ribbon now loops seamlessly in 26 seconds. Latest user instruction: the ASCII logo always starts and keeps looping, including under reduced motion; it has no automatic viewport pause. The cursor now uses a green circle and white center dot with a smooth crossfade to a hollow green/white delta-wing arrow with an Explorar label, with direct tracking under reduced motion and native behavior for fields, keyboard and touch. A reactive halftone canvas sits behind the page; nearby dots shift and brighten on mouse movement with a short click ripple. The projects button drops // 01 and uses an expanding lime fill.
 
 User-confirmed contact: mcode.contato@gmail.com, available through mailto links independently of JavaScript. The local brief can be copied and pasted into an email; it is not automatically delivered. The domain and hosting configuration remain undefined. Concept labels remain visible on every project. DESIGN.md documents the active implementation; the earlier narrative below is historical context.
 
@@ -29,6 +29,14 @@ All showcased projects are conceptual compositions, clearly labelled. No client 
 ## Project artwork
 
 Frame uses `assets/frame-composition.svg`, a code-authored geometric composition with a green disc, dark arch and terracotta vase. It replaces the flower photograph. Keep the image in the existing right-hand column, with headline and caption separate. Origin is recorded in `assets/README.md`; the artwork colors are not global design tokens. Visual review of the replacement in desktop and mobile browsers remains pending.
+
+## Latest cursor and logo refinement
+
+Cursor changes crossfade across persistent shapes, including entry and exit. The hero PRESENÇA and ribbon EXPERIÊNCIA also use outline lettering. The ASCII logo is about 15% smaller and centered using projected silhouette bounds on each frame.
+
+## Latest studio and framing refinement
+
+The studio section is rebuilt as an off-white editorial panel titled Presença. Com intenção., with open service rows and a contact link. The ribbon uses larger, condensed Anton. Canvas vertical margins are zero on all screens, preserving the original aspect ratio.
 
 ## Planned contact transition
 

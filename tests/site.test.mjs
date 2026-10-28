@@ -16,3 +16,14 @@ import {readFileSync, existsSync} from 'node:fs';
   if (!/^(?:http|mailto:|tel:)/.test(match[1])) assert.ok(existsSync(new URL('../'+match[1],import.meta.url)),`Missing asset ${match[1]}`);
  }
  });
+
+test('studio section keeps its mobile layout rules aligned with the current markup', () => {
+ const css = readFileSync(new URL('../styles.css', import.meta.url), 'utf8');
+ const mobile = css.match(/@media \(max-width: 768px\) \{([\s\S]*?)\n\}/)?.[1];
+ assert.ok(mobile, 'Mobile breakpoint must exist');
+ assert.match(mobile, /\.studio-grid \{[^}]*gap: 28px;/);
+ assert.match(mobile, /\.service-module \{[^}]*padding: 22px 20px;/);
+ assert.match(mobile, /\.studio-action-strip \{[^}]*flex-direction: column;[^}]*align-items: flex-start;/);
+ assert.doesNotMatch(mobile, /\.studio-intro|\.studio-service|\.studio-closing/);
+ assert.equal((css.match(/^\.hero-outline \{/gm) || []).length, 1, 'Hero outline has a single base rule');
+});

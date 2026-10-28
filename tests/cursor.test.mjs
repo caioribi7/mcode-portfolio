@@ -8,9 +8,10 @@ const source = readFileSync(new URL('../cursor.mjs', import.meta.url), 'utf8');
 function setup({ reduced = false, fine = true } = {}) {
   const events = {}, frames = new Map(), classes = new Set();
   const prefs = { matches: reduced, addEventListener(_, fn) { this.change = fn; } };
+  const label = { textContent: '' };
   const cursor = {
     dataset: {}, style: { setProperty() {} }, classList: { add() {}, remove() {} },
-    querySelector() { return { textContent: '' }; },
+    querySelector() { return label; },
   };
   const document = {
     hidden: false,
@@ -33,15 +34,17 @@ function setup({ reduced = false, fine = true } = {}) {
       closest: selector => selector.includes(kind) && kind ? {} : null,
     } });
   }
-  return { events, frames, classes, cursor, prefs, move };
+  return { events, frames, classes, cursor, label, prefs, move };
 }
 
 test('cursor adapts to projects and links, and restores the native cursor for fields and keyboard', () => {
   const state = setup();
   state.move('.project');
+  assert.equal(state.label.textContent, 'Explorar');
   assert.equal(state.cursor.dataset.mode, 'project');
   assert.equal(state.classes.has('cursor-ready'), true);
   state.move('button');
+  assert.equal(state.label.textContent, 'Explorar', 'Keep the label mounted so its exit transition can finish');
   assert.equal(state.cursor.dataset.mode, 'link');
   state.move('input');
   assert.equal(state.classes.has('cursor-ready'), false);

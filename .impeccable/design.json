@@ -15,17 +15,17 @@
       {
         "name": "logo",
         "value": "12000ms",
-        "purpose": "ASCII Matrix autoplay; continuous requestAnimationFrame loop at a 30fps draw cap; no reduced-motion or viewport pause; no pause control. Browser background throttling still applies."
+        "purpose": "ASCII Matrix autoplay; continuous requestAnimationFrame loop at a 30fps draw cap; no reduced-motion or viewport pause; no pause control. Browser background throttling still applies. Logo is about 15% smaller and dynamically centered by projected silhouette bounds."
       },
       {
         "name": "ribbon",
         "value": "26s linear infinite",
-        "purpose": "Two identical groups; one wrapping static group under reduced motion."
+        "purpose": "Brutalist Anton 32-58px in two identical looping groups; one static wrapping group under reduced motion."
       },
       {
         "name": "cursor",
         "value": "42ms exponential interpolation",
-        "purpose": "Terminal corner target; fine mouse only; idle loop stops. Reduced motion tracks directly. Fields, keyboard and touch retain native cursor."
+        "purpose": "Green ring/white point crossfades into a hollow green/white delta-wing SVG over projects, with a persistent fading Explorar label. Interrupted transitions reverse smoothly; short cursor state transitions remain enabled under reduced motion by user request."
       },
       {
         "name": "halftone-background",

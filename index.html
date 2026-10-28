@@ -30,7 +30,15 @@
 </head>
 <body>
 <canvas id="halftone-background" aria-hidden="true"></canvas>
-<div class="custom-cursor" aria-hidden="true"><span class="cursor-dot"></span><span class="cursor-label"></span></div>
+<div class="custom-cursor" aria-hidden="true">
+  <span class="cursor-dot"></span>
+  <svg class="cursor-delta" viewBox="0 0 68 68" fill="none">
+    <path class="delta-wing" fill-rule="evenodd" d="M6 6 61 28 37 37 28 61Z M18 18 47 29 32 32 29 47Z"/>
+    <path class="delta-edge" d="M6 6 61 28 37 37 28 61Z"/>
+    <path class="delta-fold" d="m6 6 31 31"/>
+  </svg>
+  <span class="cursor-label"></span>
+</div>
 <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 
 <!-- Shared SVG Defs -->
@@ -80,7 +88,7 @@
         <span class="hero-title-line hero-title-accent">
           <em class="hero-word-accent">COM</em>
         </span>
-        <span class="hero-title-line">PRESENÇA.</span>
+        <span class="hero-title-line hero-outline">PRESENÇA.</span>
       </h1>
     </div>
 
@@ -130,12 +138,12 @@
       <div class="ticker-group" aria-hidden="true">
         <span class="ticker-item">PERSONALIDADE</span><svg class="ticker-bullet"><use href="#asterisk"/></svg>
         <span class="ticker-item ticker-outline">CLAREZA</span><svg class="ticker-bullet"><use href="#asterisk"/></svg>
-        <span class="ticker-item">EXPERIÊNCIA</span><svg class="ticker-bullet"><use href="#asterisk"/></svg>
+        <span class="ticker-item ticker-outline">EXPERIÊNCIA</span><svg class="ticker-bullet"><use href="#asterisk"/></svg>
       </div>
       <div class="ticker-group" aria-hidden="true">
         <span class="ticker-item">PERSONALIDADE</span><svg class="ticker-bullet"><use href="#asterisk"/></svg>
         <span class="ticker-item ticker-outline">CLAREZA</span><svg class="ticker-bullet"><use href="#asterisk"/></svg>
-        <span class="ticker-item">EXPERIÊNCIA</span><svg class="ticker-bullet"><use href="#asterisk"/></svg>
+        <span class="ticker-item ticker-outline">EXPERIÊNCIA</span><svg class="ticker-bullet"><use href="#asterisk"/></svg>
       </div>
     </div>
   </div>
@@ -309,59 +317,146 @@
     </div>
   </section>
 
-  <!-- Studio & Services Section (from copy.md) -->
+  <!-- Studio: Presença com Intenção & Métodos -->
   <section class="studio section-shell" id="estudio" aria-labelledby="studio-title">
-    <div class="studio-col-left">
-
-      <div class="studio-title">
-        <h2 id="studio-title">
-          CHAME ATENÇÃO.<br>
-          <span class="neon-highlight">DÊ MOTIVOS</span><br>
-          <span class="outlined">PARA FICAR.</span>
-        </h2>
-      </div>
-
-      <div class="studio-highlight-card">
-        <div class="corner-tick top-left" aria-hidden="true"></div>
-        <div class="corner-tick bottom-right" aria-hidden="true"></div>
-        <img src="MCode-Identidade-Visual/01-Logos-SVG/mcode-simbolo-verde.svg" alt="Símbolo geométrico MCode" width="80" height="80" loading="lazy">
-        <div class="highlight-text">
-          <b>Sua marca tem personalidade.</b>
-          <span>Seu site precisa mostrar isso.</span>
-        </div>
+    <div class="section-meta-row">
+      <span class="section-meta-badge">// 02 · ESTÚDIO & MÉTODO</span>
+      <div class="studio-status-pill">
+        <span class="pulse-dot" aria-hidden="true"></span>
+        <span>DESIGN & ENGENHARIA INTEGRADOS</span>
       </div>
     </div>
 
-    <div class="studio-col-right">
-      <div class="studio-copy">
-        <p class="studio-lead">O visual desperta o interesse. A clareza ajuda quem visita a entender sua oferta e encontrar o próximo passo.</p>
-        <p class="studio-body">Na MCode, design e desenvolvimento fazem parte da mesma conversa: o que sua marca quer comunicar, como o visitante vai navegar e o que ele precisa encontrar em cada tela.</p>
-
-        <!-- Structured Service Cards -->
-        <div class="services-stack">
-          <div class="service-box">
-            <div class="service-head">
-              <h3>Design de interfaces</h3>
-            </div>
-            <p>Organize sua mensagem e dê destaque ao que importa. Composição, tipografia e navegação pensadas para apresentar sua oferta e orientar quem chega.</p>
-          </div>
-
-          <div class="service-box">
-            <div class="service-head">
-              <h3>Desenvolvimento web</h3>
-            </div>
-            <p>Leve a experiência do layout para o navegador. Interfaces responsivas, com atenção ao desempenho e à acessibilidade, para diferentes tamanhos de tela.</p>
-          </div>
-
-          <div class="service-box">
-            <div class="service-head">
-              <h3>Identidade digital</h3>
-            </div>
-            <p>Faça sua marca ser reconhecida em cada detalhe. Cores, letras e elementos visuais que falam a mesma língua e dão consistência à sua presença digital.</p>
-          </div>
+    <div class="studio-grid">
+      <!-- Left Column: Title, Manifesto & Brand Seal -->
+      <div class="studio-brand-col">
+        <div class="studio-heading">
+          <h2 id="studio-title">
+            <span class="title-block">PRESENÇA.</span>
+            <span class="title-block title-accent">
+              <span class="outlined">COM</span> <span class="neon-word">INTENÇÃO</span><span class="neon-dot">.</span>
+            </span>
+          </h2>
         </div>
 
-        <span class="content-note">Apresentação e serviços ilustrativos.</span>
+        <div class="studio-manifesto-card">
+          <div class="corner-tick top-left" aria-hidden="true"></div>
+          <div class="corner-tick top-right" aria-hidden="true"></div>
+          <div class="corner-tick bottom-left" aria-hidden="true"></div>
+          <div class="corner-tick bottom-right" aria-hidden="true"></div>
+
+          <div class="manifesto-badge">
+            <svg class="manifesto-icon" aria-hidden="true"><use href="#asterisk"/></svg>
+            <span>DIRETRIZ MCODE</span>
+          </div>
+
+          <h3 class="manifesto-lead">
+            Sua marca tem personalidade.<br>
+            <span>Seu site precisa mostrar isso.</span>
+          </h3>
+
+          <div class="manifesto-body">
+            <p>O visual desperta o interesse. A clareza ajuda quem visita a entender sua oferta e encontrar o próximo passo.</p>
+            <p>Na MCode, design e desenvolvimento fazem parte da mesma conversa: o que sua marca quer comunicar, como o visitante vai navegar e o que ele precisa encontrar em cada tela.</p>
+          </div>
+
+          <div class="manifesto-footer">
+            <div class="emblem-group">
+              <img src="MCode-Identidade-Visual/01-Logos-SVG/mcode-simbolo-verde.svg" alt="Símbolo MCode" width="34" height="34" loading="lazy">
+              <div class="emblem-meta">
+                <span class="emblem-name">MCode Studio</span>
+                <span class="emblem-spec">45° GEOMETRY · NATIVE WEB</span>
+              </div>
+            </div>
+            <span class="emblem-tag">PRODUTO DIGITAL</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: 3 Architectural Service Modules -->
+      <div class="studio-services-col">
+        <div class="studio-services-stack" aria-label="Serviços ilustrativos">
+
+          <!-- Service 1 -->
+          <article class="service-module">
+            <div class="service-module-top">
+              <div class="service-meta-left">
+                <span class="service-num">01</span>
+                <span class="service-code-tag">UI / UX ARCHITECTURE</span>
+              </div>
+              <span class="service-cross" aria-hidden="true">+</span>
+            </div>
+
+            <div class="service-module-body">
+              <h3 class="service-name">Design de interfaces</h3>
+              <p class="service-desc">Organize sua mensagem e dê destaque ao que importa. Composição, tipografia e navegação pensadas para apresentar sua oferta e orientar quem chega.</p>
+            </div>
+
+            <div class="service-tags-list">
+              <span class="tech-tag">Hierarquia visual</span>
+              <span class="tech-tag">Design system</span>
+              <span class="tech-tag">Prototipagem</span>
+              <span class="tech-tag">Foco em conversão</span>
+            </div>
+          </article>
+
+          <!-- Service 2 -->
+          <article class="service-module">
+            <div class="service-module-top">
+              <div class="service-meta-left">
+                <span class="service-num">02</span>
+                <span class="service-code-tag">ENGINEERING & SPEED</span>
+              </div>
+              <span class="service-cross" aria-hidden="true">+</span>
+            </div>
+
+            <div class="service-module-body">
+              <h3 class="service-name">Desenvolvimento web</h3>
+              <p class="service-desc">Leve a experiência do layout para o navegador. Interfaces responsivas, com atenção ao desempenho e à acessibilidade, para diferentes tamanhos de tela.</p>
+            </div>
+
+            <div class="service-tags-list">
+              <span class="tech-tag">HTML5 & CSS3 nativos</span>
+              <span class="tech-tag">Zero bloatware</span>
+              <span class="tech-tag">Acessibilidade WCAG</span>
+              <span class="tech-tag">Mobile-first</span>
+            </div>
+          </article>
+
+          <!-- Service 3 -->
+          <article class="service-module">
+            <div class="service-module-top">
+              <div class="service-meta-left">
+                <span class="service-num">03</span>
+                <span class="service-code-tag">DIGITAL BRAND ASSETS</span>
+              </div>
+              <span class="service-cross" aria-hidden="true">+</span>
+            </div>
+
+            <div class="service-module-body">
+              <h3 class="service-name">Identidade digital</h3>
+              <p class="service-desc">Faça sua marca ser reconhecida em cada detalhe. Cores, letras e elementos visuais que falam a mesma língua e dão consistência à sua presença digital.</p>
+            </div>
+
+            <div class="service-tags-list">
+              <span class="tech-tag">Voz visual coerente</span>
+              <span class="tech-tag">Tipografia refinada</span>
+              <span class="tech-tag">Ativos vetoriais SVG</span>
+              <span class="tech-tag">Consistência de marca</span>
+            </div>
+          </article>
+
+        </div>
+
+        <div class="studio-action-strip">
+          <span class="studio-disclaimer">Apresentação e serviços ilustrativos.</span>
+          <a class="studio-cta-btn" href="#contato">
+            <span class="cta-btn-text">Dê forma à sua ideia</span>
+            <span class="cta-btn-arrow" aria-hidden="true">
+              <svg><use href="#arrow"/></svg>
+            </span>
+          </a>
+        </div>
       </div>
     </div>
   </section>

@@ -4,6 +4,7 @@ const finePointer = matchMedia('(hover: hover) and (pointer: fine)');
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
 
 if (cursor && label) {
+  label.textContent = 'Explorar';
   let targetX = 0, targetY = 0, x = 0, y = 0, previous = 0, frame = 0;
   let visible = false;
 
@@ -24,11 +25,7 @@ if (cursor && label) {
     const follow = 1 - Math.exp(-delta / 42);
     x += dx * follow;
     y += dy * follow;
-    const stretch = Math.min(Math.hypot(dx, dy) / 200, 0.22);
-    const angle = Math.max(-12, Math.min(12, dx * 0.15));
     cursor.style.transform = `translate3d(${x}px, ${y}px, 0)`;
-    cursor.style.setProperty('--cursor-angle', `${angle}deg`);
-    cursor.style.setProperty('--cursor-stretch', 1 + stretch);
     if (Math.abs(dx) + Math.abs(dy) > 0.1) frame = requestAnimationFrame(draw);
     else previous = 0;
   }
@@ -42,20 +39,21 @@ if (cursor && label) {
     if (field) { hide(); return; }
     targetX = event.clientX;
     targetY = event.clientY;
-    if (!visible) { x = targetX; y = targetY; }
+    if (!visible) {
+      x = targetX;
+      y = targetY;
+      cursor.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+    }
     visible = true;
     const project = event.target.closest('.project');
     const interactive = event.target.closest('a, button, summary');
     cursor.dataset.mode = project ? 'project' : interactive ? 'link' : 'default';
-    label.textContent = project ? 'Explorar' : '';
     if (reducedMotion.matches) {
       cancelAnimationFrame(frame);
       frame = 0;
       x = targetX;
       y = targetY;
       cursor.style.transform = `translate3d(${x}px, ${y}px, 0)`;
-      cursor.style.setProperty('--cursor-angle', '0deg');
-      cursor.style.setProperty('--cursor-stretch', 1);
     } else if (!frame) frame = requestAnimationFrame(draw);
     document.documentElement.classList.add('cursor-ready');
   }, { passive: true });

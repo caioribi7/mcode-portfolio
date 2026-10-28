@@ -28,7 +28,7 @@ if (!ctx) {
     const {width:w,height:h} = canvas;
     if (!w || !h) return;
     const angle = 0.42 + (milliseconds / CYCLE_MS) * Math.PI * 2;
-    const scale = w / 340;
+    const scale = w / 400;
     const camera = 780;
     const light = [-0.35,-0.5,0.79];
     surface.clearRect(0,0,w,h);
@@ -42,13 +42,21 @@ if (!ctx) {
       return {...face,vertices,normal:n,center};
     }).filter(face => face.normal[0]*-face.center[0] + face.normal[1]*-face.center[1] + face.normal[2]*(camera-face.center[2]) > 0)
       .sort((a,b)=>a.center[2]-b.center[2]);
+    // Center the projected silhouette, rather than its 3D origin, throughout the turn.
+    const projected = transformed.flatMap(face => face.vertices.map(([x,y,z]) => {
+      const perspective = camera / (camera - z);
+      return [x * perspective, y * perspective];
+    }));
+    const xs = projected.map(([x]) => x), ys = projected.map(([,y]) => y);
+    const offsetX = w / 2 - (Math.min(...xs) + Math.max(...xs)) * scale / 2;
+    const offsetY = h / 2 - (Math.min(...ys) + Math.max(...ys)) * scale / 2;
     for (const face of transformed) {
       const diffuse=Math.max(0,face.normal.reduce((sum,v,i)=>sum+v*light[i],0));
       const shade=Math.round((0.26+0.74*diffuse)*255);
       surface.beginPath();
       face.vertices.forEach(([x,y,z],i)=>{
         const perspective=camera/(camera-z);
-        const px=w/2+x*scale*perspective, py=h/2+y*scale*perspective;
+        const px=offsetX+x*scale*perspective, py=offsetY+y*scale*perspective;
         if(i===0) surface.moveTo(px,py); else surface.lineTo(px,py);
       });
       surface.closePath();

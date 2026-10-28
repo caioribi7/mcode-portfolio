@@ -32,9 +32,11 @@ test('hero uses the logo in a terminal without a pause control',()=>{
 
 test('ASCII starts automatically and keeps animating regardless of reduced motion or viewport visibility', () => {
  const frames = [];
+ const projected = [];
  const ctx = { clearRect() {}, fillText(character,x,y) { frames.push([character,x,y,this.fillStyle,this.globalAlpha]); } };
  const surface = {
-  clearRect() {}, beginPath() {}, moveTo() {}, lineTo() {}, closePath() {}, fill() {},
+  clearRect() { projected.length = 0; }, beginPath() {},
+  moveTo(x,y) { projected.push([x,y]); }, lineTo(x,y) { projected.push([x,y]); }, closePath() {}, fill() {},
   getImageData(_x,_y,w,h) {
    const data = new Uint8ClampedArray(w*h*4);
    // A small solid mask exercises the logo glyphs separately from background rain.
@@ -65,6 +67,15 @@ test('ASCII starts automatically and keeps animating regardless of reduced motio
  window.mcodeLogo.renderAt(600);
  assert.notDeepEqual(frames,first,'Rain and characters evolve with time');
  assert.ok(frames.every(([character])=>/^[\x20-\x7E]$/.test(character)));
+ for (const time of [0, 1500, 3000, 6000, 9000]) {
+  window.mcodeLogo.renderAt(time);
+  const xs = projected.map(([x])=>x), ys = projected.map(([,y])=>y);
+  const left = Math.min(...xs), right = Math.max(...xs);
+  const top = Math.min(...ys), bottom = Math.max(...ys);
+  assert.ok(Math.abs((left+right)/2-canvas.width/2)<1e-6,'Projected logo stays horizontally centered');
+  assert.ok(Math.abs((top+bottom)/2-canvas.height/2)<1e-6,'Projected logo stays vertically centered');
+  assert.ok(left>0&&right<canvas.width&&top>0&&bottom<canvas.height,'Logo fits without clipping throughout the turn');
+ }
  for (const time of [16, 64, 112]) {
   const [id, callback] = scheduled.entries().next().value;
   scheduled.delete(id);
