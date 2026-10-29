@@ -55,3 +55,6 @@ Keep the editorial studio layout but inherit the root dark background, off-white
 ## Latest contact instruction
 
 Replace the final local-summary form with a Vamos conversar contact section. Use open rows for email, WhatsApp and Instagram in the existing palette. Email links directly to mcode.contato@gmail.com and works without JavaScript. WhatsApp and Instagram remain noninteractive Em breve placeholders until the user supplies official details. Remove the former form and clipboard helpers; do not invent destinations.
+
+
+Latest portfolio decision: remove the Bara's Hotel group and show exactly two noninteractive Em breve slots. No concept details or image viewer remain on the page. This supersedes previous project-display instructions.

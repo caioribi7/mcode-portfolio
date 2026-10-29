@@ -8,7 +8,7 @@ import {readFileSync, existsSync} from 'node:fs';
  assert.match(html,/<html lang="pt-BR"/);
  assert.match(html,/<main/);
  for (const id of ['trabalhos','estudio','devs','contato']) assert.ok(html.includes(`id="${id}"`),`Missing ${id}`);
- assert.match(html,/conceituais/i);
+ assert.match(html,/EM BREVE/);
  assert.match(html,/href="mailto:mcode\.contato@gmail\.com(?:\?[^\"]*)?"/);
  assert.doesNotMatch(html,/floating-status-card|status-grid-bar|footer-specs|fonts\.googleapis\.com/);
  assert.match(html,/MCode-Identidade-Visual\/01-Logos-SVG\/mcode-horizontal-cor-escuro.svg/);
@@ -28,19 +28,12 @@ test('studio section keeps its mobile layout rules aligned with the current mark
  assert.doesNotMatch(css, /\.hero-outline/, 'Hero title remains filled without an outline hover effect');
 });
 
-test("Bara's Hotel appears with its screenshot and location without a link", () => {
+test('portfolio has exactly two coming-soon slots without stale project interactions', () => {
  const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
- const css = readFileSync(new URL('../styles.css', import.meta.url), 'utf8');
- const prepareScript = readFileSync(new URL('../scripts/prepare-site.mjs', import.meta.url), 'utf8');
- assert.match(html, /class="project project-baras"/);
- assert.match(html, /Bara's Hotel/);
- assert.match(html, /PROJETO DESENVOLVIDO/);
- assert.match(html, /assets\/baras-hotel\.jpg/);
- const hotel = html.match(/<div class="project project-baras">([\s\S]*?)<\/article>/)?.[1];
- assert.ok(hotel);
- assert.match(hotel, /Bom Conselho, Pernambuco/);
- assert.doesNotMatch(hotel, /href="https?:|project-open|project-footer-link/);
- assert.match(hotel, /href="assets\/baras-hotel.jpg" data-image-preview/);
- assert.match(css, /\.baras-art img\s*\{[^}]*object-fit:\s*contain;/);
- assert.ok(existsSync(new URL('../assets/baras-hotel.jpg', import.meta.url)), 'Hotel screenshot must exist');
+ const work = html.match(/<section[^>]*id="trabalhos"[\s\S]*?<\/section>/)?.[0];
+ assert.ok(work);
+ assert.equal((work.match(/<article\b/g) || []).length, 2);
+ assert.equal((work.match(/<h3>EM BREVE<\/h3>/g) || []).length, 2);
+ assert.doesNotMatch(work, /<a\b|<button\b|<details\b|Bara|project-orbit/);
+ assert.doesNotMatch(html, /project-image-viewer|data-image-preview/);
 });

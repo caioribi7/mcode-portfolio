@@ -63,3 +63,6 @@ Informational art labels are at least 12px and functional copy uses 13-16px. Spa
 styles.css owns the active rules, including the former refinements. refinements.css remains a compatibility stub for the 404 page and publication manifest. cursor.mjs and halftone-background.mjs are independent progressive enhancements so a pointer failure cannot disable the form. No runtime package dependency or external font service is used.
 
 The local production copy was reviewed at 1920, 1440, 1280, 1101, 1024, 844 landscape, 768, 720, 390 and 320px. Keyboard menu, project focus, local brief, clipboard denial, reduced motion and JavaScript-off behavior were checked in headless Chromium. Automated scores are lab evidence, not a screen-reader audit, field Core Web Vitals or hosted-production validation. Detailed results and remaining launch dependencies are recorded in melhorias.md.
+
+
+Latest portfolio decision: remove the Bara's Hotel group and show exactly two noninteractive Em breve slots. No concept details or image viewer remain on the page. This supersedes previous project-display instructions.

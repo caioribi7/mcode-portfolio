@@ -42,3 +42,6 @@ Approved brand asset pack and IDENTIDADE-VISUAL.md. User supplied an aesthetic r
 Frame now uses `assets/frame-composition.svg`, created directly in code with Codex assistance, instead of the former flower photograph. Provenance is recorded in `assets/README.md`. The artwork illustrates a conceptual editorial project; it is not evidence of a commissioned client case.
 
 Latest explicit color decision: keep the Presença. Com intenção. layout, but use the root dark/off-white/acid-green palette. The earlier off-white studio recommendation in analise.md is superseded by this user instruction; do not restore it automatically.
+
+
+Latest portfolio decision: remove the Bara's Hotel group and show exactly two noninteractive Em breve slots. No concept details or image viewer remain on the page. This supersedes previous project-display instructions.
