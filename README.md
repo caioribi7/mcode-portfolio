@@ -2,15 +2,28 @@
 
 ## Refinamento de 28/10/2026
 
-A landing usa títulos condensados em Anton, textos em Space Grotesk e detalhes em Geist Mono, logo ASCII com chuva de caracteres no estilo Matrix em uma janela de terminal sem botão de pausa, faixa contínua animada e cursor circular verde com ponto central branco e transição suave para uma seta asa delta vazada verde/branca nos projetos, com rótulo Explorar e fundo halftone que reage ao mouse. A barra de localização/status, a notificação flutuante e o texto técnico do rodapé foram removidos. Por solicitação explícita, o logo ASCII inicia automaticamente e mantém o loop ativo mesmo com movimento reduzido. Essa preferência deixa a faixa estática; o cursor acompanha diretamente o mouse e o fundo responde sem ondulação. Em telas de toque, o fundo fica estático e o cursor é nativo. Sem JavaScript ou Canvas 2D, o símbolo aparece como SVG.
+A landing usa títulos condensados em Anton, textos em Space Grotesk e detalhes em Geist Mono, logo ASCII com chuva de caracteres no estilo Matrix em uma janela de terminal sem botão de pausa, faixa contínua animada e cursor circular verde com ponto central branco e transição suave para uma seta compacta verde com contorno branco nos projetos, com rótulo Explorar e fundo halftone que reage ao mouse. A barra de localização/status, a notificação flutuante e o texto técnico do rodapé foram removidos. Por solicitação explícita, o logo ASCII inicia automaticamente e mantém o loop ativo mesmo com movimento reduzido. Essa preferência deixa a faixa estática; o cursor acompanha diretamente o mouse e o fundo responde sem ondulação. Em telas de toque, o fundo fica estático e o cursor é nativo. Sem JavaScript ou Canvas 2D, o símbolo aparece como SVG.
 
-O contato informado pelo responsável é **mcode.contato@gmail.com**. Os links abrem o aplicativo de e-mail; o formulário continua preparando um briefing local para copiar e colar na mensagem. O visitante precisa enviar o e-mail no próprio aplicativo. Não há confirmação de entrega, backend ou Formspree integrado.
+O contato usa o e-mail confirmado **mcode.contato@gmail.com**. A seção final oferece e-mail ativo e espaços de WhatsApp e Instagram marcados como Em breve, sem links fictícios.
 
-As regras ativas foram consolidadas em `styles.css`; `refinements.css` ficou como arquivo de compatibilidade. `cursor.mjs` e `halftone-background.mjs` são módulos independentes. O botão de projetos tem preenchimento verde expansivo e não usa o indicador // 01. A faixa usa Anton em escala brutalista. A seção do estúdio foi refeita como Presença. Com intenção., com fundo claro e serviços em linhas abertas. O canvas Matrix preenche sua moldura sem margens verticais e sem distorção. O logo interno está cerca de 15% menor, centralizado pelo contorno projetado a cada frame. O hero e a faixa também usam detalhes tipográficos vazados. Anton, Space Grotesk e Geist Mono são locais, com licenças OFL incluídas. A tipografia segue a referência visual da Alethe em `refs/`. O halftone em repouso usa opacidade de 18% para continuar visível longe do cursor. Não há requisições ao Google Fonts.
+As regras ativas foram consolidadas em `styles.css`; `refinements.css` ficou como arquivo de compatibilidade. `cursor.mjs` e `halftone-background.mjs` são módulos independentes. O botão de projetos tem preenchimento verde expansivo e não usa o indicador // 01. A faixa usa Anton em escala brutalista. A seção do estúdio foi refeita como Presença. Com intenção., com a paleta escura padrão e serviços em linhas abertas. O canvas Matrix preenche sua moldura sem margens verticais e sem distorção. O logo interno está cerca de 15% menor, centralizado pelo contorno projetado a cada frame. O hero e a faixa também usam detalhes tipográficos vazados. Anton, Space Grotesk e Geist Mono são locais, com licenças OFL incluídas. A tipografia segue a referência visual da Alethe em `refs/`. O halftone em repouso usa opacidade de 18% para continuar visível longe do cursor. Não há requisições ao Google Fonts.
 
-O pacote agora contém 24 arquivos, incluindo `cursor.mjs`, `robots.txt` e `assets/social-preview.jpg`. As ferramentas de auditoria e screenshots ficam em `tmp/`, ignorado pelo Git e fora de `dist/`. Nenhuma dependência foi adicionada ao projeto. Veja `melhorias.md` para resultados, limitações e pendências de publicação.
+O pacote agora contém 26 arquivos, incluindo `cursor.mjs`, `robots.txt` e `assets/social-preview.jpg`. As ferramentas de auditoria e screenshots ficam em `tmp/`, ignorado pelo Git e fora de `dist/`. Nenhuma dependência foi adicionada ao projeto. Veja `melhorias.md` para resultados, limitações e pendências de publicação.
 
 Portfólio estático em português, implementado em HTML, CSS e módulos JavaScript nativos. Sem framework, gerenciador de pacotes ou etapa de build.
+
+## Equipe e fotos
+
+A seção `#devs`, acessível pelo menu Nossos devs, apresenta Mateus Dias e Caio Ribi. O usuário confirmou os arquivos e destinos:
+
+- Mateus Dias: `devs/dev-1.jpg`; `https://github.com/root-mwteus`.
+- Caio Ribi: `devs/dev-2.jpg`; `https://github.com/caioribi7`.
+
+Para substituir uma foto, preserve a associação ao perfil e atualize dimensões/alt do `img` se necessário. Os originais atuais permanecem intactos; o CSS enquadra os retratos em 4:5. Nomes de arquivo novos também exigem atualização de `PUBLIC_FILES`.
+
+## Correções da análise
+
+O estúdio usa a paleta escura padrão por solicitação posterior do usuário, mantendo a estrutura editorial e serviços sem caixas aninhadas. Tags técnicas, kickers e brilhos repetidos foram removidos; textos pequenos e rótulos foram ajustados. `analise.md` preserva o diagnóstico original e registra resultados, testes e as escolhas de animação mantidas por solicitação do usuário.
 
 ## Planejamento da versão 1.0
 
@@ -39,7 +52,7 @@ node scripts/prepare-site.mjs
 python -m http.server 4174 --bind 127.0.0.1 --directory dist
 ```
 
-Abra `http://127.0.0.1:4174`. O diretório `dist/` é gerado e ignorado pelo Git. O script copia 24 arquivos por lista explícita, incluindo as licenças das fontes e somente três SVGs da identidade. Não compila, transforma nem minifica o front-end. Execute novamente após alterar arquivos públicos; a prévia da raiz na porta 4173 continua disponível para desenvolvimento.
+Abra `http://127.0.0.1:4174`. O diretório `dist/` é gerado e ignorado pelo Git. O script copia 26 arquivos por lista explícita, incluindo as licenças das fontes e somente três SVGs da identidade. Não compila, transforma nem minifica o front-end. Execute novamente após alterar arquivos públicos; a prévia da raiz na porta 4173 continua disponível para desenvolvimento.
 
 Documentação, testes, histórico Git e arquivos locais ficam fora do pacote. O script recusa links simbólicos e arquivos/diretórios inesperados em `dist/`, sem removê-los automaticamente. Em caso de recusa, revise os caminhos informados antes de limpar qualquer arquivo manualmente. Novos assets públicos exigem atualização da lista `PUBLIC_FILES` em `scripts/prepare-site.mjs`.
 
@@ -53,20 +66,20 @@ Com Node.js instalado, na raiz do projeto:
 node --test
 ```
 
-Os testes estão em `tests/`: verificam a página, o briefing, a geometria/rotação do logo, a faixa de texto, a inicialização segura do formulário e o pacote público. Os testes do pacote verificam exclusão de arquivos locais, referências a assets, atualização das cópias e recusa de conteúdo inesperado. Os testes do formulário simulam controles e eventos em Node; não substituem revisão visual e testes em navegadores reais.
+Os testes em `tests/` verificam contato, identidade, navegação, animações e empacotamento. O contato funciona sem JavaScript; canais ainda não configurados permanecem sem links.
 
 ## Arquivos principais
 
-- `index.html`: conteúdo, navegação, projetos conceituais, serviços e formulário.
+- `index.html`: conteúdo, navegação, projetos conceituais e o projeto Bara's Hotel, serviços e canais de contato.
 - `styles.css`: fontes locais, tokens CSS, composição, estados, responsividade e redução de movimento.
 - `refinements.css`: arquivo de compatibilidade; regras ativas em `styles.css`.
 - `logo-geometry.mjs`: contornos fiéis ao símbolo SVG original, extrusão com faces e rotação 3D.
 - `logo-animation.mjs`: projeção em perspectiva e iluminação de faces, seguida de caracteres ASCII e chuva de código em Canvas 2D; não é uma imagem plana girando em CSS. Loop de 12 segundos, sem controle de pausa, reprodução automática contínua; o navegador pode limitar frames em abas em segundo plano.
-- `app.mjs`: menu móvel, abertura dos detalhes de projetos, preparação e cópia do briefing.
-- `brief.mjs`: formatação do texto do briefing.
+- `app.mjs`: menu móvel, abertura dos detalhes de projetos, abertura dos detalhes de projetos.
 - `404.html`: página de erro sem dependência de JavaScript.
 - `scripts/prepare-site.mjs`: cópia por lista explícita para `dist/`, sem transformação do front-end.
 - `assets/frame-composition.svg`: composição geométrica usada no projeto conceitual Frame.
+- `assets/baras-hotel.jpg`: captura fornecida pelo usuário e recortada para o card do projeto Bara's Hotel.
 - `assets/README.md`: registro de origem dos assets e licenças.
 - `assets/fonts/`: Anton e Barlow em TTF, acompanhadas de `OFL-Anton.txt` e `OFL-Barlow.txt`.
 - `MCode-Identidade-Visual/`: identidade fornecida e preservada; não alterar os originais.
@@ -77,7 +90,7 @@ Os testes estão em `tests/`: verificam a página, o briefing, a geometria/rota�
 
 ## Substituir conteúdo
 
-Os trabalhos Órbita, Frame e Pulse são demonstrações conceituais, não cases de clientes. A apresentação do estúdio e os serviços também são ilustrativos. Substitua textos e imagens em `index.html` apenas com informações verificadas; mantenha as indicações de conceito enquanto não houver trabalhos reais. Não acrescente clientes, resultados, métricas ou depoimentos fictícios.
+Os trabalhos Órbita, Frame e Pulse são demonstrações conceituais. Bara's Hotel foi identificado pelo usuário como um de seus projetos e usa uma captura fornecida por ele; o card leva a uma busca do hotel no Google Maps. A apresentação do estúdio e os serviços também são ilustrativos. Não acrescente clientes, resultados, métricas ou depoimentos não verificados.
 
 Ao trocar um trabalho, atualize o título, categoria, descrição acessível do link, texto alternativo das imagens e conteúdo de seu `details`. Preserve a correspondência entre o `href="#projeto-…"` e o `id` do detalhe: `app.mjs` usa essa relação. Atualize as dimensões declaradas de novas imagens e mantenha carregamento tardio nas imagens fora da primeira tela quando apropriado.
 
@@ -85,13 +98,11 @@ Para mudar serviços, edite os elementos `details` da seção do estúdio. Para 
 
 Mudanças visuais devem partir dos valores de `styles.css`. Atualize `DESIGN.md` e o sidecar quando o sistema implementado mudar; os documentos descrevem o código, não o substituem. Os recortes e sobreposições particulares dos trabalhos não são tokens globais.
 
-## Contato: não envia mensagens
+## Contato
 
-O formulário não tem backend nem serviço de envio configurado. O contato direto usa mailto:mcode.contato@gmail.com. Com JavaScript ativo, o envio é interceptado: nome, e-mail e ideia são formatados localmente em um briefing somente-leitura. O visitante pode copiar o texto. Nada é enviado à MCode por essa implementação, e não existe confirmação de recebimento.
+O e-mail abre o aplicativo do visitante via `mailto:`. Não há formulário ou coleta de dados na página.
 
-A cópia automática depende da Clipboard API e das permissões/contexto do navegador. Em caso de falha, o texto é selecionado e a interface orienta a cópia manual. Não remova o aviso de não envio nem altere a mensagem para “enviado” sem implementar e verificar um destino real. Sem JavaScript, não há preparação/cópia do briefing; não trate o formulário como um canal de contato funcional.
-
-Os campos e botões do briefing ficam dentro de um `fieldset` desativado no HTML. O JavaScript registra primeiro a prevenção do envio nativo e habilita o grupo somente ao terminar a inicialização dos controles. Sem JavaScript ou em caso de falha na inicialização, os campos continuam desativados e um aviso explica a dependência. Isso evita coletar e enviar campos pela submissão HTML padrão nesse modo local. O formulário continua sem envio automático; POST e envio sem JavaScript fazem parte da futura integração do Formspree.
+Para ativar WhatsApp e Instagram, localize `data-channel="whatsapp"` e `data-channel="instagram"` em `index.html`. Troque o `div` por um link `a.contact-option` com o destino oficial e remova `is-pending` e o aviso Em breve. No WhatsApp, use `https://wa.me/` seguido do número com DDI e DDD, somente dígitos. No Instagram, use a URL do perfil confirmado. Atualize também a introdução da seção.
 
 ## Imagens e direitos: pendência antes de lançamento público comercial
 

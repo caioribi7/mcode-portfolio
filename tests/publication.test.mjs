@@ -73,9 +73,9 @@ test('unexpected files in dist block packaging and are preserved', async (t) => 
 test('repackaging refreshes source changes and a missing source aborts before copying', async (t) => {
   const root = await fixture(t);
   const output = await prepareSite(root);
-  await writeFile(join(root, 'brief.mjs'), '// refreshed fixture');
+  await writeFile(join(root, 'app.mjs'), '// refreshed fixture');
   await prepareSite(root);
-  assert.equal(await readFile(join(output, 'brief.mjs'), 'utf8'), '// refreshed fixture');
+  assert.equal(await readFile(join(output, 'app.mjs'), 'utf8'), '// refreshed fixture');
   await rm(join(root, '404.html'));
   await assert.rejects(prepareSite(root), { code: 'ENOENT' });
   assert.ok((await lstat(join(output, '404.html'))).isFile());

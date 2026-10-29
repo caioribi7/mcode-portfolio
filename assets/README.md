@@ -12,6 +12,12 @@
 
 Ao substituir a arte, atualizar a origem aqui, o texto alternativo e as dimensões em `index.html`, a descrição de Frame e os documentos de planejamento.
 
+## Bara's Hotel
+
+- Arquivo: `baras-hotel.jpg`, captura fornecida pelo usuário e convertida de PNG para JPEG, mantendo os 1851 por 901 pixels.
+- Projeto: site do Bara's Hotel, em Bom Conselho, Pernambuco.
+- Uso: apresentação no portfólio, sem link externo e sem corte da captura.
+
 ## Fontes
 
 - Anton: [licença SIL OFL 1.1](fonts/OFL-Anton.txt), com identificação dos autores e repositório de origem.
@@ -23,7 +29,14 @@ As duas novas famílias foram obtidas do repositório oficial Google Fonts em 28
 
 Preservar as licenças ao publicar ou converter as fontes.
 
-## Identidade MCode
+## Fotos dos desenvolvedores
+
+- `devs/dev-1.jpg`: foto fornecida pelo usuário para **Mateus Dias**, 853 × 1280 px.
+- `devs/dev-2.jpg`: foto fornecida pelo usuário para **Caio Ribi**, 960 × 1280 px.
+- Associação de nomes e fotos confirmada pelo usuário nesta conversa. Os arquivos originais foram preservados; o enquadramento é feito por CSS, com espaço reservado para evitar mudança de layout e carregamento tardio.
+- Perfis GitHub confirmados pelo usuário: `root-mwteus` e `caioribi7`, respectivamente. Não foram adicionadas biografias, cargos ou especialidades não fornecidas.
+
+## Identidade MCode — origem
 
 Os arquivos utilizados pela página vêm de [MCode-Identidade-Visual](../MCode-Identidade-Visual/IDENTIDADE-VISUAL.md). Os originais são preservados; a confirmação de titularidade/autorização comercial pelos responsáveis continua pendente no planejamento.
 

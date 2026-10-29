@@ -5,7 +5,7 @@ Atualizado em 28/10/2026 após a implementação e revisão local. Os itens aber
 ## Prioridade 1 — Conversão e confiança
 
 - [x] **Oferecer contato real.** E-mail confirmado pelo usuário: mcode.contato@gmail.com. Há link direto independente de JavaScript e opção de abrir o e-mail após copiar o briefing. O site não envia mensagens nem confirma entrega; o visitante envia pelo próprio aplicativo.
-- [x] **Revisar as chamadas para ação.** Navegação: “Falar com a MCode”; hero: “Falar sobre meu projeto”; formulário: “Preparar meu briefing”. Os rótulos distinguem contato, preparação, cópia e abertura do aplicativo de e-mail.
+- [x] **Revisar as chamadas para ação.** Navegação: “Falar com a MCode”; hero: “Contar minha ideia”; formulário: “Preparar resumo”. Os rótulos distinguem contato, preparação, cópia e abertura do aplicativo de e-mail.
 - [x] **Retirar alegações não verificadas.** Removidos disponibilidade para projetos, badges de diferenciais e a contagem fictícia do projeto Órbita.
 - [ ] **Substituir conceitos por cases reais.** Faltam trabalhos autorizados, contexto do cliente, papel da MCode e resultados verificáveis. Os três projetos continuam explicitamente conceituais.
 - [ ] **Validar informações institucionais e serviços.** A localização e o relógio foram removidos. O e-mail foi confirmado; público, escopo comercial dos serviços e identificação institucional completa continuam sem validação. A indicação de serviços ilustrativos permanece.
@@ -45,11 +45,11 @@ Atualizado em 28/10/2026 após a implementação e revisão local. Os itens aber
 - [x] **Medir desempenho e acessibilidade.** Lighthouse mobile no `dist` local: desempenho 100, acessibilidade 100, boas práticas 100 e SEO 100. FCP/LCP de 1,1s, CLS 0 e TBT 0ms. São resultados de laboratório; INP e Core Web Vitals de visitantes reais dependem da publicação. Oportunidades residuais: minificação, compressão e cache na hospedagem; não foi criada uma etapa de build ou dependência de produção só para pontuação.
 - [ ] **Concluir SEO e compartilhamento.** Title/description revisados; Open Graph, Twitter card, imagem JPG 1200 × 630, ícone e `robots.txt` preparados. Canonical, `og:url`, URLs absolutas das imagens e sitemap aguardam o domínio definitivo, ainda não definido pelo usuário.
 - [ ] **Adicionar análise de conversão com privacidade.** Nenhum serviço de analytics foi escolhido. Definir ferramenta, finalidade, política e consentimento antes da integração. Um clique em `mailto:` não comprova entrega e não deve ser contado como contato concluído.
-- [ ] **Validar produção hospedada.** Build por lista explícita contém 24 arquivos; testes garantem que documentos, screenshots, credenciais locais e auditorias ficam fora. Prévia Node com `--production` serve somente `dist`, usa MIME correto, retorna a 404 com status real, rejeita URLs inválidas/traversal e escuta apenas no loopback. HTTPS, cache, compressão e headers precisam ser configurados e verificados no provedor real. Não houve deploy.
+- [ ] **Validar produção hospedada.** Build por lista explícita contém 26 arquivos; testes garantem que documentos, screenshots, credenciais locais e auditorias ficam fora. Prévia Node com `--production` serve somente `dist`, usa MIME correto, retorna a 404 com status real, rejeita URLs inválidas/traversal e escuta apenas no loopback. HTTPS, cache, compressão e headers precisam ser configurados e verificados no provedor real. Não houve deploy.
 
 ## Verificação e reprodução
 
-- `node --test`: 20 testes aprovados, incluindo formulário, cursor, halftone interativo, geometria, render ASCII determinístico, faixa, pacote público e servidor de prévia.
+- `node --test`: 25 testes aprovados, incluindo formulário, cursor, halftone interativo, geometria, render ASCII determinístico, faixa, pacote público e servidor de prévia.
 - `node scripts/prepare-site.mjs`: gera `dist/` por lista explícita, sem compilar ou publicar o repositório.
 - `npm run preview`: serve o pacote em `http://localhost:3000` depois do build, com página 404 e tipos MIME corretos.
 - Relatórios locais, screenshots e ferramentas transitórias: `tmp/review/` e `tmp/audit/`, ignorados pelo Git. Nenhuma dependência foi adicionada ao `package.json` da landing.
@@ -57,3 +57,8 @@ Atualizado em 28/10/2026 após a implementação e revisão local. Os itens aber
 ## Pendências que exigem dados ou decisões externas
 
 Domínio e hospedagem definitivos; cases reais autorizados; validação dos serviços e do público; ferramenta e política de analytics; auditoria manual com leitor de tela e zoom nativo. O contato por e-mail está configurado, mas a entrega depende do aplicativo do visitante e não foi simulada como sucesso.
+
+Atualização posterior: `analise.md` registra a correção do estúdio off-white, labels, tags e contato com resumo preenchido no e-mail. A seção Nossos devs apresenta os nomes, retratos e GitHubs confirmados de Mateus Dias e Caio Ribi. Validação atual: 25 testes, dez larguras e 26 arquivos públicos.
+
+
+Atualização posterior por solicitação do usuário: o formulário foi substituído por canais de contato. E-mail ativo; WhatsApp e Instagram aguardam dados oficiais, sem links fictícios. Os registros de testes do formulário acima são históricos. O pacote atual tem 26 arquivos.

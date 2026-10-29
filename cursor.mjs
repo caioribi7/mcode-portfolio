@@ -45,7 +45,7 @@ if (cursor && label) {
       cursor.style.transform = `translate3d(${x}px, ${y}px, 0)`;
     }
     visible = true;
-    const project = event.target.closest('.project');
+    const project = event.target.closest('a.project');
     const interactive = event.target.closest('a, button, summary');
     cursor.dataset.mode = project ? 'project' : interactive ? 'link' : 'default';
     if (reducedMotion.matches) {

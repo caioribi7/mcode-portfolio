@@ -1,11 +1,3 @@
-import { buildBrief } from './brief.mjs';
-
-// Install the network guard before initializing any optional interaction.
-const form = document.querySelector('#brief-form');
-if (form) {
-  form.addEventListener('submit', (event) => event.preventDefault());
-}
-
 // Mobile navigation toggle
 const menuButton = document.querySelector('.menu-toggle');
 const navigation = document.querySelector('#nav');
@@ -27,8 +19,21 @@ if (menuButton && navigation) {
   mobile.addEventListener('change', () => setMenu(false));
 }
 
+// Native dialog keeps focus inside the image viewer and supports Escape.
+const imageViewer = document.querySelector('#project-image-viewer');
+const imagePreview = document.querySelector('[data-image-preview]');
+if (imageViewer && imagePreview && typeof imageViewer.showModal === 'function') {
+  imagePreview.setAttribute('aria-haspopup', 'dialog');
+  imagePreview.setAttribute('aria-controls', imageViewer.id);
+  imagePreview.addEventListener('click', (event) => {
+    event.preventDefault();
+    imageViewer.showModal();
+  });
+  imageViewer.addEventListener('close', () => imagePreview.focus({ preventScroll: true }));
+}
+
 // Project links to expandable details
-for (const link of document.querySelectorAll('.project')) {
+for (const link of document.querySelectorAll('a.project')) {
   link.addEventListener('click', (event) => {
     const targetId = link.getAttribute('href');
     if (targetId && targetId.startsWith('#')) {
@@ -43,37 +48,3 @@ for (const link of document.querySelectorAll('.project')) {
     }
   });
 }
-
-// Briefing builder & clipboard handling
-const briefResult = document.querySelector('#brief-result');
-const briefText = document.querySelector('#brief-text');
-const status = document.querySelector('#copy-status');
-const copyBtn = document.querySelector('#copy-brief');
-
-if (form && briefText && briefResult && status) {
-  form.addEventListener('submit', (event) => {
-    event.preventDefault();
-    const data = Object.fromEntries(new FormData(form));
-    briefText.value = buildBrief(data);
-    briefResult.hidden = false;
-    status.textContent = 'Briefing preparado. Nenhuma mensagem foi enviada à MCode.';
-    briefText.focus();
-  });
-}
-
-if (copyBtn && briefText && status) {
-  copyBtn.addEventListener('click', async () => {
-    try {
-      await navigator.clipboard.writeText(briefText.value);
-      status.textContent = 'Briefing copiado. Cole o texto no seu e-mail e envie para mcode.contato@gmail.com.';
-    } catch {
-      briefText.focus();
-      briefText.select();
-      status.textContent = 'Não foi possível copiar automaticamente. O texto está selecionado: use Ctrl+C ou a opção Copiar do seu dispositivo.';
-    }
-  });
-}
-
-// Fail closed: HTML starts disabled and remains so if initialization fails.
-document.querySelector('#brief-fields').disabled = false;
-document.querySelector('#brief-availability').hidden = true;

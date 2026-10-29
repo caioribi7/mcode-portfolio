@@ -25,7 +25,7 @@
       {
         "name": "cursor",
         "value": "42ms exponential interpolation",
-        "purpose": "Green ring/white point crossfades into a hollow green/white delta-wing SVG over projects, with a persistent fading Explorar label. Interrupted transitions reverse smoothly; short cursor state transitions remain enabled under reduced motion by user request."
+        "purpose": "Green ring/white point; 36px on links, compact 28px green arrow with white outline on projects. Subtle 220-300ms crossfades, reversible transitions and persistent fading Explorar label. No cutout, fold, rotation or shadow."
       },
       {
         "name": "halftone-background",
@@ -56,6 +56,6 @@
   "components": [],
   "narrative": {
     "northStar": "Alethe-inspired condensed typography and a terminal-framed ASCII identity, with an interactive halftone background.",
-    "overview": "See DESIGN.md and styles.css for the implemented visual contract. Public contact: mcode.contato@gmail.com. Local brief does not send messages. Original identity assets remain unchanged."
+    "overview": "See DESIGN.md and styles.css for the implemented contract. Editorial studio inherits the default dark/off-white/acid-green root palette by latest explicit user request; keep the layout and no technical chips. Team: Mateus Dias (devs/dev-1.jpg, GitHub root-mwteus) and Caio Ribi (devs/dev-2.jpg, GitHub caioribi7), confirmed by user. Contact uses native email to mcode.contato@gmail.com and noninteractive WhatsApp/Instagram placeholders until official details are supplied. No form remains. User-requested ASCII autoplay and ribbon remain documented motion choices."
   }
 }
