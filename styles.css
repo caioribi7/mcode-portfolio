@@ -348,7 +348,7 @@ svg {
 @media (min-width: 769px) {
   .hero-title-accent {
     justify-content: flex-start;
-    margin-left: -0.15em;
+    margin-left: -0.1em;
   }
 }
 
