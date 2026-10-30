@@ -345,6 +345,13 @@ svg {
   letter-spacing: 0.035em;
 }
 
+@media (min-width: 769px) {
+  .hero-title-accent {
+    justify-content: flex-start;
+    margin-left: -0.15em;
+  }
+}
+
 .outlined {
   color: transparent;
   -webkit-text-stroke: 1px var(--ink);
