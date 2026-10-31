@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync, existsSync} from 'node:fs';
 
- test('landing page exposes MCode identity, navigation and honest conceptual work', () => {
+test('landing page exposes MCode identity, navigation and honest conceptual work', () => {
  assert.ok(existsSync(new URL('../index.html', import.meta.url)), 'Landing page must exist');
  const html=readFileSync(new URL('../index.html',import.meta.url),'utf8');
  assert.match(html,/<html lang="pt-BR"/);
@@ -13,9 +13,9 @@ import {readFileSync, existsSync} from 'node:fs';
  assert.doesNotMatch(html,/floating-status-card|status-grid-bar|footer-specs|fonts\.googleapis\.com/);
  assert.match(html,/MCode-Identidade-Visual\/01-Logos-SVG\/mcode-horizontal-cor-escuro.svg/);
  for (const match of html.matchAll(/(?:src|href)="([^"#]+)"/g)) {
-  if (!/^(?:http|mailto:|tel:)/.test(match[1])) assert.ok(existsSync(new URL('../'+match[1],import.meta.url)),`Missing asset ${match[1]}`);
+  if (!/^(?:https?:|mailto:|tel:)/.test(match[1])) assert.ok(existsSync(new URL('../'+match[1],import.meta.url)),`Missing asset ${match[1]}`);
  }
- });
+});
 
 test('studio section keeps its mobile layout rules aligned with the current markup', () => {
  const css = readFileSync(new URL('../styles.css', import.meta.url), 'utf8');
@@ -28,12 +28,14 @@ test('studio section keeps its mobile layout rules aligned with the current mark
  assert.doesNotMatch(css, /\.hero-outline/, 'Hero title remains filled without an outline hover effect');
 });
 
-test('portfolio has exactly two coming-soon slots without stale project interactions', () => {
+test('portfolio displays Vértice project and one coming-soon slot', () => {
  const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
  const work = html.match(/<section[^>]*id="trabalhos"[\s\S]*?<\/section>/)?.[0];
  assert.ok(work);
  assert.equal((work.match(/<article\b/g) || []).length, 2);
- assert.equal((work.match(/<h3>EM BREVE<\/h3>/g) || []).length, 2);
- assert.doesNotMatch(work, /<a\b|<button\b|<details\b|Bara|project-orbit/);
+ assert.equal((work.match(/<h3>EM BREVE<\/h3>/g) || []).length, 1);
+ assert.match(work, /href="https:\/\/construtora\.mcode\.dev\.br"/);
+ assert.match(work, /Vértice/);
+ assert.doesNotMatch(work, /<button\b|<details\b|Bara|project-orbit/);
  assert.doesNotMatch(html, /project-image-viewer|data-image-preview/);
 });
