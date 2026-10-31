@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Símbolo Vértice Engenharia e Obra">
+  <rect width="64" height="64" fill="#181917"/>
+  <!-- Linhas de eixo técnico -->
+  <path d="M8 16h48M16 8v48" stroke="#343530" stroke-width="1"/>
+  <!-- Planos estruturais do vértice -->
+  <polygon points="16,16 52,16 52,26 26,26 26,52 16,52" fill="#F4F1EA"/>
+  <polygon points="32,32 52,32 52,52 42,52 42,42 32,42" fill="#9E3E22"/>
+  <rect x="13" y="13" width="6" height="6" fill="none" stroke="#9E3E22" stroke-width="1.5"/>
+</svg>
+

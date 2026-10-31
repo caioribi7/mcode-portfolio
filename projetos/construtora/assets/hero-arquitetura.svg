@@ -1,0 +1,179 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 640" width="880" height="640" role="img" aria-label="Ilustração arquitetônica e corte técnico: residência contemporânea em concreto aparente, brises de madeira e perfis metálicos com cotas de nível">
+  <defs>
+    <linearGradient id="skyWarm" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#EAE5DA"/>
+      <stop offset="68%" stop-color="#DFD8C8"/>
+      <stop offset="100%" stop-color="#D4CCB9"/>
+    </linearGradient>
+    <linearGradient id="concreteMain" x1="0" y1="0" x2="1" y2="0.4">
+      <stop offset="0%" stop-color="#D8D2C5"/>
+      <stop offset="100%" stop-color="#BFB8A8"/>
+    </linearGradient>
+    <linearGradient id="concreteShadow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#8C877B"/>
+      <stop offset="100%" stop-color="#6F6A5F"/>
+    </linearGradient>
+    <linearGradient id="glassReflect" x1="0" y1="0" x2="0.8" y2="1">
+      <stop offset="0%" stop-color="#2B3130"/>
+      <stop offset="55%" stop-color="#1D2221"/>
+      <stop offset="100%" stop-color="#38403D"/>
+    </linearGradient>
+    <pattern id="techGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#C5BDB0" stroke-opacity="0.35" stroke-width="0.75"/>
+    </pattern>
+    <pattern id="briseTimber" width="8" height="120" patternUnits="userSpaceOnUse">
+      <rect x="0" y="0" width="4.5" height="120" fill="#8E4A2F"/>
+      <rect x="4.5" y="0" width="3.5" height="120" fill="#522918"/>
+    </pattern>
+  </defs>
+
+  <!-- Fundo de prancha técnica -->
+  <rect width="880" height="640" fill="url(#skyWarm)"/>
+  <rect width="880" height="640" fill="url(#techGrid)"/>
+
+  <!-- Sol / Luz Direcional Suave -->
+  <circle cx="710" cy="145" r="78" fill="#F4F1EA" fill-opacity="0.65"/>
+  <circle cx="710" cy="145" r="78" fill="none" stroke="#9E3E22" stroke-width="0.75" stroke-dasharray="4 4"/>
+
+  <!-- Eixos estruturais verticais (Prancha) -->
+  <g stroke="#8A8477" stroke-width="0.9" stroke-dasharray="6 4">
+    <line x1="140" y1="44" x2="140" y2="565"/>
+    <line x1="340" y1="44" x2="340" y2="565"/>
+    <line x1="620" y1="44" x2="620" y2="565"/>
+    <line x1="760" y1="44" x2="760" y2="565"/>
+  </g>
+
+  <!-- Bolhas de Eixo no Topo -->
+  <g font-family="Consolas, monospace" font-size="11" fill="#181917" text-anchor="middle">
+    <circle cx="140" cy="34" r="12" fill="#F4F1EA" stroke="#181917" stroke-width="1.2"/>
+    <text x="140" y="38">A</text>
+    <circle cx="340" cy="34" r="12" fill="#F4F1EA" stroke="#181917" stroke-width="1.2"/>
+    <text x="340" y="38">B</text>
+    <circle cx="620" cy="34" r="12" fill="#F4F1EA" stroke="#181917" stroke-width="1.2"/>
+    <text x="620" y="38">C</text>
+    <circle cx="760" cy="34" r="12" fill="#F4F1EA" stroke="#181917" stroke-width="1.2"/>
+    <text x="760" y="38">D</text>
+  </g>
+
+  <!-- Cota horizontal de vão principal -->
+  <g stroke="#181917" stroke-width="1">
+    <line x1="340" y1="68" x2="620" y2="68"/>
+    <line x1="340" y1="62" x2="340" y2="74"/>
+    <line x1="620" y1="62" x2="620" y2="74"/>
+    <line x1="620" y1="68" x2="760" y2="68" stroke="#9E3E22"/>
+    <line x1="760" y1="62" x2="760" y2="74" stroke="#9E3E22"/>
+  </g>
+  <rect x="425" y="57" width="110" height="18" fill="#EAE5DA"/>
+  <text x="480" y="70" font-family="Consolas, monospace" font-size="10.5" fill="#181917" text-anchor="middle">VÃO LIVRE 8,40m</text>
+  <rect x="642" y="57" width="96" height="18" fill="#EAE5DA"/>
+  <text x="690" y="70" font-family="Consolas, monospace" font-size="10.5" fill="#9E3E22" text-anchor="middle">BALANÇO 4,20m</text>
+
+  <!-- Sombra projetada no terreno -->
+  <polygon points="80,500 820,500 860,545 40,545" fill="#C2BAA8"/>
+
+  <!-- Volume Térreo: Embasamento de Pedra / Concreto Ciclópico e Garagem/Social -->
+  <rect x="140" y="330" width="520" height="170" fill="#B5AE9E" stroke="#181917" stroke-width="1.5"/>
+  <!-- Muro estrutural esquerdo com textura de fôrma de concreto -->
+  <rect x="140" y="330" width="175" height="170" fill="#9E9788" stroke="#181917" stroke-width="1.5"/>
+  <g stroke="#847E70" stroke-width="0.8">
+    <line x1="140" y1="364" x2="315" y2="364"/>
+    <line x1="140" y1="398" x2="315" y2="398"/>
+    <line x1="140" y1="432" x2="315" y2="432"/>
+    <line x1="140" y1="466" x2="315" y2="466"/>
+    <circle cx="165" cy="347" r="1.8" fill="#5E5A50"/>
+    <circle cx="290" cy="347" r="1.8" fill="#5E5A50"/>
+    <circle cx="165" cy="415" r="1.8" fill="#5E5A50"/>
+    <circle cx="290" cy="415" r="1.8" fill="#5E5A50"/>
+    <circle cx="165" cy="483" r="1.8" fill="#5E5A50"/>
+    <circle cx="290" cy="483" r="1.8" fill="#5E5A50"/>
+  </g>
+
+  <!-- Caixilharia piso-teto do pavimento térreo -->
+  <rect x="315" y="338" width="305" height="162" fill="url(#glassReflect)" stroke="#181917" stroke-width="1.5"/>
+  <!-- Reflexos internos cálidos no térreo -->
+  <rect x="330" y="352" width="120" height="135" fill="#D9A76A" fill-opacity="0.18"/>
+  <rect x="475" y="352" width="130" height="135" fill="#D9A76A" fill-opacity="0.12"/>
+  <!-- Montantes metálicos esquadria -->
+  <g stroke="#181917" stroke-width="2.5">
+    <line x1="415" y1="338" x2="415" y2="500"/>
+    <line x1="518" y1="338" x2="518" y2="500"/>
+  </g>
+  <!-- Perfil estrutural esbelto no eixo C -->
+  <rect x="615" y="330" width="10" height="170" fill="#181917"/>
+
+  <!-- Sombra sob o volume superior em balanço -->
+  <polygon points="140,330 760,330 760,348 315,348 315,338 140,338" fill="#181917" fill-opacity="0.38"/>
+
+  <!-- Volume Superior: Prisma em Concreto Aparente Protendido (Pavimento Superior) -->
+  <rect x="115" y="160" width="645" height="170" fill="url(#concreteMain)" stroke="#181917" stroke-width="1.75"/>
+  <!-- Laje de cobertura com platibanda técnica -->
+  <rect x="108" y="146" width="660" height="16" fill="#181917"/>
+  <rect x="115" y="316" width="645" height="14" fill="url(#concreteShadow)" stroke="#181917" stroke-width="1.2"/>
+
+  <!-- Junta de fôrma do concreto superior -->
+  <g stroke="#ABA393" stroke-width="1">
+    <line x1="220" y1="162" x2="220" y2="316"/>
+    <line x1="340" y1="162" x2="340" y2="316"/>
+    <line x1="620" y1="162" x2="620" y2="316"/>
+    <line x1="115" y1="240" x2="340" y2="240"/>
+  </g>
+
+  <!-- Painel de Brises de Madeira/Corten no pavimento superior (entre eixos B e C) -->
+  <rect x="340" y="176" width="280" height="140" fill="url(#briseTimber)" stroke="#181917" stroke-width="1.5"/>
+  <!-- Abertura zenital / recuo em vidro no balanço (entre C e D) -->
+  <rect x="620" y="176" width="122" height="140" fill="url(#glassReflect)" stroke="#181917" stroke-width="1.5"/>
+  <line x1="681" y1="176" x2="681" y2="316" stroke="#F4F1EA" stroke-opacity="0.3" stroke-width="1.2"/>
+
+  <!-- Viga metálica aparente perfil I em terracota/corten -->
+  <rect x="336" y="168" width="424" height="10" fill="#9E3E22" stroke="#181917" stroke-width="1.2"/>
+
+  <!-- Escada externa / espelho d'água e embasamento mineral -->
+  <rect x="65" y="500" width="750" height="18" fill="#7D786C" stroke="#181917" stroke-width="1.5"/>
+  <rect x="45" y="518" width="790" height="26" fill="#181917"/>
+  <!-- Linha de corte do solo (hachura técnica) -->
+  <g stroke="#6E6C64" stroke-width="1">
+    <line x1="60" y1="544" x2="45" y2="562"/>
+    <line x1="80" y1="544" x2="65" y2="562"/>
+    <line x1="100" y1="544" x2="85" y2="562"/>
+    <line x1="120" y1="544" x2="105" y2="562"/>
+    <line x1="140" y1="544" x2="125" y2="562"/>
+    <line x1="160" y1="544" x2="145" y2="562"/>
+    <line x1="180" y1="544" x2="165" y2="562"/>
+    <line x1="200" y1="544" x2="185" y2="562"/>
+  </g>
+
+  <!-- Cotas de Nível à Direita (Elevações) -->
+  <g font-family="Consolas, monospace" font-size="10.5" fill="#181917">
+    <!-- Nível Cobertura +6.80 -->
+    <line x1="775" y1="146" x2="845" y2="146" stroke="#181917" stroke-width="1"/>
+    <polygon points="790,146 784,138 796,138" fill="#9E3E22"/>
+    <text x="802" y="142">+6,80m</text>
+
+    <!-- Nível 2º Pav +3.40 -->
+    <line x1="775" y1="330" x2="845" y2="330" stroke="#181917" stroke-width="1"/>
+    <polygon points="790,330 784,322 796,322" fill="#181917"/>
+    <text x="802" y="326">+3,40m</text>
+
+    <!-- Nível Térreo ±0.00 -->
+    <line x1="775" y1="500" x2="845" y2="500" stroke="#181917" stroke-width="1"/>
+    <polygon points="790,500 784,492 796,492" fill="#181917"/>
+    <text x="802" y="496">±0,00m</text>
+  </g>
+
+  <!-- Carimbo Técnico Inferior na Prancha -->
+  <rect x="45" y="572" width="790" height="46" fill="#F4F1EA" stroke="#181917" stroke-width="1.2"/>
+  <line x1="270" y1="572" x2="270" y2="618" stroke="#181917" stroke-width="1"/>
+  <line x1="595" y1="572" x2="595" y2="618" stroke="#181917" stroke-width="1"/>
+  <rect x="45" y="572" width="8" height="46" fill="#9E3E22"/>
+
+  <g font-family="Consolas, monospace" fill="#181917">
+    <text x="66" y="591" font-size="10" fill="#6E6C64">ESTUDO DE ELEVAÇÃO</text>
+    <text x="66" y="607" font-size="11.5" font-weight="bold">PRANCHA E-01 · CONCRETO &amp; AÇO</text>
+
+    <text x="286" y="591" font-size="10" fill="#6E6C64">SISTEMA CONSTRUTIVO DE REFERÊNCIA</text>
+    <text x="286" y="607" font-size="11">LAJE NERVURADA + PERFIL METÁLICO + BRISE</text>
+
+    <text x="612" y="591" font-size="10" fill="#9E3E22">FINALIDADE DA IMAGEM</text>
+    <text x="612" y="607" font-size="11">ILUSTRAÇÃO CONCEITUAL MCODE</text>
+  </g>
+</svg>

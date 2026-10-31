@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 520" width="760" height="520" role="img" aria-label="Estudo de Tipologia 02: Sede comercial corporativa com estrutura modulada e fachada ventilada com brises metálicos">
+  <rect width="760" height="520" fill="#EAE5DA"/>
+  <!-- Eixos de modulação 7.50m -->
+  <g stroke="#C7C0B2" stroke-width="1" stroke-dasharray="5 4">
+    <line x1="150" y1="30" x2="150" y2="410"/>
+    <line x1="305" y1="30" x2="305" y2="410"/>
+    <line x1="455" y1="30" x2="455" y2="410"/>
+    <line x1="610" y1="30" x2="610" y2="410"/>
+  </g>
+
+  <!-- Edifício Comercial Modulado (3 Pavimentos + Térreo Duplo) -->
+  <rect x="150" y="75" width="460" height="325" fill="#232827" stroke="#181917" stroke-width="2"/>
+
+  <!-- Pilares e Vigas Metálicas Externas (Exoesqueleto técnico) -->
+  <g fill="#181917">
+    <rect x="146" y="70" width="10" height="330"/>
+    <rect x="300" y="70" width="10" height="330"/>
+    <rect x="450" y="70" width="10" height="330"/>
+    <rect x="604" y="70" width="10" height="330"/>
+    <!-- Vigas de entrepiso -->
+    <rect x="146" y="70" width="468" height="12"/>
+    <rect x="146" y="165" width="468" height="10"/>
+    <rect x="146" y="260" width="468" height="10"/>
+  </g>
+
+  <!-- Brises verticais em aço corten / terracota nos módulos superiores -->
+  <g stroke="#9E3E22" stroke-width="3">
+    <line x1="175" y1="82" x2="175" y2="260"/>
+    <line x1="195" y1="82" x2="195" y2="260"/>
+    <line x1="215" y1="82" x2="215" y2="260"/>
+    <line x1="235" y1="82" x2="235" y2="260"/>
+    <line x1="255" y1="82" x2="255" y2="260"/>
+    <line x1="275" y1="82" x2="275" y2="260"/>
+
+    <line x1="475" y1="82" x2="475" y2="260"/>
+    <line x1="495" y1="82" x2="495" y2="260"/>
+    <line x1="515" y1="82" x2="515" y2="260"/>
+    <line x1="535" y1="82" x2="535" y2="260"/>
+    <line x1="555" y1="82" x2="555" y2="260"/>
+    <line x1="575" y1="82" x2="575" y2="260"/>
+  </g>
+
+  <!-- Térreo com pé-direito duplo e marquise metálica -->
+  <rect x="120" y="256" width="520" height="10" fill="#9E3E22" stroke="#181917" stroke-width="1.2"/>
+  <rect x="325" y="305" width="110" height="95" fill="#D9A76A" fill-opacity="0.22" stroke="#EAE5DA" stroke-width="1"/>
+  <rect x="60" y="400" width="640" height="16" fill="#8C8679" stroke="#181917" stroke-width="1.5"/>
+
+  <!-- Carimbo Técnico -->
+  <g font-family="Consolas, monospace" font-size="11" fill="#181917">
+    <text x="227" y="55" text-anchor="middle">MÓDULO 7,50m</text>
+    <text x="380" y="55" text-anchor="middle">MÓDULO 7,50m</text>
+    <text x="532" y="55" text-anchor="middle">MÓDULO 7,50m</text>
+
+    <rect x="60" y="432" width="640" height="52" fill="#F4F1EA" stroke="#181917" stroke-width="1.2"/>
+    <rect x="60" y="432" width="6" height="52" fill="#9E3E22"/>
+    <text x="80" y="454" font-weight="bold">TIPOLOGIA B · SEDE COMERCIAL E OPERAÇÃO CORPORATIVA</text>
+    <text x="80" y="472" fill="#4A4943">Foco: Planta livre modulada, fachada de baixa manutenção e infraestrutura seca para rápida ocupação.</text>
+  </g>
+</svg>
+
