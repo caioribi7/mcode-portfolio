@@ -8,7 +8,7 @@ test('landing page exposes MCode identity, navigation and honest conceptual work
  assert.match(html,/<html lang="pt-BR"/);
  assert.match(html,/<main/);
  for (const id of ['trabalhos','estudio','devs','contato']) assert.ok(html.includes(`id="${id}"`),`Missing ${id}`);
- assert.match(html,/EM BREVE/);
+ assert.match(html,/PROJETOS/);
  assert.match(html,/href="mailto:mcode\.contato@gmail\.com(?:\?[^\"]*)?"/);
  assert.doesNotMatch(html,/floating-status-card|status-grid-bar|footer-specs|fonts\.googleapis\.com/);
  assert.match(html,/MCode-Identidade-Visual\/01-Logos-SVG\/mcode-horizontal-cor-escuro.svg/);
@@ -28,14 +28,16 @@ test('studio section keeps its mobile layout rules aligned with the current mark
  assert.doesNotMatch(css, /\.hero-outline/, 'Hero title remains filled without an outline hover effect');
 });
 
-test('portfolio displays Vértice project and one coming-soon slot', () => {
+test('portfolio displays Vértice and Sorvebom projects without coming-soon slots', () => {
  const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
  const work = html.match(/<section[^>]*id="trabalhos"[\s\S]*?<\/section>/)?.[0];
  assert.ok(work);
  assert.equal((work.match(/<article\b/g) || []).length, 2);
- assert.equal((work.match(/<h3>EM BREVE<\/h3>/g) || []).length, 1);
+ assert.equal((work.match(/<h3>EM BREVE<\/h3>/g) || []).length, 0);
  assert.match(work, /href="https:\/\/construtora\.mcode\.dev\.br"/);
  assert.match(work, /Vértice/);
+ assert.match(work, /href="https:\/\/sorvebom\.mcode\.dev\.br"/);
+ assert.match(work, /Sorvebom/);
  assert.doesNotMatch(work, /<button\b|<details\b|Bara|project-orbit/);
  assert.doesNotMatch(html, /project-image-viewer|data-image-preview/);
 });

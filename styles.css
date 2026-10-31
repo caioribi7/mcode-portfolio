@@ -1544,3 +1544,51 @@ h2, h3 { text-wrap: balance; font-weight: 400; }
   height: 70%;
   opacity: 0.88;
 }
+
+
+/* Sorvebom Art */
+.sorvebom-art {
+  background: #FFF8EF;
+  color: #2B0D19;
+  border-bottom: 1px solid var(--line);
+  position: relative;
+  overflow: hidden;
+}
+.sorvebom-art .mock-top b,
+.sorvebom-art .mock-top span,
+.sorvebom-art .mock-bottom {
+  color: #8A6B74;
+}
+.sorvebom-art .project-badge {
+  background: #C8005A;
+  color: #FFF8EF;
+  border-color: #C8005A;
+}
+.sorvebom-art .project-metric {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: #C8005A;
+  letter-spacing: 0.06em;
+}
+.sorvebom-title-art {
+  position: absolute;
+  top: 96px;
+  left: 24px;
+  font-family: var(--display);
+  font-size: clamp(34px, 4vw, 50px);
+  line-height: 0.95;
+  color: #2B0D19;
+  letter-spacing: -0.02em;
+  z-index: 2;
+}
+.sorvebom-title-art span {
+  color: #C8005A;
+}
+.sorvebom-vector {
+  position: absolute;
+  right: -2%;
+  bottom: 0;
+  width: 75%;
+  height: 70%;
+  opacity: 0.92;
+}
