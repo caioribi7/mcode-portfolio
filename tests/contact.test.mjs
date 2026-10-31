@@ -5,17 +5,16 @@ import { readFileSync } from 'node:fs';
 const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
 const contact = html.match(/<section\b[^>]*id="contato"[^>]*>([\s\S]*?)<\/section>/)?.[1];
 
-test('contact works through a real email link without a form or JavaScript', () => {
+test('contact works through real email and instagram links without forms or JavaScript', () => {
   assert.ok(contact);
   assert.match(contact, /href="mailto:mcode\.contato@gmail\.com"/);
+  assert.match(contact, /href="https:\/\/www\.instagram\.com\/mcode\.web\/"/);
   assert.doesNotMatch(contact, /<(?:form|input|textarea|fieldset)\b/);
 });
 
-test('unconfigured WhatsApp and Instagram channels are honest, noninteractive placeholders', () => {
-  for (const channel of ['whatsapp', 'instagram']) {
-    assert.match(contact, new RegExp(`<div class="contact-option is-pending" data-channel="${channel}">`));
-    assert.doesNotMatch(contact, new RegExp(`<a[^>]*data-channel="${channel}"`));
-  }
-  assert.equal((contact.match(/>Em breve</g) || []).length, 2);
-  assert.doesNotMatch(contact, /href="#"|href="https:\/\/(?:wa\.me|(?:www\.)?instagram\.com)/);
+test('unconfigured WhatsApp channel remains an honest, noninteractive placeholder', () => {
+  assert.match(contact, /<div class="contact-option is-pending" data-channel="whatsapp">/);
+  assert.doesNotMatch(contact, /<a[^>]*data-channel="whatsapp"/);
+  assert.equal((contact.match(/>Em breve</g) || []).length, 1);
+  assert.doesNotMatch(contact, /href="#"|href="https:\/\/wa\.me/);
 });

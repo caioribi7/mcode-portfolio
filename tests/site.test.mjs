@@ -8,7 +8,7 @@ test('landing page exposes MCode identity, navigation and honest conceptual work
  assert.match(html,/<html lang="pt-BR"/);
  assert.match(html,/<main/);
  for (const id of ['trabalhos','estudio','devs','contato']) assert.ok(html.includes(`id="${id}"`),`Missing ${id}`);
- assert.match(html,/PROJETOS/);
+ assert.match(html,/CASES EM/);
  assert.match(html,/href="mailto:mcode\.contato@gmail\.com(?:\?[^\"]*)?"/);
  assert.doesNotMatch(html,/floating-status-card|status-grid-bar|footer-specs|fonts\.googleapis\.com/);
  assert.match(html,/MCode-Identidade-Visual\/01-Logos-SVG\/mcode-horizontal-cor-escuro.svg/);
