@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.mcode.dev.br/sitemap.xml
+Sitemap: https://mcode.dev.br/sitemap.xml
