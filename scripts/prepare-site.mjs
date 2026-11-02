@@ -10,6 +10,7 @@ export const PUBLIC_FILES = Object.freeze([
   '404.html',
   'robots.txt',
   'sitemap.xml',
+  'BingSiteAuth.xml',
   'styles.css',
   'refinements.css',
   'app.mjs',
