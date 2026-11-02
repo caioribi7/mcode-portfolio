@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://mcode.dev.br/sitemap.xml

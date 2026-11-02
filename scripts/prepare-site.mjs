@@ -9,6 +9,7 @@ export const PUBLIC_FILES = Object.freeze([
   'index.html',
   '404.html',
   'robots.txt',
+  'sitemap.xml',
   'styles.css',
   'refinements.css',
   'app.mjs',
