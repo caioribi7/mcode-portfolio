@@ -19,22 +19,14 @@ if (menuButton && navigation) {
   mobile.addEventListener('change', () => setMenu(false));
 }
 
-// Project cover videos: play only while visible and without reduced motion; otherwise keep the poster
+// Project cover videos: play while visible (regardless of reduced motion, by choice); pause off-screen
 const loopVideos = document.querySelectorAll('video[data-autoplay-loop]');
 if (loopVideos.length && 'IntersectionObserver' in window) {
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const visible = new Set();
-  const sync = (video) => {
-    if (visible.has(video) && !reducedMotion.matches) video.play().catch(() => {});
-    else video.pause();
-  };
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(({ target, isIntersecting }) => {
-      if (isIntersecting) visible.add(target);
-      else visible.delete(target);
-      sync(target);
+      if (isIntersecting) target.play().catch(() => {});
+      else target.pause();
     });
   }, { threshold: 0.25 });
   loopVideos.forEach((video) => observer.observe(video));
-  reducedMotion.addEventListener('change', () => loopVideos.forEach(sync));
 }
