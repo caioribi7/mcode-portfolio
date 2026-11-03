@@ -18,6 +18,15 @@ Ao substituir a arte, atualizar a origem aqui, o texto alternativo e as dimensõ
 - Projeto: site do Bara's Hotel, em Bom Conselho, Pernambuco.
 - Uso: apresentação no portfólio, sem link externo e sem corte da captura.
 
+## Sorvebom — capa em vídeo
+
+- Arquivos: `sorvebom-capa.webm`, `sorvebom-capa.mp4` (1200 × 900 px, 8 s em loop, sem áudio) e `sorvebom-capa-poster.jpg` (primeiro quadro).
+- Criados em 03/11/2026 com HyperFrames, com assistência do Claude Code. A composição editável fica em `projetos/sorvebom/video-capa/` (fora deste repositório); o render original tem 1600 × 1200 px.
+- Conteúdo: recortes oficiais de produtos da Sorvebom (Mag Cookies, Mag Black, Abacaxi, Sonho de Verão 2L e Leitinho Trufado Zero 1L), vindos de `projetos/sorvebom/assets/images/produtos/`, e a tagline "A vida tem nosso sabor." em League Gothic.
+- Uso: capa do card Sorvebom em `index.html`. O vídeo só toca visível e sem `prefers-reduced-motion`; caso contrário fica o poster.
+
+Ao alterar a composição, renderizar de novo, regenerar os três arquivos e manter o primeiro e o último quadro idênticos para o loop.
+
 ## Fontes
 
 - Anton: [licença SIL OFL 1.1](fonts/OFL-Anton.txt), com identificação dos autores e repositório de origem.

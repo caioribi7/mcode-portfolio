@@ -18,6 +18,8 @@ const MIME_TYPES = {
   '.jpg': 'image/jpeg',
   '.jpeg': 'image/jpeg',
   '.ico': 'image/x-icon',
+  '.mp4': 'video/mp4',
+  '.webm': 'video/webm',
   '.ttf': 'font/ttf',
   '.txt': 'text/plain; charset=utf-8',
 };

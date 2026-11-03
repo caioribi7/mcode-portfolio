@@ -44,3 +44,20 @@ test('portfolio displays Instituto LEMMA as featured project alongside Vértice 
  assert.doesNotMatch(work, /<button\b|<details\b|Bara|project-orbit/);
  assert.doesNotMatch(html, /project-image-viewer|data-image-preview/);
 });
+
+test('Sorvebom card uses the looping video cover with poster and no autoplay attribute', () => {
+ const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
+ const card = html.match(/<a class="project project-sorvebom"[\s\S]*?<\/a>/)?.[0];
+ assert.ok(card);
+ const video = card.match(/<video\b[^>]*>/)?.[0];
+ assert.ok(video, 'Sorvebom card must have a cover video');
+ for (const attr of ['data-autoplay-loop', 'muted', 'loop', 'playsinline', 'poster="assets/sorvebom-capa-poster.jpg"', 'aria-hidden="true"']) assert.ok(video.includes(attr), `Missing ${attr}`);
+ assert.doesNotMatch(video, /\bautoplay\b(?!-)/, 'Playback is started by app.mjs to respect reduced motion');
+ assert.match(card, /<source src="assets\/sorvebom-capa\.webm" type="video\/webm">/);
+ assert.match(card, /<source src="assets\/sorvebom-capa\.mp4" type="video\/mp4">/);
+ assert.doesNotMatch(card, /sorvebom-vector|sorvebom-title-art/);
+ for (const file of ['sorvebom-capa.mp4', 'sorvebom-capa.webm', 'sorvebom-capa-poster.jpg']) assert.ok(existsSync(new URL(`../assets/${file}`, import.meta.url)), `Missing ${file}`);
+ const app = readFileSync(new URL('../app.mjs', import.meta.url), 'utf8');
+ assert.match(app, /prefers-reduced-motion: reduce/);
+ assert.match(app, /IntersectionObserver/);
+});
