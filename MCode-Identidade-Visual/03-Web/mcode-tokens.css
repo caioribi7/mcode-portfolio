@@ -5,6 +5,7 @@
   --mcode-surface: #111A14;
   --mcode-muted: #829488;
   --mcode-border: #2A332D;
-  --mcode-font: "Segoe UI", Arial, sans-serif;
-  --mcode-font-code: Consolas, "Courier New", monospace;
+  --mcode-font-display: "Anton", Impact, "Arial Narrow", sans-serif;
+  --mcode-font: "Space Grotesk", "Segoe UI", Arial, sans-serif;
+  --mcode-font-code: "Geist Mono", Consolas, "Courier New", monospace;
 }

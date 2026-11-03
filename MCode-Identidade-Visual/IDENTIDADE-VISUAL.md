@@ -1,6 +1,6 @@
 # MCode — Guia de identidade visual
 
-Versão 1.0 · Identidade aprovada: Módulo MC, com barra inferior prolongada.
+Versão 1.1 · Identidade aprovada: Módulo MC, com barra inferior prolongada.
 
 ## 1. Conceito
 
@@ -67,7 +67,17 @@ O pack inclui favicon de 16 px, mas 24–32 px preservam melhor a abertura inter
 
 **Logo:** lettering próprio construído em curvas SVG. Não há fonte para instalar e não se deve redigitar o nome para reproduzir o logo.
 
-**Textos de apoio:** Segoe UI, com Arial e sans-serif como alternativas. Usar Semibold/Bold para títulos e Regular para textos. Para trechos de código, usar Consolas, com Courier New e monospace como alternativas. São fontes do ambiente de uso; não estão incluídas nem licenciadas por este pack. Verificar a licença antes de redistribuir ou hospedar arquivos de fonte.
+**Famílias da marca (site, aplicativo e carrossel):**
+
+| Papel | Fonte | Uso |
+|---|---|---|
+| Títulos | Anton | Afirmações em caixa alta, escala grande; peso único (400), sem negrito sintético |
+| Texto | Space Grotesk | Corpo, subtítulos e interface; pesos 300 a 700 |
+| Detalhes técnicos | Geist Mono | Rótulos, coordenadas, código e pequenos metadados |
+
+As três são open source (licença OFL). Os arquivos e as licenças estão em `portfolio/assets/fonts/` e `carrossel/assets/fonts/`; ao hospedar, publicar também o texto da licença correspondente. Em ambientes sem as fontes carregadas, as alternativas são Impact ou Arial Narrow para Anton, Segoe UI ou Arial para Space Grotesk e Consolas ou monospace para Geist Mono.
+
+Histórico: a versão 1.0 do pack indicava Segoe UI e Consolas. A prática do site, do aplicativo e do carrossel passou às famílias acima, e este guia foi atualizado para refletir o uso real (v1.1). Segoe UI e Consolas permanecem apenas como alternativas.
 
 Sugestão para interfaces: títulos entre 32 e 48 px, subtítulos de 22–28 px e corpo de 16–18 px. Preferir caixa normal nos textos; reservar caixa alta com espaçamento moderado para pequenos rótulos.
 
