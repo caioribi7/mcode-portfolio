@@ -28,12 +28,15 @@ test('studio section keeps its mobile layout rules aligned with the current mark
  assert.doesNotMatch(css, /\.hero-outline/, 'Hero title remains filled without an outline hover effect');
 });
 
-test('portfolio displays Vértice and Sorvebom projects without coming-soon slots', () => {
+test('portfolio displays Instituto LEMMA as featured project alongside Vértice and Sorvebom', () => {
  const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
  const work = html.match(/<section[^>]*id="trabalhos"[\s\S]*?<\/section>/)?.[0];
  assert.ok(work);
- assert.equal((work.match(/<article\b/g) || []).length, 2);
+ assert.equal((work.match(/<article\b/g) || []).length, 3);
  assert.equal((work.match(/<h3>EM BREVE<\/h3>/g) || []).length, 0);
+ assert.match(work, /project-card-full/);
+ assert.match(work, /href="https:\/\/www\.institutolemma\.com\.br"/);
+ assert.match(work, /Instituto LEMMA/);
  assert.match(work, /href="https:\/\/construtora\.mcode\.dev\.br"/);
  assert.match(work, /Vértice/);
  assert.match(work, /href="https:\/\/sorvebom\.mcode\.dev\.br"/);
