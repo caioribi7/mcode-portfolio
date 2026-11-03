@@ -1522,27 +1522,26 @@ h2, h3 { text-wrap: balance; font-weight: 400; }
   color: #9E3E22;
   letter-spacing: 0.06em;
 }
-.vertice-title-art {
+/* Capas em vídeo (HyperFrames: projetos/vertice-video-capa e projetos/sorvebom/video-capa).
+   A ação fica no centro do quadro para resistir ao corte do card no desktop e no mobile. */
+.project-video {
   position: absolute;
-  top: 96px;
-  left: 24px;
-  font-family: var(--display);
-  font-size: clamp(36px, 4.2vw, 54px);
-  line-height: 0.95;
-  color: #181917;
-  letter-spacing: -0.02em;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.vertice-art .mock-top,
+.vertice-art .mock-bottom,
+.vertice-art .project-open,
+.sorvebom-art .mock-top,
+.sorvebom-art .mock-bottom,
+.sorvebom-art .project-open {
   z-index: 2;
 }
-.vertice-title-art span {
-  color: #9E3E22;
-}
-.vertice-vector {
-  position: absolute;
-  right: -5%;
-  bottom: 0;
-  width: 75%;
-  height: 70%;
-  opacity: 0.88;
+/* Abaixo de 4:3 o corte come o título; as faixas somem no fundo do próprio card. */
+@media (max-width: 480px) {
+  .project-video { object-fit: contain; }
 }
 
 
@@ -1553,11 +1552,6 @@ h2, h3 { text-wrap: balance; font-weight: 400; }
   border-bottom: 1px solid var(--line);
   position: relative;
   overflow: hidden;
-}
-.sorvebom-art .mock-top,
-.sorvebom-art .mock-bottom,
-.sorvebom-art .project-open {
-  z-index: 2;
 }
 .sorvebom-art .mock-top b,
 .sorvebom-art .mock-top span,
@@ -1574,19 +1568,6 @@ h2, h3 { text-wrap: balance; font-weight: 400; }
   font-size: 11px;
   color: #FFC83B;
   letter-spacing: 0.06em;
-}
-/* Capa em vídeo (HyperFrames, projetos/sorvebom/video-capa). A ação fica no
-   centro do quadro para resistir ao corte do card no desktop e no mobile. */
-.sorvebom-video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-/* Abaixo de 4:3 o corte come a tagline; as faixas somem no fundo cacau. */
-@media (max-width: 480px) {
-  .sorvebom-video { object-fit: contain; }
 }
 
 

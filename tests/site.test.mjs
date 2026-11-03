@@ -45,18 +45,20 @@ test('portfolio displays Instituto LEMMA as featured project alongside Vértice 
  assert.doesNotMatch(html, /project-image-viewer|data-image-preview/);
 });
 
-test('Sorvebom card uses the looping video cover, started by app.mjs while visible', () => {
+test('Vértice and Sorvebom cards use looping video covers, started by app.mjs while visible', () => {
  const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
- const card = html.match(/<a class="project project-sorvebom"[\s\S]*?<\/a>/)?.[0];
- assert.ok(card);
- const video = card.match(/<video\b[^>]*>/)?.[0];
- assert.ok(video, 'Sorvebom card must have a cover video');
- for (const attr of ['data-autoplay-loop', 'muted', 'loop', 'playsinline', 'poster="assets/sorvebom-capa-poster.jpg"', 'aria-hidden="true"']) assert.ok(video.includes(attr), `Missing ${attr}`);
- assert.doesNotMatch(video, /\bautoplay\b(?!-)/, 'Playback is started by app.mjs only while the card is visible');
- assert.match(card, /<source src="assets\/sorvebom-capa\.webm" type="video\/webm">/);
- assert.match(card, /<source src="assets\/sorvebom-capa\.mp4" type="video\/mp4">/);
- assert.doesNotMatch(card, /sorvebom-vector|sorvebom-title-art/);
- for (const file of ['sorvebom-capa.mp4', 'sorvebom-capa.webm', 'sorvebom-capa-poster.jpg']) assert.ok(existsSync(new URL(`../assets/${file}`, import.meta.url)), `Missing ${file}`);
+ for (const name of ['vertice', 'sorvebom']) {
+  const card = html.match(new RegExp(`<a class="project project-${name}"[\\s\\S]*?</a>`))?.[0];
+  assert.ok(card, `Missing ${name} card`);
+  const video = card.match(/<video\b[^>]*>/)?.[0];
+  assert.ok(video, `${name} card must have a cover video`);
+  for (const attr of ['class="project-video"', 'data-autoplay-loop', 'muted', 'loop', 'playsinline', `poster="assets/${name}-capa-poster.jpg"`, 'aria-hidden="true"']) assert.ok(video.includes(attr), `${name}: missing ${attr}`);
+  assert.doesNotMatch(video, /\bautoplay\b(?!-)/, 'Playback is started by app.mjs only while the card is visible');
+  assert.match(card, new RegExp(`<source src="assets/${name}-capa\\.webm" type="video/webm">`));
+  assert.match(card, new RegExp(`<source src="assets/${name}-capa\\.mp4" type="video/mp4">`));
+  assert.doesNotMatch(card, new RegExp(`${name}-vector|${name}-title-art`));
+  for (const ext of ['.mp4', '.webm', '-poster.jpg']) assert.ok(existsSync(new URL(`../assets/${name}-capa${ext}`, import.meta.url)), `Missing ${name}-capa${ext}`);
+ }
  const app = readFileSync(new URL('../app.mjs', import.meta.url), 'utf8');
  assert.match(app, /IntersectionObserver/);
  assert.match(app, /\.play\(\)/);

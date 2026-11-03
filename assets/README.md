@@ -18,6 +18,13 @@ Ao substituir a arte, atualizar a origem aqui, o texto alternativo e as dimensõ
 - Projeto: site do Bara's Hotel, em Bom Conselho, Pernambuco.
 - Uso: apresentação no portfólio, sem link externo e sem corte da captura.
 
+## Vértice — capa em vídeo
+
+- Arquivos: `vertice-capa.webm`, `vertice-capa.mp4` (1200 × 900 px, 8 s em loop, sem áudio) e `vertice-capa-poster.jpg` (primeiro quadro).
+- Criados em 03/11/2026 com HyperFrames, com assistência do Claude Code. A composição editável fica em `projetos/vertice-video-capa/` (fora deste repositório); o render original tem 1600 × 1200 px.
+- Conteúdo: a prancha E-01 do site publicado em construtora.mcode.dev.br (`assets/hero-arquitetura.svg`), sem o carimbo, separada em camadas que se constroem em sequência (eixos, fundação, pilares, lajes, volume, cotas), e o título "Obra sem improviso." em Anton.
+- Uso: capa do card Vértice em `index.html`, com o mesmo comportamento da capa Sorvebom.
+
 ## Sorvebom — capa em vídeo
 
 - Arquivos: `sorvebom-capa.webm`, `sorvebom-capa.mp4` (1200 × 900 px, 8 s em loop, sem áudio) e `sorvebom-capa-poster.jpg` (primeiro quadro).
