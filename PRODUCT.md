@@ -12,7 +12,7 @@ Delegated by user: plain HTML/CSS/JavaScript, no framework or build dependency.
 Portfolio landing page for MCode. Present a distinctive creative technology practice and give visitors a way to prepare a project enquiry.
 
 ## Users
-Prospective clients browsing the studio portfolio. Specific audience and service offerings remain unconfirmed.
+Prospective clients browsing the studio portfolio. On 4 November 2026 the user confirmed the services as landing pages and websites, sold broadly to local businesses. The first prospecting focus is Bom Conselho (PE); see `docs/planejamento/prospeccao-bom-conselho.md`. Prices, packages and public service copy remain unconfirmed.
 
 ## Public Contributors
 
