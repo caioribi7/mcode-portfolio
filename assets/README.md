@@ -18,6 +18,13 @@ Ao substituir a arte, atualizar a origem aqui, o texto alternativo e as dimensõ
 - Projeto: site do Bara's Hotel, em Bom Conselho, Pernambuco.
 - Uso: apresentação no portfólio, sem link externo e sem corte da captura.
 
+## Instituto LEMMA — capa em vídeo
+
+- Arquivos: `lemma-capa.webm`, `lemma-capa.mp4` (1820 × 700 px, 8 s em loop, sem áudio) e `lemma-capa-poster.jpg` (quadro de 5 s).
+- Criados em 04/11/2026 com assistência do Claude Code: cena HTML determinística (`projetos/Instituto-Lemma/video-capa/index.html`, fora deste repositório) gravada quadro a quadro no Chromium a 30 fps e codificada com ffmpeg, no mesmo processo da capa da Vértice.
+- Conteúdo: geometria (círculos, triângulo, eixos e curva) desenhada em torno da gravura de Évariste Galois do site do Instituto, com o olhar acompanhando um ponto sobre a curva, o título "Ciência sem concessões." e a linha "Exatas & Olimpíadas". Os arquivos da gravura e dos olhos vêm de `projetos/Instituto-Lemma/`. O primeiro e o último quadro são fundo vazio, para o loop fechar sem emenda.
+- Uso: capa do card Instituto LEMMA em `index.html`, com o mesmo comportamento das capas Vértice e Sorvebom. Faixa larga porque o card ocupa a linha inteira da grade.
+
 ## Vértice — capa em vídeo
 
 - Arquivos: `vertice-capa.webm`, `vertice-capa.mp4` (1200 × 900 px, 8 s em loop, sem áudio) e `vertice-capa-poster.jpg` (quadro de 4 s, com o símbolo completo).

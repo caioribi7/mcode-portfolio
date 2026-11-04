@@ -45,9 +45,9 @@ test('portfolio displays Instituto LEMMA as featured project alongside Vértice 
  assert.doesNotMatch(html, /project-image-viewer|data-image-preview/);
 });
 
-test('Vértice and Sorvebom cards use looping video covers, started by app.mjs while visible', () => {
+test('Lemma, Vértice and Sorvebom cards use looping video covers, started by app.mjs while visible', () => {
  const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
- for (const name of ['vertice', 'sorvebom']) {
+ for (const name of ['lemma', 'vertice', 'sorvebom']) {
   const card = html.match(new RegExp(`<a class="project project-${name}"[\\s\\S]*?</a>`))?.[0];
   assert.ok(card, `Missing ${name} card`);
   const video = card.match(/<video\b[^>]*>/)?.[0];
