@@ -1500,8 +1500,8 @@ h2, h3 { text-wrap: balance; font-weight: 400; }
 
 /* Vértice Art */
 .vertice-art {
-  background: #F4F1EA;
-  color: #181917;
+  background: #FFFFFF;
+  color: #0E0E0C;
   border-bottom: 1px solid var(--line);
   position: relative;
   overflow: hidden;
@@ -1509,17 +1509,19 @@ h2, h3 { text-wrap: balance; font-weight: 400; }
 .vertice-art .mock-top b,
 .vertice-art .mock-top span,
 .vertice-art .mock-bottom {
-  color: #55534B;
+  color: #55554F;
 }
+/* A capa em vídeo já traz o nome e o símbolo; o rótulo superior ficaria duplicado */
+.vertice-art .mock-top { display: none; }
 .vertice-art .project-badge {
-  background: #181917;
-  color: #F4F1EA;
-  border-color: #181917;
+  background: #0E0E0C;
+  color: #FFFFFF;
+  border-color: #0E0E0C;
 }
 .vertice-art .project-metric {
   font-family: var(--mono);
   font-size: 11px;
-  color: #9E3E22;
+  color: #1F3FD6;
   letter-spacing: 0.06em;
 }
 /* Capas em vídeo (HyperFrames: projetos/vertice-video-capa e projetos/sorvebom/video-capa).

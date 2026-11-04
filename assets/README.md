@@ -20,9 +20,9 @@ Ao substituir a arte, atualizar a origem aqui, o texto alternativo e as dimensõ
 
 ## Vértice — capa em vídeo
 
-- Arquivos: `vertice-capa.webm`, `vertice-capa.mp4` (1200 × 900 px, 8 s em loop, sem áudio) e `vertice-capa-poster.jpg` (primeiro quadro).
-- Criados em 03/11/2026 com HyperFrames, com assistência do Claude Code. A composição editável fica em `projetos/vertice-video-capa/` (fora deste repositório); o render original tem 1600 × 1200 px.
-- Conteúdo: a prancha E-01 do site publicado em construtora.mcode.dev.br (`assets/hero-arquitetura.svg`), sem o carimbo, separada em camadas que se constroem em sequência (eixos, fundação, pilares, lajes, volume, cotas), e o título "Obra sem improviso." em Anton.
+- Arquivos: `vertice-capa.webm`, `vertice-capa.mp4` (1200 × 900 px, 8 s em loop, sem áudio) e `vertice-capa-poster.jpg` (quadro de 4 s, com o símbolo completo).
+- Recriados em 03/11/2026 com assistência do Claude Code, gravando no Chromium a capa animada do próprio site da Vértice (`index.html`, `styles.css` e `motion.mjs` do repositório mcode-construtora) e codificando com ffmpeg. Substituem o loop anterior feito com HyperFrames, cuja composição continua em `projetos/vertice-video-capa/`.
+- Conteúdo: "o vértice sendo projetado": malha de CAD, eixos azuis traço-ponto que se cruzam, o símbolo desenhado no cruzamento, o nome VÉRTICE e uma linha de cota com as medidas da Prancha E-01 (17,60 × 6,80 m). O primeiro e o último quadro são papel em branco, para o loop fechar sem emenda.
 - Uso: capa do card Vértice em `index.html`, com o mesmo comportamento da capa Sorvebom.
 
 ## Sorvebom — capa em vídeo
