@@ -131,3 +131,6 @@ $RECYCLE.BIN/
 # Keep source, assets, font licenses, documentation, tests and CI/deploy config.
 # .gitignore does not remove tracked files or clean published Git history.
 # It is not a secret scanner and does not define the website's public directory.
+
+# Third-party lead photos collected for prospecting (not ours to publish)
+leads-imagens/
