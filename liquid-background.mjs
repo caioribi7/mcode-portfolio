@@ -91,7 +91,6 @@ void main() {
   float sheen = smoothstep(0.35, 0.85, h) * 0.6 + fresnel * 0.9;
   float v = pearl * (0.04 + sheen * 0.085 + diffuse * 0.02);
   v += pearl * spec * 0.18;
-  v += pearl * (lens * 0.07 + swirl * 0.04 + min(stir, 1.0) * 0.07) * (1.0 + spec * 3.0);
   v += abs(wave) * 0.06;
 
   // Vinheta para manter o conteúdo legível nas bordas
