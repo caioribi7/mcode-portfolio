@@ -1,5 +1,5 @@
 // Fundo líquido perolado: shader WebGL2 com fluxo de ruído deformado,
-// iridescência em película fina e um rastro do ponteiro que mexe o líquido.
+// brilho perolado em preto e branco com granulação e um rastro do ponteiro que mexe o líquido.
 // Por pedido explícito do usuário, o fluxo é contínuo mesmo com movimento reduzido.
 const canvas = document.querySelector('#liquid-background');
 const gl = canvas?.getContext('webgl2', { alpha: false, antialias: false, depth: false, powerPreference: 'low-power' });
@@ -77,24 +77,24 @@ void main() {
   float spec = pow(max(reflect(-light, n).z, 0.0), 28.0);
   float fresnel = pow(1.0 - n.z, 1.5);
 
-  // Iridescência: fase da película fina varia com altura, fluxo, ângulo e mexida
+  // Perolado monocromático: o brilho oscila em cinzas conforme altura, fluxo, ângulo e mexida
   float phase = h * 1.6 + r.x * 0.9 + fresnel * 2.2 + lens * 0.5 + stir * 0.8 + uTime * 0.02;
-  vec3 pearl = 0.55 + 0.45 * cos(6.28318 * (phase + vec3(0.0, 0.28, 0.58)));
-  pearl = mix(pearl, vec3(0.78, 1.0, 0.62), 0.25); // puxa levemente para o verde da marca
+  vec3 pearl = vec3(0.62 + 0.38 * cos(6.28318 * phase));
 
   vec3 base = vec3(0.043, 0.063, 0.051); // #0B100D
   float sheen = smoothstep(0.35, 0.85, h) * 0.6 + fresnel * 0.9;
   vec3 col = base + pearl * (0.04 + sheen * 0.085 + diffuse * 0.02);
   col += pearl * spec * 0.18;
   col += pearl * (lens * 0.06 + min(stir, 1.0) * 0.07) * (1.0 + spec * 3.0);
-  col += vec3(0.64, 1.0, 0.07) * abs(wave) * 0.06;
+  col += vec3(abs(wave) * 0.06);
 
   // Vinheta para manter o conteúdo legível nas bordas
   vec2 sv = gl_FragCoord.xy / uRes - 0.5;
   col = mix(base, col, 1.0 - dot(sv, sv) * 0.9);
 
-  // Granulação sutil contra banding
-  col += (hash(gl_FragCoord.xy + fract(uTime)) - 0.5) / 255.0;
+  // Granulação de filme animada
+  float grain = hash(gl_FragCoord.xy + floor(uTime * 24.0) * 17.31) - 0.5;
+  col += grain * 0.045;
   outColor = vec4(col, 1.0);
 }`;
 
