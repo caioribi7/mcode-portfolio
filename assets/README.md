@@ -23,14 +23,14 @@ Ao substituir a arte, atualizar a origem aqui, o texto alternativo e as dimensõ
 - Arquivos: `lemma-capa.webm`, `lemma-capa.mp4` (1820 × 700 px, 8 s em loop, sem áudio) e `lemma-capa-poster.jpg` (quadro de 5 s).
 - Criados em 04/11/2026 com assistência do Claude Code: cena HTML determinística (`projetos/Instituto-Lemma/video-capa/index.html`, fora deste repositório) gravada quadro a quadro no Chromium a 30 fps e codificada com ffmpeg, no mesmo processo da capa da Vértice.
 - Conteúdo: geometria (círculos, triângulo, eixos e curva) desenhada em torno da gravura de Évariste Galois do site do Instituto, com o olhar acompanhando um ponto sobre a curva, o título "Ciência sem concessões." e a linha "Exatas & Olimpíadas". Os arquivos da gravura e dos olhos vêm de `projetos/Instituto-Lemma/`. O primeiro e o último quadro são fundo vazio, para o loop fechar sem emenda.
-- Uso: capa do card Instituto LEMMA em `index.html`, com o mesmo comportamento das capas Vértice e Sorvebom. Faixa larga porque o card ocupa a linha inteira da grade.
+- Uso: capa do card Instituto LEMMA em `index.html`, com o mesmo comportamento da capa Sorvebom. Faixa larga porque o card ocupa a linha inteira da grade.
 
-## Vértice — capa em vídeo
+## Cartório Algacyr Barros — capa animada
 
-- Arquivos: `vertice-capa.webm`, `vertice-capa.mp4` (1200 × 900 px, 8 s em loop, sem áudio) e `vertice-capa-poster.jpg` (quadro de 4 s, com o símbolo completo).
-- Recriados em 03/11/2026 com assistência do Claude Code, gravando no Chromium a capa animada do próprio site da Vértice (`index.html`, `styles.css` e `motion.mjs` do repositório mcode-construtora) e codificando com ffmpeg. Substituem o loop anterior feito com HyperFrames, cuja composição continua em `projetos/vertice-video-capa/`.
-- Conteúdo: "o vértice sendo projetado": malha de CAD, eixos azuis traço-ponto que se cruzam, o símbolo desenhado no cruzamento, o nome VÉRTICE e uma linha de cota com as medidas da Prancha E-01 (17,60 × 6,80 m). O primeiro e o último quadro são papel em branco, para o loop fechar sem emenda.
-- Uso: capa do card Vértice em `index.html`, com o mesmo comportamento da capa Sorvebom.
+- Arquivo: `cartorio-selo.png` (240 × 233 px), reduzido de `public/logo-icon-v3.png` do repositório `cartorio-project` (logo da serventia, pena dourada).
+- Criada em 14/11/2026 com assistência do Claude Code. Diferente das outras capas, não é vídeo: é uma animação em HTML e CSS dentro do próprio card (`.cartorio-cover` em `index.html` e `styles.css`), 8 s em loop, pausada fora da tela por `app.mjs`.
+- Conteúdo: a identidade do site do cartório (vinho, ouro velho e papel). O título "Seu atendimento começa com uma mensagem." sobe linha a linha, uma régua dourada se desenha, chega a mensagem do cidadão ("digitando…" e depois o texto), a serventia responde e o selo com o logo carimba a cena. O quadro final fica vazio para o loop fechar sem emenda.
+- Uso: card do Cartório Algacyr Barros, que substituiu o card da Vértice em 14/11/2026. O site do cartório está marcado como `noindex` até a serventia autorizar a publicação.
 
 ## Sorvebom — capa em vídeo
 

@@ -30,3 +30,12 @@ if (loopVideos.length && 'IntersectionObserver' in window) {
   }, { threshold: 0.25 });
   loopVideos.forEach((video) => observer.observe(video));
 }
+
+// Animated CSS covers: pause their keyframes while off-screen
+const animatedCovers = document.querySelectorAll('[data-animated-cover]');
+if (animatedCovers.length && 'IntersectionObserver' in window) {
+  const coverObserver = new IntersectionObserver((entries) => {
+    entries.forEach(({ target, isIntersecting }) => target.classList.toggle('is-offscreen', !isIntersecting));
+  });
+  animatedCovers.forEach((cover) => coverObserver.observe(cover));
+}

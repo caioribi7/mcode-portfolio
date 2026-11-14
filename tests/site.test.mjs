@@ -28,7 +28,7 @@ test('studio section keeps its mobile layout rules aligned with the current mark
  assert.doesNotMatch(css, /\.hero-outline/, 'Hero title remains filled without an outline hover effect');
 });
 
-test('portfolio displays Instituto LEMMA as featured project alongside Vértice and Sorvebom', () => {
+test('portfolio displays Instituto LEMMA as featured project alongside the cartório and Sorvebom', () => {
  const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
  const work = html.match(/<section[^>]*id="trabalhos"[\s\S]*?<\/section>/)?.[0];
  assert.ok(work);
@@ -37,17 +37,18 @@ test('portfolio displays Instituto LEMMA as featured project alongside Vértice 
  assert.match(work, /project-card-full/);
  assert.match(work, /href="https:\/\/www\.institutolemma\.com\.br"/);
  assert.match(work, /Instituto LEMMA/);
- assert.match(work, /href="https:\/\/construtora\.mcode\.dev\.br"/);
- assert.match(work, /Vértice/);
+ assert.match(work, /href="https:\/\/cartorio-project-topaz\.vercel\.app"/);
+ assert.match(work, /Cartório Algacyr Barros/);
+ assert.doesNotMatch(work, /Vértice|construtora\.mcode/);
  assert.match(work, /href="https:\/\/sorvebom\.mcode\.dev\.br"/);
  assert.match(work, /Sorvebom/);
  assert.doesNotMatch(work, /<button\b|<details\b|Bara|project-orbit/);
  assert.doesNotMatch(html, /project-image-viewer|data-image-preview/);
 });
 
-test('Lemma, Vértice and Sorvebom cards use looping video covers, started by app.mjs while visible', () => {
+test('Lemma and Sorvebom cards use looping video covers, started by app.mjs while visible', () => {
  const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
- for (const name of ['lemma', 'vertice', 'sorvebom']) {
+ for (const name of ['lemma', 'sorvebom']) {
   const card = html.match(new RegExp(`<a class="project project-${name}"[\\s\\S]*?</a>`))?.[0];
   assert.ok(card, `Missing ${name} card`);
   const video = card.match(/<video\b[^>]*>/)?.[0];
@@ -62,4 +63,15 @@ test('Lemma, Vértice and Sorvebom cards use looping video covers, started by ap
  const app = readFileSync(new URL('../app.mjs', import.meta.url), 'utf8');
  assert.match(app, /IntersectionObserver/);
  assert.match(app, /\.play\(\)/);
+});
+
+test('cartório card uses the animated CSS cover with the seal, paused off-screen by app.mjs', () => {
+ const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
+ const card = html.match(/<a class="project project-cartorio"[\s\S]*?<\/a>/)?.[0];
+ assert.ok(card, 'Missing cartório card');
+ assert.match(card, /class="cartorio-cover" data-animated-cover aria-hidden="true"/);
+ assert.match(card, /src="assets\/cartorio-selo\.png"/);
+ assert.ok(existsSync(new URL('../assets/cartorio-selo.png', import.meta.url)));
+ const app = readFileSync(new URL('../app.mjs', import.meta.url), 'utf8');
+ assert.match(app, /\[data-animated-cover\]/);
 });
