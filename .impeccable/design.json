@@ -24,8 +24,8 @@
       },
       {
         "name": "cursor",
-        "value": "42ms exponential interpolation",
-        "purpose": "Green ring/white point; 36px on links, compact 28px green arrow with white outline on projects. Subtle 220-300ms crossfades, reversible transitions and persistent fading Explorar label. No cutout, fold, rotation or shadow."
+        "value": "direct tracking, no positional lag",
+        "purpose": "Pixel cursor with 4x4 Bayer dithering, off-white with mix-blend-mode difference (modeled on kc1t.com): 40px wobbling ring plus 10px pulsing core, both locked to the pointer. Ring grows ~40% over links, buttons and projects; core shrinks; press shrinks the ring. Static under reduced motion; native cursor for fields, touch and keyboard."
       },
       {
         "name": "liquid-background",
