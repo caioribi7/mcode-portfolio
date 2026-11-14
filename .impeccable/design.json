@@ -30,7 +30,7 @@
       {
         "name": "liquid-background",
         "value": "110ms exponential response",
-        "purpose": "WebGL2 pearlescent liquid (domain-warped flow, thin-film iridescence tinted toward the brand green). Mouse bends it like a lens and drags it with velocity; clicks send a ripple. Half-resolution render; ambient flow on touch; single static frame under reduced motion; plain --bg when WebGL2 is unavailable."
+        "purpose": "WebGL2 pearlescent liquid (domain-warped flow, thin-film iridescence tinted toward the brand green). Continuous flow; mouse bends it like a lens and leaves a fading swirl trail; clicks send a ripple. Half-resolution render; ambient flow on touch; keeps moving under reduced motion by explicit request; plain --bg when WebGL2 is unavailable."
       },
       {
         "name": "projects-button",
