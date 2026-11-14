@@ -28,9 +28,9 @@
         "purpose": "Green ring/white point; 36px on links, compact 28px green arrow with white outline on projects. Subtle 220-300ms crossfades, reversible transitions and persistent fading Explorar label. No cutout, fold, rotation or shadow."
       },
       {
-        "name": "halftone-background",
-        "value": "90ms exponential response",
-        "purpose": "Canvas dots react to mouse movement and clicks; finite settling loop; static on touch and direct tracking under reduced motion."
+        "name": "liquid-background",
+        "value": "110ms exponential response",
+        "purpose": "WebGL2 pearlescent liquid (domain-warped flow, thin-film iridescence tinted toward the brand green). Mouse bends it like a lens and drags it with velocity; clicks send a ripple. Half-resolution render; ambient flow on touch; single static frame under reduced motion; plain --bg when WebGL2 is unavailable."
       },
       {
         "name": "projects-button",
@@ -55,7 +55,7 @@
   },
   "components": [],
   "narrative": {
-    "northStar": "Alethe-inspired condensed typography and a terminal-framed ASCII identity, with an interactive halftone background.",
+    "northStar": "Alethe-inspired condensed typography and a terminal-framed ASCII identity, with an interactive pearlescent liquid background.",
     "overview": "See DESIGN.md and styles.css for the implemented contract. Editorial studio inherits the default dark/off-white/acid-green root palette by latest explicit user request; keep the layout and no technical chips. Team: Mateus Dias (devs/dev-1.jpg, GitHub root-mwteus) and Caio Ribi (devs/dev-2.jpg, GitHub caioribi7), confirmed by user. Contact uses native email to mcode.contato@gmail.com and noninteractive WhatsApp/Instagram placeholders until official details are supplied. No form remains. User-requested ASCII autoplay and ribbon remain documented motion choices."
   }
 }
