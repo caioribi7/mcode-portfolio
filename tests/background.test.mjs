@@ -16,6 +16,8 @@ function setup({ reduced = false, fine = true, webgl = true } = {}) {
     getUniformLocation: (_, name) => name, viewport() {},
     uniform1f(name, value) { assert.ok(Number.isFinite(value), name); uniforms[name] = value; },
     uniform2f(name, a, b) { assert.ok(Number.isFinite(a + b), name); uniforms[name] = [a, b]; },
+    uniform4fv(name, data) { uniforms[name] = Array.from(data); },
+    uniform2fv(name, data) { uniforms[name] = Array.from(data); },
     drawArrays() { draws++; },
   };
   const canvas = { getContext: type => (webgl && type === 'webgl2' ? gl : null), addEventListener() {} };
@@ -65,15 +67,21 @@ test('mouse bends the liquid, click ripples, and the effect relaxes after the mo
   assert.equal(state.uniforms.uPulse, 0);
 });
 
-test('reduced motion draws direct responses without a loop; touch is ignored; no WebGL is a no-op', () => {
+test('mouse movement leaves a fading stirring trail', () => {
+  const state = setup();
+  for (let i = 0; i < 6; i++) state.events.pointermove({ pointerType: 'mouse', clientX: 100 + i * 30, clientY: 300 });
+  state.step(16);
+  const strengths = () => state.uniforms.uTrail.filter((_, i) => i % 4 === 2);
+  assert.ok(strengths().filter(v => v > 0).length >= 4, 'Trail points are stirring the liquid');
+  for (let time = 32; time < 2000; time += 16) state.step(time);
+  assert.ok(strengths().every(v => v === 0), 'Trail fades out');
+});
+
+test('flow keeps moving under reduced motion (explicit request); touch is ignored; no WebGL is a no-op', () => {
   const reduced = setup({ reduced: true });
   reduced.step(16);
-  assert.equal(reduced.frames.size, 0, 'No perpetual loop under reduced motion');
-  const before = reduced.draws;
-  reduced.events.pointermove({ pointerType: 'mouse', clientX: 150, clientY: 200 });
-  assert.equal(reduced.uniforms.uIntensity, 1);
-  assert.equal(reduced.draws, before + 1);
-  assert.equal(reduced.frames.size, 0);
+  reduced.step(32);
+  assert.equal(reduced.frames.size, 1, 'Ambient flow continues');
 
   const touch = setup({ fine: false });
   touch.events.pointermove({ pointerType: 'touch', clientX: 150, clientY: 200 });
