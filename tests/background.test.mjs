@@ -8,34 +8,33 @@ const source = readFileSync(new URL('../liquid-background.mjs', import.meta.url)
 function setup({ reduced = false, fine = true, webgl = true } = {}) {
   const events = {}, frames = new Map(), uniforms = {};
   let sequence = 0, draws = 0;
-  const gl = {
-    createShader: () => ({}), shaderSource() {}, compileShader() {}, getShaderParameter: () => true,
-    getShaderInfoLog: () => '', createProgram: () => ({}), attachShader() {}, linkProgram() {},
-    getProgramParameter: () => true, useProgram() {}, createBuffer: () => ({}), bindBuffer() {},
-    bufferData() {}, getAttribLocation: () => 0, enableVertexAttribArray() {}, vertexAttribPointer() {},
-    getUniformLocation: (_, name) => name, viewport() {},
+  const known = {
+    getShaderParameter: () => true, getProgramParameter: () => true, getShaderInfoLog: () => '',
+    getUniformLocation: (_, name) => name,
     uniform1f(name, value) { assert.ok(Number.isFinite(value), name); uniforms[name] = value; },
     uniform2f(name, a, b) { assert.ok(Number.isFinite(a + b), name); uniforms[name] = [a, b]; },
     uniform4fv(name, data) { uniforms[name] = Array.from(data); },
     uniform2fv(name, data) { uniforms[name] = Array.from(data); },
     drawArrays() { draws++; },
   };
+  // Qualquer outra chamada WebGL vira um no-op; constantes viram o próprio nome
+  const gl = new Proxy(known, {
+    get: (target, key) => key in target ? target[key] : (/^[A-Z0-9_]+$/.test(String(key)) ? key : () => ({})),
+  });
   const canvas = { getContext: type => (webgl && type === 'webgl2' ? gl : null), addEventListener() {} };
   const document = {
     hidden: false, querySelector: () => canvas,
     addEventListener(type, callback) { events[type] = callback; },
     documentElement: { addEventListener(type, callback) { events[type] = callback; } },
   };
-  let now = 0;
   runInNewContext(source, {
-    document, performance: { now: () => now }, console, Float32Array,
+    document, console, Float32Array,
     window: { innerWidth: 390, innerHeight: 844, devicePixelRatio: 3, addEventListener(type, cb) { events[type] = cb; } },
     matchMedia: query => ({ matches: query.includes('reduced') ? reduced : fine, addEventListener() {} }),
     requestAnimationFrame(callback) { frames.set(++sequence, callback); return sequence; },
     cancelAnimationFrame(id) { frames.delete(id); },
   });
   const step = time => {
-    now = time;
     const [id, callback] = frames.entries().next().value;
     frames.delete(id);
     callback(time);
@@ -43,9 +42,10 @@ function setup({ reduced = false, fine = true, webgl = true } = {}) {
   return { events, frames, uniforms, canvas, step, get draws() { return draws; } };
 }
 
-test('liquid renders at capped half resolution and flows over time', () => {
+test('halftone pass is sharp at capped device ratio and the liquid flows over time', () => {
   const state = setup();
-  assert.equal(state.canvas.width, 390, 'Pixel ratio capped at 2, rendered at half scale');
+  assert.equal(state.canvas.width, 780, 'Pixel ratio capped at 2 for the halftone pass');
+  assert.equal(state.uniforms.uCell, 12, 'Dot cell scales with pixel ratio');
   assert.equal(state.frames.size, 1, 'Ambient animation is scheduled');
   state.step(16);
   const first = state.uniforms.uTime;
@@ -53,18 +53,19 @@ test('liquid renders at capped half resolution and flows over time', () => {
   assert.ok(state.uniforms.uTime > first, 'Time advances');
 });
 
-test('mouse bends the liquid, click ripples, and the effect relaxes after the mouse stops', () => {
+test('a still pointer keeps stirring; leaving the window releases it; click ripples', () => {
   const state = setup();
   state.events.pointermove({ pointerType: 'mouse', clientX: 150, clientY: 200 });
   state.events.pointerdown({ pointerType: 'mouse', clientX: 150, clientY: 200 });
-  let peak = 0;
-  for (let time = 16; time < 200; time += 16) { state.step(time); peak = Math.max(peak, state.uniforms.uIntensity); }
-  assert.ok(peak > 0.5, 'Pointer influence rises');
+  for (let time = 16; time < 300; time += 16) state.step(time);
   assert.ok(state.uniforms.uPulse > 0, 'Click ripple is active');
-  assert.deepEqual(state.uniforms.uClick, [150, 844 - 200], 'Click is flipped to GL coordinates');
-  for (let time = 200; time < 3000; time += 16) state.step(time);
-  assert.ok(state.uniforms.uIntensity < 0.01, 'Influence settles once input stops');
+  assert.deepEqual(state.uniforms.uClick, [75, (844 - 200) * 0.5], 'Click is in liquid texture coordinates');
+  for (let time = 300; time < 4000; time += 16) state.step(time);
+  assert.ok(state.uniforms.uIntensity > 0.99, 'Influence stays while the pointer rests');
   assert.equal(state.uniforms.uPulse, 0);
+  state.events.pointerleave();
+  for (let time = 4000; time < 6000; time += 16) state.step(time);
+  assert.ok(state.uniforms.uIntensity < 0.01, 'Influence fades after the pointer leaves');
 });
 
 test('mouse movement leaves a fading stirring trail', () => {

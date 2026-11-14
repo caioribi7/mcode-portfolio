@@ -30,7 +30,7 @@
       {
         "name": "liquid-background",
         "value": "110ms exponential response",
-        "purpose": "WebGL2 pearlescent liquid (domain-warped flow, monochrome pearl sheen with animated film grain). Continuous flow; mouse bends it like a lens and leaves a fading swirl trail; clicks send a ripple. Half-resolution render; ambient flow on touch; keeps moving under reduced motion by explicit request; plain --bg when WebGL2 is unavailable."
+        "purpose": "WebGL2 pearlescent liquid in grey, shown as a 45° monochrome halftone (6px cells) over a faint continuous layer. Continuous flow; a small lens under the mouse keeps swirling while it rests and releases on leave; movement leaves a fading swirl trail; clicks send a ripple. Ambient flow on touch; keeps moving under reduced motion by explicit request; plain --bg when WebGL2 is unavailable."
       },
       {
         "name": "projects-button",
