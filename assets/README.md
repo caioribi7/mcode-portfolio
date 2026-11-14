@@ -23,7 +23,7 @@ Ao substituir a arte, atualizar a origem aqui, o texto alternativo e as dimensõ
 - Arquivos: `lemma-capa.webm`, `lemma-capa.mp4` (1820 × 700 px, 8 s em loop, sem áudio) e `lemma-capa-poster.jpg` (quadro de 5 s).
 - Criados em 04/11/2026 com assistência do Claude Code: cena HTML determinística (`projetos/Instituto-Lemma/video-capa/index.html`, fora deste repositório) gravada quadro a quadro no Chromium a 30 fps e codificada com ffmpeg, no mesmo processo da capa da Vértice.
 - Conteúdo: geometria (círculos, triângulo, eixos e curva) desenhada em torno da gravura de Évariste Galois do site do Instituto, com o olhar acompanhando um ponto sobre a curva, o título "Ciência sem concessões." e a linha "Exatas & Olimpíadas". Os arquivos da gravura e dos olhos vêm de `projetos/Instituto-Lemma/`. O primeiro e o último quadro são fundo vazio, para o loop fechar sem emenda.
-- Uso: capa do card Instituto LEMMA em `index.html`, com o mesmo comportamento da capa Sorvebom. Faixa larga porque o card ocupa a linha inteira da grade.
+- Uso: capa do card Instituto LEMMA em `index.html`, tocando enquanto o card está visível. Faixa larga porque o card ocupa a linha inteira da grade.
 
 ## Cartório Algacyr Barros — capa animada
 
@@ -32,14 +32,14 @@ Ao substituir a arte, atualizar a origem aqui, o texto alternativo e as dimensõ
 - Conteúdo: a identidade do site do cartório (vinho, ouro velho e papel). O título "Seu atendimento começa com uma mensagem." sobe linha a linha, uma régua dourada se desenha, chega a mensagem do cidadão ("digitando…" e depois o texto), a serventia responde e o selo com o logo carimba a cena. O quadro final fica vazio para o loop fechar sem emenda.
 - Uso: card do Cartório Algacyr Barros, que substituiu o card da Vértice em 14/11/2026. O site do cartório está marcado como `noindex` até a serventia autorizar a publicação.
 
-## Sorvebom — capa em vídeo
+## Sorvebom — capa animada
 
-- Arquivos: `sorvebom-capa.webm`, `sorvebom-capa.mp4` (1200 × 900 px, 8 s em loop, sem áudio) e `sorvebom-capa-poster.jpg` (primeiro quadro).
-- Criados em 03/11/2026 com HyperFrames, com assistência do Claude Code. A composição editável fica em `projetos/sorvebom/video-capa/` (fora deste repositório); o render original tem 1600 × 1200 px.
-- Conteúdo: recortes oficiais de produtos da Sorvebom (Mag Cookies, Mag Black, Abacaxi, Sonho de Verão 2L e Leitinho Trufado Zero 1L), vindos de `projetos/sorvebom/assets/images/produtos/`, e a tagline "A vida tem nosso sabor." em League Gothic.
-- Uso: capa do card Sorvebom em `index.html`. O vídeo toca enquanto o card está visível, inclusive com `prefers-reduced-motion` (decisão do usuário em 03/11/2026); sem JavaScript fica o poster.
+- Arquivos: `sorvebom-mag-cookies.webp`, `sorvebom-mag-black.webp`, `sorvebom-picole-abacaxi.webp`, `sorvebom-pote-sonho-de-verao-2l.webp` e `sorvebom-pote-leitinho-trufado-zero-1l.webp` (até 760 px de altura).
+- Origem: recortes oficiais de produtos publicados em `sorvebom.mcode.dev.br/assets/images/produtos/`, baixados em 14/11/2026 com autorização do usuário. Os recortes originais tinham um halo branco (cerca de metade dos pixels semitransparentes da borda era quase branca), visível como contorno no fundo escuro.
+- Limpeza (14/11/2026, com assistência do Claude Code, no navegador): erosão de 1 px do alfa, remoção da mistura com branco nos pixels semitransparentes, cor da borda puxada do interior opaco e suavização de 1 px. A ferramenta ficou em `tmp/defringe.html`, fora do Git.
+- Uso: capa do card Sorvebom em `index.html`, agora em HTML e CSS (`.sorvebom-cover`), 8 s em loop: a tagline "A vida tem nosso sabor." em Anton e os cinco produtos entrando um a um. Substitui a capa em vídeo feita com HyperFrames em 03/11/2026, cujos recortes tinham a borda clara. Pausa fora da tela por `app.mjs` e toca mesmo com `prefers-reduced-motion`.
 
-Ao alterar a composição, renderizar de novo, regenerar os três arquivos e manter o primeiro e o último quadro idênticos para o loop.
+Ao alterar a capa da LEMMA, renderizar de novo, regenerar os três arquivos e manter o primeiro e o último quadro idênticos para o loop.
 
 ## Fontes
 

@@ -46,9 +46,9 @@ test('portfolio displays Instituto LEMMA as featured project alongside the cartÃ
  assert.doesNotMatch(html, /project-image-viewer|data-image-preview/);
 });
 
-test('Lemma and Sorvebom cards use looping video covers, started by app.mjs while visible', () => {
+test('Lemma card uses a looping video cover, started by app.mjs while visible', () => {
  const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
- for (const name of ['lemma', 'sorvebom']) {
+ for (const name of ['lemma']) {
   const card = html.match(new RegExp(`<a class="project project-${name}"[\\s\\S]*?</a>`))?.[0];
   assert.ok(card, `Missing ${name} card`);
   const video = card.match(/<video\b[^>]*>/)?.[0];
@@ -74,4 +74,15 @@ test('cartÃ³rio card uses the animated CSS cover with the seal, paused off-scree
  assert.ok(existsSync(new URL('../assets/cartorio-selo.png', import.meta.url)));
  const app = readFileSync(new URL('../app.mjs', import.meta.url), 'utf8');
  assert.match(app, /\[data-animated-cover\]/);
+});
+
+test('Sorvebom card uses the animated CSS cover with the five cleaned product cutouts', () => {
+ const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
+ const card = html.match(/<a class="project project-sorvebom"[\s\S]*?<\/a>/)?.[0];
+ assert.ok(card, 'Missing Sorvebom card');
+ assert.match(card, /class="sorvebom-cover" data-animated-cover aria-hidden="true"/);
+ assert.doesNotMatch(card, /<video/);
+ const products = [...card.matchAll(/src="assets\/(sorvebom-[\w-]+\.webp)"/g)].map(m => m[1]);
+ assert.equal(products.length, 5);
+ for (const file of products) assert.ok(existsSync(new URL(`../assets/${file}`, import.meta.url)), `Missing ${file}`);
 });

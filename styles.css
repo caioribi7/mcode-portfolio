@@ -1361,7 +1361,7 @@ h2, h3 { text-wrap: balance; font-weight: 400; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  *:not(.custom-cursor):not(.cartorio-cover *),
+  *:not(.custom-cursor):not([data-animated-cover] *),
   *:not(.custom-cursor)::before, *::after { animation: none !important; transition: none !important; }
   .ticker-track { width: 100%; }
   .ticker-group { min-width: 0; width: 100%; flex-wrap: wrap; gap: 12px 20px; padding: 0 20px; font-size: clamp(16px, 3vw, 32px); }
@@ -1401,7 +1401,7 @@ h2, h3 { text-wrap: balance; font-weight: 400; }
   --cc-dur: 8s;
 }
 .cartorio-cover * { animation-duration: var(--cc-dur); animation-iteration-count: infinite; animation-timing-function: cubic-bezier(.2, .8, .2, 1); animation-fill-mode: both; }
-.cartorio-cover.is-offscreen * { animation-play-state: paused; }
+[data-animated-cover].is-offscreen * { animation-play-state: paused; }
 
 .cc-folio {
   position: absolute;
@@ -1534,6 +1534,57 @@ h2, h3 { text-wrap: balance; font-weight: 400; }
   letter-spacing: 0.06em;
 }
 
+
+/* Sorvebom — capa animada em CSS (8 s em loop): os cinco produtos, recortados
+   sem o halo branco, entram um a um ao lado da tagline. */
+.sorvebom-art { background: radial-gradient(70% 70% at 70% 45%, #3A0F2A 0%, #1E0E12 55%, #160D08 100%); }
+.sorvebom-cover { position: absolute; inset: 0; container-type: size; overflow: hidden; }
+.sb-title {
+  position: absolute;
+  left: 24px;
+  top: 50%;
+  margin: 0;
+  transform: translateY(-46%);
+  display: flex;
+  flex-direction: column;
+  font: 400 min(12.5cqw, 16cqh)/0.92 var(--display);
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: #FFF8EF;
+  z-index: 1;
+}
+.sb-yellow { color: #FFC83B; }
+.sb-stage {
+  position: absolute;
+  right: 6%;
+  top: 22%;
+  bottom: 14%;
+  width: 36cqw;
+}
+.sb-product {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 18px 24px rgba(0, 0, 0, 0.45));
+  opacity: 0;
+  animation: sb-swap 8s cubic-bezier(.2, .8, .2, 1) infinite both;
+}
+/* potes são largos: ficam menores para equilibrar com os picolés */
+.sb-product:nth-child(n+4) { scale: .8; }
+.sb-product:nth-child(2) { animation-delay: -6.4s; }
+.sb-product:nth-child(3) { animation-delay: -4.8s; }
+.sb-product:nth-child(4) { animation-delay: -3.2s; }
+.sb-product:nth-child(5) { animation-delay: -1.6s; }
+/* cada produto ocupa 1,6 s: entra girando pela direita, flutua e sai para cima */
+@keyframes sb-swap {
+  0% { opacity: 0; transform: translate(35%, 6%) rotate(18deg) scale(.9); }
+  5% { opacity: 1; transform: translate(0, 0) rotate(-6deg) scale(1); }
+  17% { opacity: 1; transform: translate(-3%, -3%) rotate(-9deg) scale(1.02); }
+  22% { opacity: 0; transform: translate(-12%, -16%) rotate(-14deg) scale(.96); }
+  100% { opacity: 0; transform: translate(35%, 6%) rotate(18deg) scale(.9); }
+}
 
 /* Lemma Art (Case em Destaque) */
 .lemma-art {
