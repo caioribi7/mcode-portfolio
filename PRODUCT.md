@@ -32,7 +32,7 @@ Preserve MCode-Identidade-Visual unchanged. Use its approved SVG logos, neon #A3
 
 Latest section refinement: rebuild the former Chame atenção studio section as an off-white editorial panel with the title Presença. Com intenção.; use larger brutalist Anton in the ribbon; remove vertical canvas margins while preserving the Matrix aspect ratio.
 
-Latest cursor and animation refinement: keep all cursor state changes fluid, crossfading from the green ring/white point into a compact outlined arrow. The hero PRESENÇA stays filled; CLAREZA keeps its outline in the ribbon while EXPERIÊNCIA stays filled. The ASCII logo is about 15% smaller and centered by its projected silhouette throughout rotation.
+Latest cursor and animation refinement: keep all cursor state changes fluid, crossfading from the green ring/white point into a compact outlined arrow (since replaced, 14 November 2026, by a dithered pixel cursor modeled on kc1t.com, with no positional lag by explicit request). The hero PRESENÇA stays filled; CLAREZA keeps its outline in the ribbon while EXPERIÊNCIA stays filled. The ASCII logo is about 15% smaller and centered by its projected silhouette throughout rotation.
 
 The analise.md remediation restores the off-white studio, removes redundant technical badges, improves small text and contact guidance, and keeps the previously requested continuous ASCII autoplay as an explicitly documented motion exception.
 

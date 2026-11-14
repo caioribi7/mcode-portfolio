@@ -7,15 +7,25 @@ const source = readFileSync(new URL('../cursor.mjs', import.meta.url), 'utf8');
 
 function setup({ reduced = false, fine = true } = {}) {
   const events = {}, frames = new Map(), classes = new Set();
+  let sequence = 0;
   const prefs = { matches: reduced, addEventListener(_, fn) { this.change = fn; } };
-  const label = { textContent: '' };
+  const makeCanvas = () => {
+    const cells = [];
+    const ctx = {
+      globalAlpha: 1, fillStyle: '', scale() {},
+      clearRect() { cells.length = 0; },
+      fillRect(x, y, w, h) { assert.ok(Number.isFinite(x + y + w + h)); cells.push({ x, y }); },
+    };
+    return { cells, getContext: () => ctx };
+  };
+  const ring = makeCanvas(), core = makeCanvas();
   const cursor = {
-    dataset: {}, style: { setProperty() {} }, classList: { add() {}, remove() {} },
-    querySelector() { return label; },
+    style: {},
+    querySelector: selector => (selector === '.cursor-ring' ? ring : core),
   };
   const document = {
     hidden: false,
-    querySelector() { return cursor; },
+    querySelector: () => cursor,
     addEventListener(type, fn) { events[type] = fn; },
     documentElement: {
       addEventListener(type, fn) { events[type] = fn; },
@@ -24,56 +34,71 @@ function setup({ reduced = false, fine = true } = {}) {
   };
   runInNewContext(source, {
     document,
-    window: { addEventListener(type, fn) { events[type] = fn; } },
-    matchMedia: query => query.includes('reduced') ? prefs : { matches: fine, addEventListener() {} },
-    requestAnimationFrame(fn) { frames.set(1, fn); return 1; },
+    window: { devicePixelRatio: 2, addEventListener(type, fn) { events[type] = fn; } },
+    matchMedia: query => (query.includes('reduced') ? prefs : { matches: fine, addEventListener() {} }),
+    requestAnimationFrame(fn) { frames.set(++sequence, fn); return sequence; },
     cancelAnimationFrame(id) { frames.delete(id); },
   });
-  function move(kind = '') {
-    events.pointermove({ pointerType: 'mouse', clientX: 100, clientY: 120, target: {
-      closest: selector => selector.includes(kind) && kind ? {} : null,
+  function move(kind = '', x = 100, y = 120) {
+    events.pointermove({ pointerType: 'mouse', clientX: x, clientY: y, target: {
+      closest: selector => (kind && selector.includes(kind) ? {} : null),
     } });
   }
-  return { events, frames, classes, cursor, label, prefs, move };
+  function step(time) {
+    const [id, fn] = frames.entries().next().value;
+    frames.delete(id);
+    fn(time);
+  }
+  const extent = canvas => Math.max(...canvas.cells.map(c => Math.hypot(c.x - 20, c.y - 20)));
+  return { events, frames, classes, cursor, ring, core, prefs, move, step, extent };
 }
 
-test('cursor adapts to projects and links, and restores the native cursor for fields and keyboard', () => {
+test('cursor sits exactly on the pointer, with no trailing', () => {
   const state = setup();
-  state.move('.project');
-  assert.equal(state.label.textContent, 'Explorar');
-  assert.equal(state.cursor.dataset.mode, 'project');
+  state.move('', 100, 120);
+  assert.equal(state.cursor.style.transform, 'translate3d(100px, 120px, 0)');
+  state.move('', 640, 300);
+  assert.equal(state.cursor.style.transform, 'translate3d(640px, 300px, 0)', 'Position updates inside the event, before any frame');
   assert.equal(state.classes.has('cursor-ready'), true);
+  state.step(16);
+  assert.ok(state.ring.cells.length > 20, 'Dithered ring is drawn');
+  assert.ok(state.core.cells.length > 0, 'Dithered core is drawn');
+});
+
+test('ring grows over links and the dither animates over time', () => {
+  const state = setup();
+  state.move();
+  state.step(16);
+  const rest = state.extent(state.ring);
+  const restCells = state.ring.cells.map(c => `${c.x},${c.y}`).join();
+  state.step(400);
+  assert.notEqual(state.ring.cells.map(c => `${c.x},${c.y}`).join(), restCells, 'Ring wobbles');
   state.move('button');
-  assert.equal(state.label.textContent, 'Explorar', 'Keep the label mounted so its exit transition can finish');
-  assert.equal(state.cursor.dataset.mode, 'link');
+  for (let time = 416; time < 1400; time += 16) state.step(time);
+  assert.ok(state.extent(state.ring) > rest + 2, 'Ring expands over interactive elements');
+});
+
+test('fields, keyboard and touch restore the native cursor', () => {
+  const state = setup();
+  state.move();
   state.move('input');
   assert.equal(state.classes.has('cursor-ready'), false);
   assert.equal(state.frames.size, 0);
   state.move();
   state.events.keydown({ key: 'Tab' });
   assert.equal(state.classes.has('cursor-ready'), false);
+
+  const touch = setup({ fine: false });
+  touch.move();
+  assert.equal(touch.classes.has('cursor-ready'), false);
+  assert.equal(touch.frames.size, 0);
 });
 
-test('touch pointers keep the native cursor and do not schedule animation', () => {
-  for (const options of [{ fine: false }]) {
-    const state = setup(options);
-    state.move();
-    assert.equal(state.classes.has('cursor-ready'), false);
-    assert.equal(state.frames.size, 0);
-  }
-  const state = setup();
-  state.move();
-  state.prefs.matches = true;
-  state.prefs.change();
-  assert.equal(state.classes.has('cursor-ready'), false);
-  assert.equal(state.frames.size, 0);
-});
-
-test('reduced motion still shows the terminal cursor but tracks directly without an animation loop', () => {
+test('reduced motion draws a static cursor without an animation loop', () => {
   const state = setup({ reduced: true });
   state.move('button');
   assert.equal(state.classes.has('cursor-ready'), true);
-  assert.equal(state.cursor.dataset.mode, 'link');
   assert.equal(state.frames.size, 0);
+  assert.ok(state.ring.cells.length > 0);
   assert.equal(state.cursor.style.transform, 'translate3d(100px, 120px, 0)');
 });
