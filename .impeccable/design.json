@@ -25,7 +25,7 @@
       {
         "name": "cursor",
         "value": "direct tracking, no positional lag",
-        "purpose": "Pixel cursor with 4x4 Bayer dithering, off-white with mix-blend-mode difference (modeled on kc1t.com): 40px wobbling ring plus 10px pulsing core, both locked to the pointer. Ring grows ~40% over links, buttons and projects; core shrinks; press shrinks the ring. Static under reduced motion; native cursor for fields, touch and keyboard."
+        "purpose": "Pixel cursor with 4x4 Bayer dithering, off-white with mix-blend-mode difference (modeled on kc1t.com): 40px wobbling ring plus 10px pulsing core, both locked to the pointer. Ring grows ~40% over links, buttons and projects; core shrinks; press shrinks the ring. Keeps animating under reduced motion by explicit request; native cursor for fields, touch and keyboard."
       },
       {
         "name": "liquid-background",

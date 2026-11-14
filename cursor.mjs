@@ -1,11 +1,11 @@
 // Cursor em pixels com pontilhado ordenado (Bayer 4x4) e mistura "difference".
 // Um anel animado e um núcleo central, ambos presos ao ponteiro sem atraso:
 // a posição muda no próprio pointermove; só a forma é animada por quadro.
+// Por pedido explícito do usuário, a animação roda mesmo com movimento reduzido.
 const cursor = document.querySelector('.custom-cursor');
 const ring = cursor?.querySelector('.cursor-ring');
 const core = cursor?.querySelector('.cursor-core');
 const finePointer = matchMedia('(hover: hover) and (pointer: fine)');
-const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
 
 const BAYER = [[0, 8, 2, 10], [12, 4, 14, 6], [3, 11, 1, 9], [15, 7, 13, 5]];
 const RING_SIZE = 40, RING_CELL = 3;
@@ -78,16 +78,8 @@ if (ringCtx && coreCtx) {
     frame = requestAnimationFrame(draw);
   }
 
-  function settle() {
-    // movimento reduzido: sem animação contínua, estado aplicado direto
-    hover = hoverTarget;
-    press = pressTarget;
-    paint();
-  }
-
   function refresh() {
-    if (reducedMotion.matches) settle();
-    else if (!frame) frame = requestAnimationFrame(draw);
+    if (!frame) frame = requestAnimationFrame(draw);
   }
 
   function hide() {
@@ -115,5 +107,4 @@ if (ringCtx && coreCtx) {
   document.addEventListener('visibilitychange', () => { if (document.hidden) hide(); });
   window.addEventListener('blur', hide);
   finePointer.addEventListener('change', hide);
-  reducedMotion.addEventListener('change', hide);
 }
