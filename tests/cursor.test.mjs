@@ -94,11 +94,13 @@ test('fields, keyboard and touch restore the native cursor', () => {
   assert.equal(touch.frames.size, 0);
 });
 
-test('reduced motion draws a static cursor without an animation loop', () => {
+test('cursor keeps animating under reduced motion (explicit request)', () => {
   const state = setup({ reduced: true });
   state.move('button');
   assert.equal(state.classes.has('cursor-ready'), true);
-  assert.equal(state.frames.size, 0);
+  assert.equal(state.frames.size, 1, 'Animation loop runs');
+  state.step(16);
+  assert.equal(state.frames.size, 1, 'and keeps running');
   assert.ok(state.ring.cells.length > 0);
   assert.equal(state.cursor.style.transform, 'translate3d(100px, 120px, 0)');
 });
