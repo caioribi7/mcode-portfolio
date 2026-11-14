@@ -8,6 +8,8 @@ const projectRoot = fileURLToPath(new URL('../', import.meta.url));
 export const PUBLIC_FILES = Object.freeze([
   'index.html',
   '404.html',
+  'caioribi/index.html',
+  'mateusdias/index.html',
   'robots.txt',
   'sitemap.xml',
   'BingSiteAuth.xml',

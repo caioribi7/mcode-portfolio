@@ -86,3 +86,18 @@ test('Sorvebom card uses the animated CSS cover with the five cleaned product cu
  assert.equal(products.length, 5);
  for (const file of products) assert.ok(existsSync(new URL(`../assets/${file}`, import.meta.url)), `Missing ${file}`);
 });
+
+test('dev profile pages exist, are published and stay free of personal e-mails', () => {
+ const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
+ for (const [slug, name, github] of [['caioribi', 'Caio Ribi', 'caioribi7'], ['mateusdias', 'Mateus Dias', 'root-mwteus']]) {
+  const page = readFileSync(new URL(`../${slug}/index.html`, import.meta.url), 'utf8');
+  assert.match(page, new RegExp(`<link rel="canonical" href="https://mcode\.dev\.br/${slug}">`));
+  assert.match(page, new RegExp(`<h1 id="profile-name"`));
+  assert.match(page, new RegExp(name.split(' ')[0].toUpperCase()));
+  assert.match(page, new RegExp(`https://github\.com/${github}`));
+  assert.match(page, /href="\/#contato"/);
+  assert.doesNotMatch(page, /(?:src|href)="(?!\/|https?:|#|mailto:)/, 'Assets use absolute paths so the folder route works');
+  assert.doesNotMatch(page, /@gmail\.com/, 'Contact goes through MCode, not personal e-mail');
+  assert.match(html, new RegExp(`href="/${slug}"`), `Devs section links to /${slug}`);
+ }
+});

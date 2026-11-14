@@ -55,8 +55,10 @@ test('publication includes only explicit assets and licenses, never local secret
     for (const match of references) {
       if (/^(?:[a-z]+:|#)/i.test(match[1])) continue;
       const link = match[1].endsWith('/') ? `${match[1]}index.html` : match[1];
-      const target = link.startsWith('/')
+      let target = link.startsWith('/')
         ? join(output, link.slice(1)) : join(dirname(join(output, file)), link);
+      // Pastas publicadas respondem com o index.html de dentro (/caioribi → caioribi/index.html)
+      if ((await lstat(target).catch(() => null))?.isDirectory()) target = join(target, 'index.html');
       assert.ok((await lstat(target)).isFile(), `${file}: missing ${match[1]}`);
     }
   }

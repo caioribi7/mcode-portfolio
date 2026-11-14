@@ -38,6 +38,9 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  // Pastas servem o index.html de dentro, como na Vercel (/caioribi → caioribi/index.html)
+  try { if (fs.statSync(filePath).isDirectory()) filePath = path.join(filePath, 'index.html'); } catch {}
+
   fs.stat(filePath, (err, stats) => {
     if (err || !stats.isFile()) {
       const notFoundPath = path.join(root, '404.html');
