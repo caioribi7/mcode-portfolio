@@ -545,7 +545,7 @@ svg {
   transform: translateY(2px);
 }
 
-#halftone-background {
+#liquid-background {
   position: fixed;
   inset: 0;
   width: 100%;

@@ -38,7 +38,7 @@ The pointer is a thin brand-green circle with a white center dot. Links gently e
 
 The projects button no longer includes // 01. A lime circular fill expands from its arrow bubble across the button on hover or keyboard focus. Text shifts slightly, changes to dark ink, and the arrow turns and cycles through its clipped container. The email action retains its existing treatment.
 
-A separate fixed Canvas 2D layer paints visible but restrained halftone dots behind the content (base alpha 0.18, previously 0.09), with pointer-events disabled and aria-hidden. Nearby dots brighten, enlarge and move away from the pointer; clicking adds a short ripple. The grid adapts to a roughly 4500-dot budget, device pixel ratio is capped at 1.5, and its loop ends after motion settles. Touch sees a static dot field. Reduced motion uses a direct spatial response without ripple or autonomous animation. Body isolation keeps the canvas behind content without covering links or forms.
+A separate fixed WebGL2 canvas paints a pearlescent liquid behind the content, with pointer-events disabled and aria-hidden. A domain-warped noise field flows slowly; its height drives a derived normal, a soft specular highlight and a thin-film iridescent palette pulled toward the brand green, kept dark (near --bg) with an edge vignette so text contrast is unchanged. The mouse bends the surface like a lens and drags it with its velocity; clicking sends a short ripple from the click point. It renders at half resolution (device pixel ratio capped at 2) and pauses when the tab is hidden. Touch sees only the ambient flow. Reduced motion draws a single static frame and a direct lens response without ripple or autonomous flow. Without WebGL2 the plain --bg shows. Body isolation keeps the canvas behind content without covering links or forms.
 
 ## Studio section
 
@@ -60,7 +60,7 @@ Informational art labels are at least 12px and functional copy uses 13-16px. Spa
 
 ## Files and verification
 
-styles.css owns the active rules, including the former refinements. refinements.css remains a compatibility stub for the 404 page and publication manifest. cursor.mjs and halftone-background.mjs are independent progressive enhancements so a pointer failure cannot disable the form. No runtime package dependency or external font service is used.
+styles.css owns the active rules, including the former refinements. refinements.css remains a compatibility stub for the 404 page and publication manifest. cursor.mjs and liquid-background.mjs are independent progressive enhancements so a pointer failure cannot disable the form. No runtime package dependency or external font service is used.
 
 The local production copy was reviewed at 1920, 1440, 1280, 1101, 1024, 844 landscape, 768, 720, 390 and 320px. Keyboard menu, project focus, local brief, clipboard denial, reduced motion and JavaScript-off behavior were checked in headless Chromium. Automated scores are lab evidence, not a screen-reader audit, field Core Web Vitals or hosted-production validation. Detailed results and remaining launch dependencies are recorded in melhorias.md.
 

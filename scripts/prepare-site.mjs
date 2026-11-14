@@ -15,7 +15,7 @@ export const PUBLIC_FILES = Object.freeze([
   'refinements.css',
   'app.mjs',
   'cursor.mjs',
-  'halftone-background.mjs',
+  'liquid-background.mjs',
   'logo-animation.mjs',
   'logo-geometry.mjs',
   'assets/frame-composition.svg',
