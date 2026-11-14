@@ -1,5 +1,7 @@
-// Fundo líquido perolado: shader WebGL2 com fluxo de ruído deformado,
-// brilho perolado em preto e branco com granulação e um rastro do ponteiro que mexe o líquido.
+// Fundo líquido perolado em halftone: um shader WebGL2 desenha o líquido
+// (fluxo de ruído deformado, brilho perolado em cinzas, mexida do ponteiro)
+// em meia resolução numa textura; um segundo passe o converte em retícula
+// de pontos nítidos na resolução da tela.
 // Por pedido explícito do usuário, o fluxo é contínuo mesmo com movimento reduzido.
 const canvas = document.querySelector('#liquid-background');
 const gl = canvas?.getContext('webgl2', { alpha: false, antialias: false, depth: false, powerPreference: 'low-power' });
@@ -10,7 +12,7 @@ const vertexSource = `#version 300 es
 in vec2 aPos;
 void main() { gl_Position = vec4(aPos, 0.0, 1.0); }`;
 
-const fragmentSource = `#version 300 es
+const liquidSource = `#version 300 es
 precision highp float;
 #define TRAIL ${TRAIL}
 uniform vec2 uRes;
@@ -19,7 +21,7 @@ uniform vec2 uMouse;
 uniform float uIntensity;
 uniform float uPulse;
 uniform vec2 uClick;
-uniform vec4 uTrail[TRAIL]; // xy = posição (px GL), z = força, w = livre
+uniform vec4 uTrail[TRAIL]; // xy = posição (px GL), z = força
 uniform vec2 uTrailVel[TRAIL];
 out vec4 outColor;
 
@@ -46,16 +48,22 @@ void main() {
     float s = uTrail[i].z;
     if (s <= 0.001) continue;
     vec2 d = uv - uTrail[i].xy / scale;
-    float k = s * exp(-dot(d, d) * 26.0);
+    float k = s * exp(-dot(d, d) * 55.0);
     uv += vec2(-d.y, d.x) * k * 1.6;   // redemoinho
-    uv -= uTrailVel[i] * k * 0.10;     // arrasto na direção do movimento
+    uv -= uTrailVel[i] * k * 0.08;     // arrasto na direção do movimento
     stir += k;
   }
 
-  // Lente sob o ponteiro
-  vec2 d = uv - uMouse / scale;
-  float lens = exp(-dot(d, d) * 14.0) * uIntensity;
-  uv -= d * lens * 0.35;
+  // Ponteiro parado continua mexendo: redemoinho que oscila e lente que respira
+  vec2 m = uMouse / scale;
+  vec2 d = uv - m;
+  float r2 = dot(d, d);
+  float swirl = exp(-r2 * 40.0) * uIntensity;
+  float angle = swirl * 2.4 * sin(uTime * 0.9);
+  d = mat2(cos(angle), sin(angle), -sin(angle), cos(angle)) * d;
+  float lens = exp(-r2 * 32.0) * uIntensity;
+  d *= 1.0 - lens * (0.3 + 0.1 * sin(uTime * 1.7));
+  uv = m + d;
 
   // Onda do clique
   vec2 c = uv - uClick / scale;
@@ -77,24 +85,44 @@ void main() {
   float spec = pow(max(reflect(-light, n).z, 0.0), 28.0);
   float fresnel = pow(1.0 - n.z, 1.5);
 
-  // Perolado monocromático: o brilho oscila em cinzas conforme altura, fluxo, ângulo e mexida
+  // Perolado monocromático: o brilho oscila conforme altura, fluxo, ângulo e mexida
   float phase = h * 1.6 + r.x * 0.9 + fresnel * 2.2 + lens * 0.5 + stir * 0.8 + uTime * 0.02;
-  vec3 pearl = vec3(0.62 + 0.38 * cos(6.28318 * phase));
-
-  vec3 base = vec3(0.043, 0.063, 0.051); // #0B100D
+  float pearl = 0.62 + 0.38 * cos(6.28318 * phase);
   float sheen = smoothstep(0.35, 0.85, h) * 0.6 + fresnel * 0.9;
-  vec3 col = base + pearl * (0.04 + sheen * 0.085 + diffuse * 0.02);
-  col += pearl * spec * 0.18;
-  col += pearl * (lens * 0.06 + min(stir, 1.0) * 0.07) * (1.0 + spec * 3.0);
-  col += vec3(abs(wave) * 0.06);
+  float v = pearl * (0.04 + sheen * 0.085 + diffuse * 0.02);
+  v += pearl * spec * 0.18;
+  v += pearl * (lens * 0.07 + swirl * 0.04 + min(stir, 1.0) * 0.07) * (1.0 + spec * 3.0);
+  v += abs(wave) * 0.06;
 
   // Vinheta para manter o conteúdo legível nas bordas
   vec2 sv = gl_FragCoord.xy / uRes - 0.5;
-  col = mix(base, col, 1.0 - dot(sv, sv) * 0.9);
+  v *= 1.0 - dot(sv, sv) * 0.9;
+  outColor = vec4(vec3(v), 1.0);
+}`;
 
-  // Granulação de filme animada
-  float grain = hash(gl_FragCoord.xy + floor(uTime * 24.0) * 17.31) - 0.5;
-  col += grain * 0.045;
+const halftoneSource = `#version 300 es
+precision highp float;
+uniform sampler2D uLiquid;
+uniform vec2 uRes;
+uniform float uCell;
+out vec4 outColor;
+
+void main() {
+  vec3 base = vec3(0.043, 0.063, 0.051); // #0B100D
+  // Retícula girada 45°, como na impressão
+  mat2 rot = mat2(0.7071, 0.7071, -0.7071, 0.7071);
+  vec2 g = rot * gl_FragCoord.xy / uCell;
+  vec2 center = (floor(g) + 0.5);
+  vec2 local = g - center;
+  vec2 sampleAt = transpose(rot) * center * uCell / uRes;
+  float tone = texture(uLiquid, sampleAt).r;
+  float level = clamp(tone / 0.24, 0.0, 1.0);
+  // área do ponto proporcional ao tom
+  float radius = sqrt(level) * 0.62;
+  float aa = 1.2 / uCell;
+  float dotMask = 1.0 - smoothstep(radius - aa, radius + aa, length(local));
+  // um pouco do líquido contínuo por baixo para manter a sensação de volume
+  vec3 col = base + vec3(tone) * 0.22 + dotMask * vec3(0.03 + 0.30 * level);
   outColor = vec4(col, 1.0);
 }`;
 
@@ -109,46 +137,57 @@ function compile(type, source) {
   return shader;
 }
 
-function createProgram() {
+function createProgram(fragment) {
   const vs = compile(gl.VERTEX_SHADER, vertexSource);
-  const fs = compile(gl.FRAGMENT_SHADER, fragmentSource);
+  const fs = compile(gl.FRAGMENT_SHADER, fragment);
   if (!vs || !fs) return null;
   const program = gl.createProgram();
   gl.attachShader(program, vs);
   gl.attachShader(program, fs);
+  gl.bindAttribLocation(program, 0, 'aPos');
   gl.linkProgram(program);
   return gl.getProgramParameter(program, gl.LINK_STATUS) ? program : null;
 }
 
-const program = gl && createProgram();
+const liquidProgram = gl && createProgram(liquidSource);
+const halftoneProgram = liquidProgram && createProgram(halftoneSource);
 
-if (program) {
+if (halftoneProgram) {
   const finePointer = matchMedia('(hover: hover) and (pointer: fine)');
-  const RENDER_SCALE = 0.5; // líquido é suave: meia resolução economiza GPU sem perda visível
+  const LIQUID_SCALE = 0.5; // o líquido é suave: meia resolução em px CSS basta
+  const CELL = 6;           // px CSS entre pontos da retícula
   const TRAIL_LIFE = 1.4;   // segundos que um ponto do rastro leva para sumir
   const TRAIL_STEP = 18;    // px entre pontos do rastro
 
-  gl.useProgram(program);
   const buffer = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
-  const aPos = gl.getAttribLocation(program, 'aPos');
-  gl.enableVertexAttribArray(aPos);
-  gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
-  const u = name => gl.getUniformLocation(program, name);
-  const uniforms = {
-    res: u('uRes'), time: u('uTime'), mouse: u('uMouse'), intensity: u('uIntensity'),
-    pulse: u('uPulse'), click: u('uClick'), trail: u('uTrail'), trailVel: u('uTrailVel'),
+  gl.enableVertexAttribArray(0);
+  gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0);
+
+  const texture = gl.createTexture();
+  gl.bindTexture(gl.TEXTURE_2D, texture);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+  const framebuffer = gl.createFramebuffer();
+
+  const L = name => gl.getUniformLocation(liquidProgram, name);
+  const H = name => gl.getUniformLocation(halftoneProgram, name);
+  const liquid = {
+    res: L('uRes'), time: L('uTime'), mouse: L('uMouse'), intensity: L('uIntensity'),
+    pulse: L('uPulse'), click: L('uClick'), trail: L('uTrail'), trailVel: L('uTrailVel'),
   };
+  const halftone = { liquid: H('uLiquid'), res: H('uRes'), cell: H('uCell') };
 
   const trail = [];            // { x, y, vx, vy, age, power }
   const trailData = new Float32Array(TRAIL * 4);
   const trailVelData = new Float32Array(TRAIL * 2);
 
-  let width = 0, height = 0, ratio = RENDER_SCALE, frame = 0, previous = 0, clock = 0;
+  let width = 0, height = 0, ratio = 1, liquidW = 1, liquidH = 1, frame = 0, previous = 0, clock = 0;
   let x = -1e4, y = -1e4, targetX = x, targetY = y, lastX = null, lastY = null;
   let intensity = 0, targetIntensity = 0, pulse = 0, clickX = -1e4, clickY = -1e4;
-  let lastInput = -1e4;
 
   function addTrailPoint(px, py) {
     if (lastX === null) { lastX = px; lastY = py; return; }
@@ -163,25 +202,40 @@ if (program) {
   }
 
   function paint() {
-    gl.uniform2f(uniforms.res, canvas.width, canvas.height);
-    gl.uniform1f(uniforms.time, clock);
-    // WebGL usa origem no canto inferior esquerdo
-    gl.uniform2f(uniforms.mouse, x * ratio, (height - y) * ratio);
-    gl.uniform1f(uniforms.intensity, intensity);
-    gl.uniform1f(uniforms.pulse, pulse);
-    gl.uniform2f(uniforms.click, clickX * ratio, (height - clickY) * ratio);
+    const s = LIQUID_SCALE;
+    // Passe 1: líquido na textura (WebGL usa origem no canto inferior esquerdo)
+    gl.bindFramebuffer(gl.FRAMEBUFFER, framebuffer);
+    gl.viewport(0, 0, liquidW, liquidH);
+    gl.useProgram(liquidProgram);
+    gl.uniform2f(liquid.res, liquidW, liquidH);
+    gl.uniform1f(liquid.time, clock);
+    gl.uniform2f(liquid.mouse, x * s, (height - y) * s);
+    gl.uniform1f(liquid.intensity, intensity);
+    gl.uniform1f(liquid.pulse, pulse);
+    gl.uniform2f(liquid.click, clickX * s, (height - clickY) * s);
     trailData.fill(0);
     trailVelData.fill(0);
     trail.forEach((point, i) => {
       const fade = Math.max(0, 1 - point.age / TRAIL_LIFE);
-      trailData[i * 4] = point.x * ratio;
-      trailData[i * 4 + 1] = (height - point.y) * ratio;
+      trailData[i * 4] = point.x * s;
+      trailData[i * 4 + 1] = (height - point.y) * s;
       trailData[i * 4 + 2] = point.power * fade * fade;
       trailVelData[i * 2] = point.vx;
       trailVelData[i * 2 + 1] = -point.vy;
     });
-    gl.uniform4fv(uniforms.trail, trailData);
-    gl.uniform2fv(uniforms.trailVel, trailVelData);
+    gl.uniform4fv(liquid.trail, trailData);
+    gl.uniform2fv(liquid.trailVel, trailVelData);
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
+
+    // Passe 2: retícula halftone na tela
+    gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+    gl.viewport(0, 0, canvas.width, canvas.height);
+    gl.useProgram(halftoneProgram);
+    gl.activeTexture(gl.TEXTURE0);
+    gl.bindTexture(gl.TEXTURE_2D, texture);
+    gl.uniform1i(halftone.liquid, 0);
+    gl.uniform2f(halftone.res, canvas.width, canvas.height);
+    gl.uniform1f(halftone.cell, CELL * ratio);
     gl.drawArrays(gl.TRIANGLES, 0, 3);
   }
 
@@ -191,11 +245,10 @@ if (program) {
     const delta = previous ? Math.min(time - previous, 64) : 16;
     previous = time;
     clock += delta / 1000;
-    if (time - lastInput > 160) targetIntensity = 0;
     const follow = 1 - Math.exp(-delta / 80);
     x += (targetX - x) * follow;
     y += (targetY - y) * follow;
-    intensity += (targetIntensity - intensity) * follow;
+    intensity += (targetIntensity - intensity) * (1 - Math.exp(-delta / 220));
     pulse = Math.max(0, pulse - delta / 1300);
     for (const point of trail) point.age += delta / 1000;
     while (trail.length && trail[0].age > TRAIL_LIFE) trail.shift();
@@ -207,6 +260,7 @@ if (program) {
     if (!frame && !document.hidden) frame = requestAnimationFrame(draw);
   }
 
+  // O efeito sob o ponteiro só some quando o mouse sai da janela
   function release() {
     targetIntensity = 0;
     lastX = lastY = null;
@@ -222,10 +276,15 @@ if (program) {
   function resize() {
     width = window.innerWidth;
     height = window.innerHeight;
-    ratio = Math.min(window.devicePixelRatio || 1, 2) * RENDER_SCALE;
+    ratio = Math.min(window.devicePixelRatio || 1, 2);
     canvas.width = Math.max(1, Math.round(width * ratio));
     canvas.height = Math.max(1, Math.round(height * ratio));
-    gl.viewport(0, 0, canvas.width, canvas.height);
+    liquidW = Math.max(1, Math.round(width * LIQUID_SCALE));
+    liquidH = Math.max(1, Math.round(height * LIQUID_SCALE));
+    gl.bindTexture(gl.TEXTURE_2D, texture);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, liquidW, liquidH, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
+    gl.bindFramebuffer(gl.FRAMEBUFFER, framebuffer);
+    gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, texture, 0);
     paint();
   }
 
@@ -235,7 +294,6 @@ if (program) {
     targetY = event.clientY;
     if (intensity < 0.01) { x = targetX; y = targetY; }
     targetIntensity = 1;
-    lastInput = performance.now();
     addTrailPoint(targetX, targetY);
     wake();
   }, { passive: true });
@@ -244,7 +302,6 @@ if (program) {
     clickX = event.clientX;
     clickY = event.clientY;
     pulse = 1;
-    lastInput = performance.now();
     wake();
   }, { passive: true });
   document.documentElement.addEventListener('pointerleave', release);
