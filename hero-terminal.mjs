@@ -1,5 +1,5 @@
 // Terminal do topo: alguém digita "mcode start", o terminal responde e abre a cena 3D
-// (símbolo MCode girando, depois notebook e celular com o site). A cena é um vídeo
+// (um site sendo construído: rascunho, design, camadas de código e no ar). A cena é um vídeo
 // pré-renderizado com three.js: leve para o navegador, sem WebGL no carregamento.
 // Ao terminar o vídeo, o ciclo recomeça; a animação nunca para (pedido explícito).
 const root = document.querySelector('#hero-term');
@@ -47,7 +47,7 @@ if (root) {
       row.lastChild.hidden = false;
     }
     await wait(260);
-    line('<span class="hero-term-done">✦ pronto. abrindo em 3D</span><span class="hero-term-caret"></span>');
+    line('<span class="hero-term-done">✦ pronto. construindo seu site</span><span class="hero-term-caret"></span>');
     const playable = await ready();
     await wait(650);
     if (playable) {
