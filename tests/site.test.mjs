@@ -28,11 +28,15 @@ test('studio section keeps its mobile layout rules aligned with the current mark
  assert.doesNotMatch(css, /\.hero-outline/, 'Hero title remains filled without an outline hover effect');
 });
 
-test('portfolio displays Instituto LEMMA as featured project alongside the cartório and Sorvebom', () => {
+test('portfolio features Masterbase, with LEMMA, the cartório and Sorvebom side by side', () => {
  const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
  const work = html.match(/<section[^>]*id="trabalhos"[\s\S]*?<\/section>/)?.[0];
  assert.ok(work);
- assert.equal((work.match(/<article\b/g) || []).length, 3);
+ assert.equal((work.match(/<article\b/g) || []).length, 4);
+ assert.match(work, /<article class="project-card project-card-full project-card-masterbase">/);
+ assert.equal((work.match(/project-card-full/g) || []).length, 1, 'Only Masterbase spans the full row');
+ assert.match(work, /href="https:\/\/masterbase-seven\.vercel\.app"/);
+ assert.match(work, /href="https:\/\/github\.com\/caioribi7\/masterbase"/);
  assert.equal((work.match(/<h3>EM BREVE<\/h3>/g) || []).length, 0);
  assert.match(work, /project-card-full/);
  assert.match(work, /href="https:\/\/www\.institutolemma\.com\.br"/);
@@ -46,9 +50,9 @@ test('portfolio displays Instituto LEMMA as featured project alongside the cart�
  assert.doesNotMatch(html, /project-image-viewer|data-image-preview/);
 });
 
-test('Lemma card uses a looping video cover, started by app.mjs while visible', () => {
+test('Masterbase and Lemma cards use a looping video cover, started by app.mjs while visible', () => {
  const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
- for (const name of ['lemma']) {
+ for (const name of ['masterbase', 'lemma']) {
   const card = html.match(new RegExp(`<a class="project project-${name}"[\\s\\S]*?</a>`))?.[0];
   assert.ok(card, `Missing ${name} card`);
   const video = card.match(/<video\b[^>]*>/)?.[0];
