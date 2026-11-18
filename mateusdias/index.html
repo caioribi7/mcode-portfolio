@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0B100D">
+  <meta name="theme-color" content="#070908">
   <meta name="description" content="Mateus Dias, dev full stack e cofundador da MCode. Estuda defesa cibernética e escreve código pensando em segurança desde a primeira linha.">
   <title>Mateus Dias | MCode</title>
   <link rel="canonical" href="https://mcode.dev.br/mateusdias">
@@ -20,7 +20,8 @@
   <link rel="preload" href="/assets/fonts/space-grotesk.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="stylesheet" href="/styles.css">
   <script src="/cursor.mjs" type="module"></script>
-  <script src="/liquid-background.mjs" type="module"></script>
+  <script src="/contour-background.mjs" type="module"></script>
+  <script src="/sheen.mjs" type="module"></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -34,7 +35,7 @@
   </script>
 </head>
 <body>
-<canvas id="liquid-background" aria-hidden="true"></canvas>
+<canvas id="contour-background" aria-hidden="true"></canvas>
 <div class="custom-cursor" aria-hidden="true">
   <canvas class="cursor-ring"></canvas>
   <canvas class="cursor-core"></canvas>
@@ -60,7 +61,7 @@
     </div>
     <div class="profile-intro">
       <p class="profile-eyebrow"><a href="/#devs">MCode</a> · Nossos devs</p>
-      <h1 id="profile-name" class="profile-name">MATEUS<br><span class="outlined">DIAS.</span></h1>
+      <h1 id="profile-name" class="profile-name">MATEUS<br><span class="sheen" data-text="DIAS.">DIAS.</span></h1>
       <p class="profile-role">Dev full stack e cofundador da MCode. Estuda defesa cibernética e desmonta código para deixá-lo seguro.</p>
       <div class="profile-links">
           <a class="dev-github" href="https://github.com/root-mwteus" target="_blank" rel="noopener noreferrer">GitHub <svg aria-hidden="true"><use href="#arrow"/></svg></a>
@@ -126,7 +127,7 @@
   </section>
 
   <section class="profile-cta" aria-labelledby="cta-title">
-    <h2 id="cta-title" class="profile-heading">TEM UM PROJETO<br><span class="outlined">EM MENTE?</span></h2>
+    <h2 id="cta-title" class="profile-heading">TEM UM PROJETO<br><span class="sheen" data-text="EM MENTE?">EM MENTE?</span></h2>
     <p>Na MCode você fala direto com quem desenha e programa o seu site.</p>
     <a class="pearl" href="/#contato"><span class="pearl-wrap"><span class="pearl-label"><span class="pearl-star" aria-hidden="true">✧</span><span class="pearl-star" aria-hidden="true">✦</span>Falar com a MCode</span></span></a>
   </section>

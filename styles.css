@@ -518,7 +518,7 @@ svg {
 .pearl--sm .pearl-label { gap: 8px; }
 .pearl--sm .pearl-wrap::after { border-radius: 10px 10px 0 0; }
 
-#liquid-background {
+#contour-background {
   position: fixed;
   inset: 0;
   width: 100%;
@@ -1361,14 +1361,10 @@ h2, h3 { text-wrap: balance; font-weight: 400; }
   .frame-art img { width: 40%; }
   .frame-title { left: 20px; font-size: 42px; }
 }
+/* Animações sempre ativas, inclusive com movimento reduzido (pedido explícito, 18/11/2026).
+   Só a rolagem suave de âncora respeita a preferência. */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  *:not(.custom-cursor):not([data-animated-cover] *),
-  *:not(.custom-cursor)::before, *::after { animation: none !important; transition: none !important; }
-  .ticker-track { width: 100%; }
-  .ticker-group { min-width: 0; width: 100%; flex-wrap: wrap; gap: 12px 20px; padding: 0 20px; font-size: clamp(16px, 3vw, 32px); }
-  .ticker-group:nth-child(2) { display: none; }
-  .ticker-bullet { width: 16px; height: 16px; }
 }
 
 /* --------------------------------------------------------------------------
@@ -1757,4 +1753,223 @@ h2, h3 { text-wrap: balance; font-weight: 400; }
 @media (max-width: 768px) {
   .project-links { padding: 8px 22px 22px; }
   .project-card-masterbase .project-info { padding-bottom: 8px; }
+}
+
+
+/* ==========================================================================
+   Acabamento perolado (18/11/2026)
+   Tudo no mesmo material dos botões .pearl: preto mesclado, vidro com um filete
+   de luz no topo, cantos arredondados e prata no lugar do lima nos destaques.
+   O lima fica só em pontos pequenos (✧, ponto de status, foco).
+   ========================================================================== */
+:root {
+  --bg: #070908;
+  --glass: linear-gradient(180deg, rgba(255, 255, 255, 0.065), rgba(255, 255, 255, 0.015));
+  --glass-line: rgba(255, 255, 255, 0.1);
+  --glass-line-strong: rgba(255, 255, 255, 0.18);
+  --glass-hi: inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  --pearl-ink: #E4E9EB;
+  --silver: linear-gradient(180deg, #FFFFFF 0%, #C9CFD4 38%, #6E7479 52%, #E9EEF0 72%, #9AA2A8 100%);
+}
+html { scroll-padding-top: 104px; }
+
+/* Destaques em prata com borda especular que segue o mouse (sheen.mjs) */
+.sheen {
+  position: relative;
+  display: inline-block;
+  color: transparent;
+  -webkit-text-stroke: 0;
+  background:
+    radial-gradient(140px circle at var(--mx, -999px) var(--my, -999px), rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0) 70%),
+    var(--silver);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.sheen::before,
+.sheen::after {
+  content: attr(data-text);
+  content: attr(data-text) / "";
+  position: absolute;
+  inset: 0;
+  padding: inherit;
+  white-space: inherit;
+  color: transparent;
+  pointer-events: none;
+}
+.sheen::before { -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2); }
+.sheen::after {
+  -webkit-text-stroke: 1.5px #FFFFFF;
+  -webkit-mask-image: radial-gradient(190px circle at var(--mx, -999px) var(--my, -999px), #000 0%, rgba(0, 0, 0, 0.45) 40%, transparent 72%);
+          mask-image: radial-gradient(190px circle at var(--mx, -999px) var(--my, -999px), #000 0%, rgba(0, 0, 0, 0.45) 40%, transparent 72%);
+  filter: drop-shadow(0 0 6px rgba(214, 232, 255, 0.6));
+}
+.hero-word-accent.sheen,
+.title-accent .sheen { color: transparent; }
+
+/* Menu: cápsula de vidro flutuante com o logo */
+.masthead {
+  position: sticky;
+  top: 16px;
+  width: calc(100% - 2 * var(--gutter));
+  max-width: calc(var(--max-width) - 128px);
+  margin: 16px auto 0;
+  padding: 10px 10px 10px 26px;
+  border: 1px solid var(--glass-line);
+  border-radius: 999px;
+  background: rgba(9, 12, 11, 0.55) var(--glass);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+          backdrop-filter: blur(16px) saturate(140%);
+  box-shadow: var(--glass-hi), 0 20px 44px rgba(0, 0, 0, 0.38);
+}
+.brand { width: 138px; }
+.masthead-note { display: none; }
+.nav-link::after { background: var(--pearl-ink); }
+
+/* Hero e faixa */
+.hero { border-bottom: 0; padding-top: 72px; }
+.logo-stage {
+  border: 1px solid var(--glass-line);
+  border-radius: 22px;
+  background: rgba(5, 7, 6, 0.72);
+  box-shadow: var(--glass-hi), 0 30px 60px rgba(0, 0, 0, 0.4);
+}
+.ticker {
+  background: rgba(255, 255, 255, 0.02);
+  border-color: var(--glass-line);
+  -webkit-backdrop-filter: blur(6px);
+          backdrop-filter: blur(6px);
+}
+.ticker-outline { -webkit-text-stroke: 1px rgba(241, 245, 239, 0.7); }
+.section-shell { border-bottom-color: rgba(255, 255, 255, 0.06); }
+
+/* Cards como vitrines de vidro */
+.project-card {
+  padding: 8px;
+  border: 1px solid var(--glass-line);
+  border-radius: 26px;
+  background: var(--glass);
+  box-shadow: var(--glass-hi), 0 24px 48px rgba(0, 0, 0, 0.3);
+}
+.project-card:hover {
+  border-color: var(--glass-line-strong);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.24), 0 30px 60px rgba(0, 0, 0, 0.45);
+}
+.project-card .project-art { border-bottom: 0; border-radius: 19px; }
+.project-info { padding: 22px 18px 18px; }
+.project-card .project-category { color: var(--muted-light); }
+
+/* Selos, métricas e links: a mesma cápsula de vidro de "Código no GitHub" */
+.project-card .project-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px;
+  border: 1px solid var(--glass-line-strong);
+  border-radius: 999px;
+  background: rgba(8, 11, 9, 0.6);
+  color: var(--pearl-ink);
+  font-weight: 500;
+  box-shadow: var(--glass-hi);
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
+}
+.project-card .project-badge-live::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+}
+.project-card .project-metric {
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: rgba(8, 11, 9, 0.45);
+  color: rgba(228, 233, 235, 0.82);
+  font-size: 11px;
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
+}
+.project-footer-link,
+.project-links .project-footer-link {
+  padding: 10px 18px;
+  border: 1px solid var(--glass-line-strong);
+  border-radius: 999px;
+  background: var(--glass);
+  box-shadow: var(--glass-hi);
+  color: var(--ink);
+  font-weight: 500;
+  transition: border-color 0.2s, box-shadow 0.2s, color 0.2s;
+}
+.project-card:hover .project-footer-link,
+.project-links .project-footer-link:hover,
+.project-links .project-footer-link:focus-visible,
+.project-card-masterbase .project-links .project-footer-link:hover {
+  color: var(--ink);
+  border-color: rgba(255, 255, 255, 0.32);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.26);
+}
+.project-links { align-items: center; padding: 10px 18px 18px; }
+.project-open {
+  background: rgba(8, 11, 9, 0.6);
+  border-color: var(--glass-line-strong);
+  box-shadow: var(--glass-hi);
+}
+.project:hover .project-open {
+  background: var(--pearl-ink);
+  border-color: var(--pearl-ink);
+  color: #080B09;
+}
+
+/* Estúdio, devs e contato */
+.studio-services-stack { border-top: 1px solid var(--glass-line-strong); }
+.service-module { border-bottom-color: var(--glass-line); }
+.manifesto-lead span { color: #C9CFD4; }
+.dev-photo {
+  padding: 8px;
+  border: 1px solid var(--glass-line);
+  border-radius: 26px;
+  background: var(--glass);
+  box-shadow: var(--glass-hi);
+}
+.dev-photo > img { border-radius: 19px; }
+.dev-github {
+  border-color: var(--glass-line-strong);
+  background: var(--glass);
+  box-shadow: var(--glass-hi);
+}
+.dev-github:hover { background: var(--glass); border-color: rgba(255, 255, 255, 0.32); color: var(--ink); }
+.dev-profile h3 a:hover { color: #C9CFD4; }
+.contact-channels { border-top-color: var(--glass-line); }
+.contact-channels > li { border-bottom-color: var(--glass-line); }
+.contact-option { border-radius: 20px; }
+a.contact-option:hover { background: rgba(255, 255, 255, 0.035); }
+.contact-channel-icon, .contact-option-arrow { color: var(--pearl-ink); }
+.contact-channel-status {
+  border-color: var(--glass-line-strong);
+  border-radius: 999px;
+  background: var(--glass);
+  box-shadow: var(--glass-hi);
+}
+.footer-top { border-bottom-color: var(--glass-line); }
+.back-to-top { border-color: var(--glass-line-strong); background: var(--glass); box-shadow: var(--glass-hi); }
+.back-to-top:hover { border-color: rgba(255, 255, 255, 0.32); color: var(--ink); }
+
+@media (max-width: 768px) {
+  .masthead { top: 10px; margin-top: 10px; padding: 8px 8px 8px 18px; width: calc(100% - 20px); }
+  .brand { width: 118px; }
+  .masthead nav {
+    top: calc(100% + 10px);
+    left: 0;
+    right: 0;
+    border: 1px solid var(--glass-line);
+    border-radius: 24px;
+    background: rgba(9, 12, 11, 0.92);
+    -webkit-backdrop-filter: blur(16px);
+            backdrop-filter: blur(16px);
+    box-shadow: var(--glass-hi), 0 20px 44px rgba(0, 0, 0, 0.5);
+  }
+  .menu-toggle { border-radius: 999px; border-color: var(--glass-line-strong); background: var(--glass); box-shadow: var(--glass-hi); }
+  .hero { padding-top: 40px; }
+  .project-links { padding: 8px 14px 16px; }
 }

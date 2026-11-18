@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0B100D">
+  <meta name="theme-color" content="#070908">
   <meta name="description" content="A MCode desenha e programa sites e landing pages para marcas que querem ser entendidas rápido. Conte sua ideia por e-mail.">
   <title>MCode | Sites e landing pages com design e código na mesma equipe</title>
   <link rel="canonical" href="https://mcode.dev.br/">
@@ -29,7 +29,8 @@
   <script src="app.mjs" type="module"></script>
   <script src="logo-animation.mjs" type="module"></script>
   <script src="cursor.mjs" type="module"></script>
-  <script src="liquid-background.mjs" type="module"></script>
+  <script src="contour-background.mjs" type="module"></script>
+  <script src="sheen.mjs" type="module"></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -46,7 +47,7 @@
   </script>
 </head>
 <body>
-<canvas id="liquid-background" aria-hidden="true"></canvas>
+<canvas id="contour-background" aria-hidden="true"></canvas>
 <div class="custom-cursor" aria-hidden="true">
   <canvas class="cursor-ring"></canvas>
   <canvas class="cursor-core"></canvas>
@@ -93,7 +94,7 @@
       <h1 id="hero-title">
         <span class="hero-title-line">SEU SITE</span>
         <span class="hero-title-line hero-title-accent">
-          <em class="hero-word-accent">EXPLICA</em>
+          <em class="hero-word-accent sheen" data-text="EXPLICA">EXPLICA</em>
         </span>
         <span class="hero-title-line">E CONVENCE.</span>
       </h1>
@@ -148,7 +149,7 @@
 
     <div class="section-heading">
       <div class="heading-col">
-        <h2 id="work-title">CASES EM<br><span class="outlined">PRODUÇÃO.</span></h2>
+        <h2 id="work-title">CASES EM<br><span class="sheen" data-text="PRODUÇÃO.">PRODUÇÃO.</span></h2>
       </div>
       <div class="heading-desc">
         <p>Do Masterbase, nosso Postgres com tela visual e código aberto, à plataforma do Instituto LEMMA e aos sites de clientes como o Cartório Algacyr Barros e a Sorvebom. Explore como unimos arquitetura de informação, design e código na prática. Quer colocar seu produto nesse nível? O e-mail está aberto.</p>
@@ -181,10 +182,7 @@
           </div>
         </a>
         <div class="project-links">
-          <a class="project-footer-link" href="https://masterbase-seven.vercel.app" target="_blank" rel="noopener noreferrer">
-            <span class="link-label">Conhecer o Masterbase</span>
-            <span class="link-arrow">→</span>
-          </a>
+          <a class="pearl pearl--sm" href="https://masterbase-seven.vercel.app" target="_blank" rel="noopener noreferrer"><span class="pearl-wrap"><span class="pearl-label"><span class="pearl-star" aria-hidden="true">✧</span><span class="pearl-star" aria-hidden="true">✦</span>Conhecer o Masterbase</span></span></a>
           <a class="project-footer-link" href="https://github.com/caioribi7/masterbase" target="_blank" rel="noopener noreferrer">
             <span class="link-label">Código no GitHub</span>
             <span class="link-arrow">→</span>
@@ -321,7 +319,7 @@
           <h2 id="studio-title">
             <span class="title-block">DESIGN E CÓDIGO</span>
             <span class="title-block title-accent">
-              <span class="outlined">NA</span> <span class="neon-word">MESMA MESA</span><span class="neon-dot">.</span>
+              <span class="outlined">NA</span> <span class="sheen" data-text="MESMA MESA.">MESMA MESA.</span>
             </span>
           </h2>
         </div>
@@ -384,7 +382,7 @@
 
   <section class="devs section-shell" id="devs" aria-labelledby="devs-title">
     <div class="section-heading">
-      <h2 id="devs-title">QUEM FAZ<br><span class="outlined">SEU SITE.</span></h2>
+      <h2 id="devs-title">QUEM FAZ<br><span class="sheen" data-text="SEU SITE.">SEU SITE.</span></h2>
       <div class="heading-desc"><p>Você fala direto com Mateus e Caio, os devs que desenham e programam o seu projeto.</p></div>
     </div>
     <div class="devs-grid">
@@ -418,7 +416,7 @@
   <section class="contact section-shell" id="contato" aria-labelledby="contact-title">
     <div class="contact-header">
       <div class="contact-heading">
-        <h2 id="contact-title">VAMOS<br><span class="outlined">CONVERSAR.</span></h2>
+        <h2 id="contact-title">VAMOS<br><span class="sheen" data-text="CONVERSAR.">CONVERSAR.</span></h2>
       </div>
       <div class="contact-intro">
         <p>Conte o que você precisa: o tipo de site, para quem ele é e o prazo que você tem em mente.</p>
