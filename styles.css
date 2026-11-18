@@ -363,17 +363,7 @@ svg {
   color: var(--muted);
 }
 
-#logo-canvas {
-  display: block;
-  width: 100%;
-  height: auto;
-  aspect-ratio: 1 / 0.62;
-  margin: 0;
-}
 
-#logo-canvas:not([data-rendered]) { display: none; }
-#logo-canvas[data-rendered] + .logo-fallback { display: none; }
-.logo-fallback { width: min(50%, 256px); margin: 64px auto; }
 
 /* Hero copy and actions */
 .hero-bottom {
@@ -1319,7 +1309,6 @@ h2, h3 { text-wrap: balance; font-weight: 400; }
   #hero-title { align-items: center; font-size: clamp(48px, 11vw, 80px); }
   .hero-title-accent { margin: 4px 0; }
   .logo-stage { grid-column: 1; grid-row: 3; width: 100%; margin-top: 32px; }
-  #logo-canvas { width: 100%; margin: 0; }
   .hero-bottom { grid-row: 2; }
   .hero-sub { margin: 0; max-width: 55ch; }
   .hero-actions { justify-content: center; gap: 12px 24px; }
@@ -1845,7 +1834,6 @@ a.contact-option:hover { background: rgba(255, 255, 255, 0.035); }
 }
 .logo-stage .terminal-title { color: rgba(228, 233, 235, 0.7); }
 .logo-stage .logo-terminal-bar > svg { color: rgba(228, 233, 235, 0.55); }
-.logo-stage #logo-canvas { filter: drop-shadow(0 0 10px rgba(163, 255, 18, 0.18)); }
 
 /* Menu: logo à esquerda, links num trilho de vidro no centro exato, contato à direita */
 .masthead {
@@ -1949,3 +1937,85 @@ a.contact-option:hover { background: rgba(255, 255, 255, 0.035); }
   /* blur aninhado não pega o conteúdo da página: o menu aberto precisa ser opaco */
   .masthead nav { background: #0B0E0D; }
 }
+
+/* Revisão 2 (18/11/2026) — menu sem trilho: links soltos, com um ponto lima no hover */
+.nav-links { gap: 30px; padding: 0; border: 0; background: none; box-shadow: none; }
+.nav-link { position: relative; padding: 8px 0; border-radius: 0; background: none; color: rgba(228, 233, 235, 0.68); }
+.nav-link:hover { background: none; color: var(--ink); }
+.nav-link::after {
+  display: block;
+  content: '';
+  position: absolute;
+  left: 50%;
+  right: auto;
+  bottom: -2px;
+  width: 4px;
+  height: 4px;
+  margin-left: -2px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+  transform: scale(0);
+  transition: transform 0.25s ease;
+}
+.nav-link:hover::after { transform: scale(1); }
+
+/* Terminal: um único filete de luz no topo, sem brilhos sobrepostos */
+.logo-stage::before,
+.logo-stage::after { display: none; }
+.logo-stage {
+  background: rgba(10, 13, 12, 0.5);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.16),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.07),
+    0 40px 60px rgba(0, 0, 0, 0.45),
+    0 14px 18px -10px rgba(0, 0, 0, 0.8);
+}
+.logo-stage .terminal-bar { border-bottom-color: rgba(255, 255, 255, 0.05); }
+
+@media (max-width: 768px) {
+  .nav-links { gap: 0; }
+  .nav-link { padding: 12px 16px; }
+  .nav-link::after { display: none; }
+}
+
+/* Terminal do topo: digitação + cena 3D em vídeo (hero-terminal.mjs) */
+.hero-term { position: relative; aspect-ratio: 1000 / 620; overflow: hidden; }
+.hero-term-log {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55em;
+  padding: clamp(18px, 3vw, 30px) clamp(18px, 3vw, 32px);
+  font: 400 clamp(12px, 1.25vw, 15px)/1.5 var(--mono);
+  color: rgba(228, 233, 235, 0.86);
+  transition: opacity 0.5s ease;
+}
+.hero-term-line { display: block; white-space: pre-wrap; }
+.hero-term-prompt { color: var(--accent); }
+.hero-term-ok { color: var(--accent); }
+.hero-term-done { color: #FFFFFF; }
+.hero-term-caret {
+  display: inline-block;
+  width: 0.6em;
+  height: 1.1em;
+  margin-left: 2px;
+  vertical-align: -0.2em;
+  background: var(--accent);
+  animation: hero-caret 1s steps(1) infinite;
+}
+@keyframes hero-caret { 50% { opacity: 0; } }
+.hero-term-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  -webkit-mask-image: radial-gradient(ellipse 75% 80% at 50% 50%, #000 70%, transparent 100%);
+          mask-image: radial-gradient(ellipse 75% 80% at 50% 50%, #000 70%, transparent 100%);
+}
+.hero-term[data-scene="video"] .hero-term-video { opacity: 1; }
+.hero-term[data-scene="video"] .hero-term-log { opacity: 0; }

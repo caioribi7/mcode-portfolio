@@ -27,7 +27,7 @@
   <link rel="preload" href="assets/fonts/space-grotesk.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="styles.css">
   <script src="app.mjs" type="module"></script>
-  <script src="logo-animation.mjs" type="module"></script>
+  <script src="hero-terminal.mjs" type="module"></script>
   <script src="cursor.mjs" type="module"></script>
   <script src="contour-background.mjs" type="module"></script>
   <script src="sheen.mjs" type="module"></script>
@@ -102,17 +102,20 @@
       </h1>
     </div>
 
-    <!-- Símbolo MCode em ASCII girando dentro de uma moldura de vidro perolado -->
+    <!-- Terminal perolado: digita "mcode start" e abre a cena 3D -->
     <div class="logo-stage">
       <div class="terminal-bar logo-terminal-bar" aria-hidden="true">
         <div class="terminal-dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
         <span class="terminal-title">mcode - web dev</span>
         <svg><use href="#terminal"/></svg>
       </div>
-      <canvas id="logo-canvas" width="560" height="347" role="img" aria-label="Símbolo MCode em caracteres ASCII verdes, girando em 3D">
-        <img src="MCode-Identidade-Visual/01-Logos-SVG/mcode-simbolo-verde.svg" alt="Símbolo MCode" width="256" height="256">
-      </canvas>
-      <img class="logo-fallback" src="MCode-Identidade-Visual/01-Logos-SVG/mcode-simbolo-verde.svg" alt="Símbolo MCode" width="256" height="256">
+      <div class="hero-term" id="hero-term" role="img" aria-label="Terminal digita mcode start e abre uma animação 3D: o símbolo MCode girando, depois um notebook e um celular com o site e a frase Seu site, feito por nós.">
+        <div class="hero-term-log" aria-hidden="true"><span class="hero-term-line"><span class="hero-term-prompt">$</span> <span class="hero-term-cmd">mcode start</span></span></div>
+        <video class="hero-term-video" muted playsinline preload="none" width="1000" height="620" aria-hidden="true">
+          <source src="assets/mcode-terminal.webm" type="video/webm">
+          <source src="assets/mcode-terminal.mp4" type="video/mp4">
+        </video>
+      </div>
 
     </div>
 

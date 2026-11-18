@@ -75,7 +75,7 @@ Os testes em `tests/` verificam contato, identidade, navegação, animações e 
 - `index.html`: conteúdo, navegação, projetos conceituais e o projeto Bara's Hotel, serviços e canais de contato.
 - `styles.css`: fontes locais, tokens CSS, composição, estados, responsividade e redução de movimento.
 - `refinements.css`: arquivo de compatibilidade; regras ativas em `styles.css`.
-- `logo-geometry.mjs`: contornos fiéis ao símbolo SVG original, extrusão com faces e rotação 3D.
+- `hero-terminal.mjs`: terminal do topo que digita `mcode start` e abre a cena 3D pré-renderizada (`assets/mcode-terminal.*`).
 - `logo-animation.mjs`: projeção em perspectiva e iluminação de faces, seguida de caracteres ASCII e chuva de código em Canvas 2D; não é uma imagem plana girando em CSS. Loop de 12 segundos, sem controle de pausa, reprodução automática contínua; o navegador pode limitar frames em abas em segundo plano.
 - `app.mjs`: menu móvel, abertura dos detalhes de projetos, abertura dos detalhes de projetos.
 - `404.html`: página de erro sem dependência de JavaScript.
