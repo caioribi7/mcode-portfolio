@@ -78,9 +78,11 @@
   </button>
 
   <nav id="nav" aria-label="Navegação principal">
-    <a href="#trabalhos" class="nav-link">Projetos</a>
-    <a href="#estudio" class="nav-link">Estúdio</a>
-    <a href="#devs" class="nav-link">Nossos devs</a>
+    <div class="nav-links">
+      <a href="#trabalhos" class="nav-link">Projetos</a>
+      <a href="#estudio" class="nav-link">Estúdio</a>
+      <a href="#devs" class="nav-link">Nossos devs</a>
+    </div>
     <a class="pearl pearl--sm" href="#contato"><span class="pearl-wrap"><span class="pearl-label"><span class="pearl-star" aria-hidden="true">✧</span><span class="pearl-star" aria-hidden="true">✦</span>Falar com a MCode</span></span></a>
   </nav>
 </header>
@@ -100,14 +102,14 @@
       </h1>
     </div>
 
-    <!-- ASCII logo and Matrix-style character rain -->
+    <!-- Símbolo MCode em ASCII girando dentro de uma moldura de vidro perolado -->
     <div class="logo-stage">
       <div class="terminal-bar logo-terminal-bar" aria-hidden="true">
         <div class="terminal-dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
         <span class="terminal-title">mcode - web dev</span>
         <svg><use href="#terminal"/></svg>
       </div>
-      <canvas id="logo-canvas" width="560" height="347" role="img" aria-label="Símbolo MCode em caracteres ASCII verdes, com rotação 3D e chuva de código no estilo Matrix">
+      <canvas id="logo-canvas" width="560" height="347" role="img" aria-label="Símbolo MCode em caracteres ASCII verdes, girando em 3D">
         <img src="MCode-Identidade-Visual/01-Logos-SVG/mcode-simbolo-verde.svg" alt="Símbolo MCode" width="256" height="256">
       </canvas>
       <img class="logo-fallback" src="MCode-Identidade-Visual/01-Logos-SVG/mcode-simbolo-verde.svg" alt="Símbolo MCode" width="256" height="256">
@@ -196,17 +198,13 @@
           <div class="project-art lemma-art">
             <div class="project-card-header">
               <span class="project-badge project-badge-live">PRODUÇÃO REAL</span>
-              <span class="project-metric">COMUNIDADE · ITA/IME</span>
+              <span class="project-metric">ITA · IME</span>
             </div>
-            <div class="mock-top">
-              <b>LEMMA—</b>
-              <span>EXATAS &amp; OLIMPÍADAS</span>
-            </div>
-            <video class="project-video" data-autoplay-loop muted loop playsinline preload="metadata" poster="assets/lemma-capa-poster.webp" width="1820" height="700" aria-hidden="true">
+            <!-- Capa: o site no ar, em navegador e celular girando em 3D -->
+            <video class="project-video" data-autoplay-loop muted loop playsinline preload="metadata" poster="assets/lemma-capa-poster.webp" width="780" height="676" aria-hidden="true">
               <source src="assets/lemma-capa.webm" type="video/webm">
               <source src="assets/lemma-capa.mp4" type="video/mp4">
             </video>
-            <span class="mock-bottom">26 APOSTILAS · QUESTÕES · REVISTA</span>
             <span class="project-open" aria-hidden="true"><svg><use href="#arrow"/></svg></span>
           </div>
 
@@ -215,9 +213,9 @@
               <h3 class="project-name">Instituto LEMMA</h3>
               <span class="project-category">Educação &amp; Tecnologia</span>
             </div>
-            <p class="project-desc">Plataforma e ecossistema digital para estudantes de alta performance em matemática, física e química. Autenticação, acervo de apostilas, cronômetro de estudos e publicação científica no ar.</p>
+            <p class="project-desc">Plataforma para estudantes de alta performance em exatas, com login, acervo de apostilas, cronômetro de estudos e uma revista científica no ar.</p>
             <div class="project-footer-link">
-              <span class="link-label">Acessar institutolemma.com.br</span>
+              <span class="link-label">Visitar o site do LEMMA</span>
               <span class="link-arrow">→</span>
             </div>
           </div>
@@ -232,25 +230,11 @@
               <span class="project-badge">CLIENTE</span>
               <span class="project-metric">SERVENTIA · BOM CONSELHO/PE</span>
             </div>
-            <!-- Capa animada em CSS: o atendimento começa com uma mensagem e termina no selo -->
-            <div class="cartorio-cover" data-animated-cover aria-hidden="true">
-              <span class="cc-folio">FL. 1</span>
-              <p class="cc-title">
-                <span class="cc-line">Seu atendimento</span>
-                <span class="cc-line">começa com uma</span>
-                <span class="cc-line cc-gold">mensagem.</span>
-              </p>
-              <span class="cc-rule"></span>
-              <div class="cc-chat">
-                <span class="cc-bubble cc-ask"><span class="cc-typing"><i></i><i></i><i></i></span><span class="cc-text">Preciso de uma certidão de matrícula.</span></span>
-                <span class="cc-bubble cc-reply">Pedido registrado. Avisamos quando ficar pronta.</span>
-              </div>
-              <span class="cc-seal">
-                <svg viewBox="0 0 120 120"><defs><path id="cc-ring" d="M60 60m-46 0a46 46 0 1 1 92 0a46 46 0 1 1 -92 0"/></defs><circle cx="60" cy="60" r="57" /><circle cx="60" cy="60" r="36" /><text><textPath href="#cc-ring">CARTÓRIO ALGACYR BARROS · BOM CONSELHO ·</textPath></text></svg>
-                <img src="assets/cartorio-selo.webp" alt="" width="240" height="233" loading="lazy" decoding="async">
-              </span>
-            </div>
-            <span class="mock-bottom">CERTIDÕES · REGISTROS · ESCRITURAS</span>
+            <!-- Capa: o site no ar, em navegador e celular girando em 3D -->
+            <video class="project-video" data-autoplay-loop muted loop playsinline preload="metadata" poster="assets/cartorio-capa-poster.webp" width="780" height="676" aria-hidden="true">
+              <source src="assets/cartorio-capa.webm" type="video/webm">
+              <source src="assets/cartorio-capa.mp4" type="video/mp4">
+            </video>
             <span class="project-open" aria-hidden="true"><svg><use href="#arrow"/></svg></span>
           </div>
 
@@ -259,7 +243,7 @@
               <h3 class="project-name">Cartório Algacyr Barros</h3>
               <span class="project-category">Serviço notarial</span>
             </div>
-            <p class="project-desc">Site institucional da Serventia Notarial e Registral de Bom Conselho. Triagem que indica qual ato pedir, atendimento pelo WhatsApp e solicitações pelo Portal do ONR.</p>
+            <p class="project-desc">Site da serventia de Bom Conselho, com uma triagem que indica qual ato pedir, atendimento pelo WhatsApp e pedidos pelo Portal do ONR.</p>
             <div class="project-footer-link">
               <span class="link-label">Visitar o site do cartório</span>
               <span class="link-arrow">→</span>
@@ -275,22 +259,11 @@
               <span class="project-badge">CONCEITO</span>
               <span class="project-metric">ALIMENTOS &amp; VAREJO</span>
             </div>
-            <div class="mock-top">
-              <b>SORVEBOM—</b>
-              <span>DESDE 1983</span>
-            </div>
-            <!-- Capa animada em CSS: produtos se revezam ao lado da tagline -->
-            <div class="sorvebom-cover" data-animated-cover aria-hidden="true">
-              <p class="sb-title"><span>A vida tem</span><span class="sb-yellow">nosso</span><span class="sb-yellow">sabor.</span></p>
-              <div class="sb-stage">
-                <img class="sb-product" src="assets/sorvebom-mag-cookies.webp" alt="" width="487" height="760" loading="lazy" decoding="async">
-                <img class="sb-product" src="assets/sorvebom-mag-black.webp" alt="" width="495" height="760" loading="lazy" decoding="async">
-                <img class="sb-product" src="assets/sorvebom-picole-abacaxi.webp" alt="" width="299" height="480" loading="lazy" decoding="async">
-                <img class="sb-product" src="assets/sorvebom-pote-sonho-de-verao-2l.webp" alt="" width="900" height="739" loading="lazy" decoding="async">
-                <img class="sb-product" src="assets/sorvebom-pote-leitinho-trufado-zero-1l.webp" alt="" width="900" height="613" loading="lazy" decoding="async">
-              </div>
-            </div>
-            <span class="mock-bottom">SORVETES, PICOLÉS &amp; TRADIÇÃO FAMILIAR</span>
+            <!-- Capa: o site no ar, em navegador e celular girando em 3D -->
+            <video class="project-video" data-autoplay-loop muted loop playsinline preload="metadata" poster="assets/sorvebom-capa-poster.webp" width="780" height="676" aria-hidden="true">
+              <source src="assets/sorvebom-capa.webm" type="video/webm">
+              <source src="assets/sorvebom-capa.mp4" type="video/mp4">
+            </video>
             <span class="project-open" aria-hidden="true"><svg><use href="#arrow"/></svg></span>
           </div>
 
@@ -299,9 +272,9 @@
               <h3 class="project-name">Sorvebom</h3>
               <span class="project-category">Alimentos &amp; Bebidas</span>
             </div>
-            <p class="project-desc">Identidade e experiência digital para fábrica tradicional gaúcha. Tradição familiar desde 1983, mais de 150 opções de gelados e presença de varejo.</p>
+            <p class="project-desc">Identidade e site para uma fábrica gaúcha de sorvetes desde 1983, com mais de 150 sabores apresentados como vitrine de varejo.</p>
             <div class="project-footer-link">
-              <span class="link-label">Visitar sorvebom.mcode.dev.br</span>
+              <span class="link-label">Visitar o site da Sorvebom</span>
               <span class="link-arrow">→</span>
             </div>
           </div>
@@ -472,7 +445,7 @@
   </div>
 
   <div class="footer-bottom">
-    <span class="footer-note">MCode · Portfólio conceitual</span>
+    <span class="footer-note">MCode · Portfólio</span>
     <span class="footer-copyright">© 2026 MCode. Todos os direitos reservados.</span>
   </div>
 </footer>

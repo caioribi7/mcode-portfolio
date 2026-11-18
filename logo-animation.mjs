@@ -76,24 +76,21 @@ if (!ctx) {
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     let glyphs = 0;
+    // Só o símbolo em ASCII, sem chuva de fundo: a moldura de vidro perolado faz o resto.
     for (let column = 0; column < columns; column++) {
       const seed = (column * 7919 + 104729) % 65521;
-      const head = (phase / CYCLE_MS * (rows + 18) * (1 + column % 3) + seed % (rows + 18)) % (rows + 18);
       for (let row = 0; row < rows; row++) {
         const x = (column + 0.5) * cellWidth;
         const y = (row + 0.5) * cellHeight;
         const offset = (Math.floor(y) * w + Math.floor(x)) * 4;
-        const onLogo = pixels[offset + 3] > 150;
-        const trail = (head - row + rows + 18) % (rows + 18);
-        const rain = trail < 14 ? 1 - trail / 14 : 0;
-        if (!onLogo && !rain) continue;
+        if (pixels[offset + 3] <= 150) continue;
         const noise = (seed + row * 31 + tick * (1 + column % 4)) % alphabet.length;
         const luminance = pixels[offset] / 255;
-        const character = onLogo && (row + column) % 3 === 0
+        const character = (row + column) % 3 === 0
           ? density[Math.round(luminance * (density.length - 1))]
           : alphabet[noise];
-        ctx.globalAlpha = onLogo ? 0.55 + luminance * 0.35 + rain * 0.1 : rain * 0.25;
-        ctx.fillStyle = onLogo && rain > 0.9 ? '#e1ffc4' : '#a3ff12';
+        ctx.globalAlpha = 0.5 + luminance * 0.5;
+        ctx.fillStyle = luminance > 0.82 ? '#ecffd6' : '#a3ff12';
         ctx.fillText(character, x, y);
         glyphs++;
       }

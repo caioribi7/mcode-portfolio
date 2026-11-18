@@ -1462,116 +1462,6 @@ h2, h3 { text-wrap: balance; font-weight: 400; }
 .project-coming-soon p { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.6; }
 
 
-/* Cartório Art — capa animada em CSS (8 s em loop), com a identidade do site:
-   vinho, ouro velho e papel. Pausa fora da tela (app.mjs, data-animated-cover). */
-.cartorio-art {
-  --cc-wine: #3B0D15;
-  --cc-wine-deep: #26070D;
-  --cc-gold: #C9A45C;
-  --cc-gold-soft: #E8CD8A;
-  --cc-paper: #F6EFE3;
-  background: radial-gradient(120% 90% at 20% 10%, #4A1019 0%, var(--cc-wine) 45%, var(--cc-wine-deep) 100%);
-  color: var(--cc-paper);
-  border-bottom: 1px solid var(--line);
-}
-.cartorio-art .mock-bottom { z-index: 2; color: var(--cc-gold); }
-.cartorio-art .project-open { z-index: 2; }
-.cartorio-art .project-badge { background: var(--cc-gold); color: var(--cc-wine-deep); border-color: var(--cc-gold); font-weight: 600; }
-.cartorio-art .project-metric { font-family: var(--mono); font-size: 11px; color: var(--cc-gold-soft); letter-spacing: 0.06em; }
-
-.cartorio-cover {
-  position: absolute;
-  inset: 0;
-  container-type: size;
-  overflow: hidden;
-  --cc-dur: 8s;
-}
-.cartorio-cover * { animation-duration: var(--cc-dur); animation-iteration-count: infinite; animation-timing-function: cubic-bezier(.2, .8, .2, 1); animation-fill-mode: both; }
-[data-animated-cover].is-offscreen * { animation-play-state: paused; }
-
-.cc-folio {
-  position: absolute;
-  top: 58px;
-  right: 24px;
-  font: 600 11px/1 var(--mono);
-  letter-spacing: 0.12em;
-  color: var(--cc-gold);
-  animation-name: cc-fade;
-}
-.cc-title {
-  position: absolute;
-  left: 24px;
-  top: 64px;
-  margin: 0;
-  font: 700 min(7.4cqw, 11.5cqh)/0.98 var(--body);
-  letter-spacing: -0.035em;
-  color: var(--cc-paper);
-}
-.cc-line { display: block; animation-name: cc-rise; }
-.cc-line:nth-child(2) { animation-name: cc-rise-2; }
-.cc-line:nth-child(3) { animation-name: cc-rise-3; }
-.cc-gold { color: var(--cc-gold); }
-.cc-rule {
-  position: absolute;
-  left: 24px;
-  right: 24px;
-  top: calc(64px + min(7.4cqw, 11.5cqh) * 3.2);
-  height: 2px;
-  background: linear-gradient(90deg, var(--cc-gold), rgba(201, 164, 92, 0.15));
-  transform-origin: left;
-  animation-name: cc-draw;
-}
-.cc-chat {
-  position: absolute;
-  left: 24px;
-  width: min(56cqw, 360px);
-  top: calc(64px + min(7.4cqw, 11.5cqh) * 3.2 + 18px);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 8px;
-  font: 500 clamp(11px, 2.6cqw, 14px)/1.35 var(--body);
-}
-.cc-bubble { position: relative; max-width: 100%; padding: 8px 12px; border-radius: 14px 14px 14px 4px; }
-.cc-ask { background: var(--cc-paper); color: var(--cc-wine); animation-name: cc-pop-1; }
-.cc-reply { align-self: flex-end; border: 1px solid var(--cc-gold); color: var(--cc-gold-soft); border-radius: 14px 14px 4px 14px; animation-name: cc-pop-2; }
-.cc-text { animation-name: cc-text; }
-.cc-typing { position: absolute; left: 12px; top: 50%; display: flex; gap: 4px; transform: translateY(-50%); animation-name: cc-typing; }
-.cc-typing i { width: 5px; height: 5px; border-radius: 50%; background: var(--cc-wine); animation: cc-dot .9s ease-in-out infinite; }
-.cc-typing i:nth-child(2) { animation-delay: .15s; }
-.cc-typing i:nth-child(3) { animation-delay: .3s; }
-.cc-seal {
-  position: absolute;
-  right: 7%;
-  bottom: 22%;
-  width: min(26cqw, 38cqh);
-  aspect-ratio: 1;
-  display: grid;
-  place-items: center;
-  rotate: -12deg;
-  animation-name: cc-stamp;
-  animation-timing-function: cubic-bezier(.3, 1.4, .5, 1);
-}
-.cc-seal svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
-.cc-seal circle { fill: none; stroke: var(--cc-gold); stroke-width: 1.5; }
-.cc-seal circle:first-of-type { stroke-width: 2.5; }
-.cc-seal text { fill: var(--cc-gold); font: 600 9.4px var(--mono); letter-spacing: 0.14em; }
-.cc-seal img { width: 44%; height: auto; }
-
-/* Linha do tempo (em % de 8 s): título 0,2–1,5 s · régua 1,6 s · mensagem 2,2 s ·
-   resposta 3,9 s · selo 5 s · tudo some em 7–7,7 s e o quadro final fica vazio. */
-@keyframes cc-fade { 0%, 2% { opacity: 0; } 8%, 86% { opacity: 1; } 95%, 100% { opacity: 0; } }
-@keyframes cc-rise { 0%, 3% { opacity: 0; transform: translateY(40%); } 11%, 86% { opacity: 1; transform: none; } 95%, 100% { opacity: 0; transform: translateY(-12%); } }
-@keyframes cc-rise-2 { 0%, 7% { opacity: 0; transform: translateY(40%); } 15%, 86% { opacity: 1; transform: none; } 95%, 100% { opacity: 0; transform: translateY(-12%); } }
-@keyframes cc-rise-3 { 0%, 11% { opacity: 0; transform: translateY(40%); } 19%, 86% { opacity: 1; transform: none; } 95%, 100% { opacity: 0; transform: translateY(-12%); } }
-@keyframes cc-draw { 0%, 19% { transform: scaleX(0); } 27%, 86% { transform: scaleX(1); opacity: 1; } 95%, 100% { transform: scaleX(1); opacity: 0; } }
-@keyframes cc-pop-1 { 0%, 27% { opacity: 0; transform: translateY(10px) scale(.96); } 31%, 86% { opacity: 1; transform: none; } 95%, 100% { opacity: 0; transform: none; } }
-@keyframes cc-typing { 0%, 30% { opacity: 0; } 32%, 40% { opacity: 1; } 42%, 100% { opacity: 0; } }
-@keyframes cc-text { 0%, 41% { opacity: 0; } 44%, 100% { opacity: 1; } }
-@keyframes cc-pop-2 { 0%, 49% { opacity: 0; transform: translateY(10px) scale(.96); } 53%, 86% { opacity: 1; transform: none; } 95%, 100% { opacity: 0; transform: none; } }
-@keyframes cc-stamp { 0%, 62% { opacity: 0; transform: scale(1.6); } 66% { opacity: 1; transform: scale(.94); } 69%, 86% { opacity: 1; transform: scale(1); } 95%, 100% { opacity: 0; transform: scale(1); } }
-@keyframes cc-dot { 0%, 100% { opacity: .3; transform: translateY(0); } 50% { opacity: 1; transform: translateY(-2px); } }
-
 /* Capas em vídeo (HyperFrames: projetos/vertice-video-capa e projetos/sorvebom/video-capa).
    A ação fica no centro do quadro para resistir ao corte do card no desktop e no mobile. */
 .project-video {
@@ -1589,88 +1479,12 @@ h2, h3 { text-wrap: balance; font-weight: 400; }
 .sorvebom-art .project-open {
   z-index: 2;
 }
-/* Abaixo de 4:3 o corte come o título; as faixas somem no fundo do próprio card. */
+/* Abaixo de 4:3 o corte come o terminal do Masterbase; ele aparece inteiro.
+   As capas 3D dos outros cases já têm a ação no centro e preenchem o card. */
 @media (max-width: 480px) {
-  .project-video { object-fit: contain; }
+  .masterbase-art .project-video { object-fit: contain; }
 }
 
-
-/* Sorvebom Art */
-.sorvebom-art {
-  background: #160D08;
-  color: #FFF8EF;
-  border-bottom: 1px solid var(--line);
-  position: relative;
-  overflow: hidden;
-}
-.sorvebom-art .mock-top b,
-.sorvebom-art .mock-top span,
-.sorvebom-art .mock-bottom {
-  color: #E9D6C8;
-}
-.sorvebom-art .project-badge {
-  background: #C8005A;
-  color: #FFF8EF;
-  border-color: #C8005A;
-}
-.sorvebom-art .project-metric {
-  font-family: var(--mono);
-  font-size: 11px;
-  color: #FFC83B;
-  letter-spacing: 0.06em;
-}
-
-
-/* Sorvebom — capa animada em CSS (8 s em loop): os cinco produtos, recortados
-   sem o halo branco, entram um a um ao lado da tagline. */
-.sorvebom-art { background: radial-gradient(70% 70% at 70% 45%, #3A0F2A 0%, #1E0E12 55%, #160D08 100%); }
-.sorvebom-cover { position: absolute; inset: 0; container-type: size; overflow: hidden; }
-.sb-title {
-  position: absolute;
-  left: 24px;
-  top: 50%;
-  margin: 0;
-  transform: translateY(-46%);
-  display: flex;
-  flex-direction: column;
-  font: 400 min(12.5cqw, 16cqh)/0.92 var(--display);
-  letter-spacing: 0.01em;
-  text-transform: uppercase;
-  color: #FFF8EF;
-  z-index: 1;
-}
-.sb-yellow { color: #FFC83B; }
-.sb-stage {
-  position: absolute;
-  right: 6%;
-  top: 22%;
-  bottom: 14%;
-  width: 36cqw;
-}
-.sb-product {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  filter: drop-shadow(0 18px 24px rgba(0, 0, 0, 0.45));
-  opacity: 0;
-  animation: sb-swap 8s cubic-bezier(.2, .8, .2, 1) infinite both;
-}
-/* potes são largos: ficam menores para equilibrar com os picolés */
-.sb-product:nth-child(n+4) { scale: .8; }
-.sb-product:nth-child(2) { animation-delay: -6.4s; }
-.sb-product:nth-child(3) { animation-delay: -4.8s; }
-.sb-product:nth-child(4) { animation-delay: -3.2s; }
-.sb-product:nth-child(5) { animation-delay: -1.6s; }
-/* cada produto ocupa 1,6 s: entra girando pela direita, flutua e sai para cima */
-@keyframes sb-swap {
-  0% { opacity: 0; transform: translate(35%, 6%) rotate(18deg) scale(.9); }
-  5% { opacity: 1; transform: translate(0, 0) rotate(-6deg) scale(1); }
-  17% { opacity: 1; transform: translate(-3%, -3%) rotate(-9deg) scale(1.02); }
-  22% { opacity: 0; transform: translate(-12%, -16%) rotate(-14deg) scale(.96); }
-  100% { opacity: 0; transform: translate(35%, 6%) rotate(18deg) scale(.9); }
-}
 
 /* Lemma Art (Case em Destaque) */
 .lemma-art {
@@ -1746,7 +1560,6 @@ h2, h3 { text-wrap: balance; font-weight: 400; }
   /* mesma proporção do vídeo (1820×700): nada do terminal nem do painel fica cortado */
   .masterbase-art { height: auto; aspect-ratio: 1820 / 700; }
   .work-grid-trio .project-card:not(.project-card-full) .project-art { height: 340px; }
-  .work-grid-trio .lemma-art .project-video { object-fit: contain; }
   .work-grid-trio .project-badge { white-space: nowrap; }
   .work-grid-trio .project-card:not(.project-card-full) .project-name { font-size: 22px; }
 }
@@ -1972,4 +1785,167 @@ a.contact-option:hover { background: rgba(255, 255, 255, 0.035); }
   .menu-toggle { border-radius: 999px; border-color: var(--glass-line-strong); background: var(--glass); box-shadow: var(--glass-hi); }
   .hero { padding-top: 40px; }
   .project-links { padding: 8px 14px 16px; }
+}
+
+/* ==========================================================================
+   Revisão (18/11/2026): terminal perolado, menu centrado, cards alinhados
+   ========================================================================== */
+
+/* Terminal no mesmo vidro perolado dos botões: blur do fundo, brilho no topo,
+   reflexo embaixo e sombra projetada. Só o símbolo em ASCII gira dentro. */
+.logo-stage {
+  position: relative;
+  border: 0;
+  border-radius: 28px;
+  background: rgba(8, 11, 9, 0.42);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+          backdrop-filter: blur(18px) saturate(150%);
+  box-shadow:
+    inset 0 4px 14px rgba(255, 255, 255, 0.2),
+    inset 0 -2px 5px rgba(0, 0, 0, 0.7),
+    inset 0 -10px 24px rgba(255, 255, 255, 0.12),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 40px 60px rgba(0, 0, 0, 0.45),
+    0 14px 18px -10px rgba(0, 0, 0, 0.8);
+  isolation: isolate;
+}
+.logo-stage::before,
+.logo-stage::after {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+  z-index: -1;
+}
+.logo-stage::before {
+  left: -15%;
+  right: -15%;
+  top: -70%;
+  bottom: 62%;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+}
+.logo-stage::after {
+  left: 4%;
+  right: 4%;
+  top: 2%;
+  height: 28%;
+  border-radius: 24px 24px 0 0;
+  box-shadow: inset 0 10px 8px -10px rgba(255, 255, 255, 0.7);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0) 70%);
+}
+.logo-stage .terminal-bar {
+  background: transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  padding: 16px 22px;
+}
+.logo-stage .terminal-dots .dot {
+  background: radial-gradient(circle at 35% 30%, #FFFFFF 0%, #C9CFD4 45%, #6E7479 100%);
+  opacity: 0.55;
+  box-shadow: inset 0 -1px 2px rgba(0, 0, 0, 0.5);
+}
+.logo-stage .terminal-title { color: rgba(228, 233, 235, 0.7); }
+.logo-stage .logo-terminal-bar > svg { color: rgba(228, 233, 235, 0.55); }
+.logo-stage #logo-canvas { filter: drop-shadow(0 0 10px rgba(163, 255, 18, 0.18)); }
+
+/* Menu: logo à esquerda, links num trilho de vidro no centro exato, contato à direita */
+.masthead {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  max-width: calc(var(--max-width) - 2 * var(--gutter));
+}
+.masthead-main { justify-self: start; }
+.masthead nav {
+  grid-column: 2 / 4;
+  display: grid;
+  grid-template-columns: subgrid;
+  align-items: center;
+  gap: 0;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 4px;
+  border: 1px solid var(--glass-line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.03);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+.nav-link {
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-family: var(--body);
+  font-size: 14px;
+  letter-spacing: 0;
+  color: rgba(228, 233, 235, 0.72);
+  transition: color 0.2s, background-color 0.2s;
+}
+.nav-link::after { display: none; }
+.nav-link:hover { color: var(--ink); background: rgba(255, 255, 255, 0.07); }
+.masthead nav > .pearl { justify-self: end; }
+
+/* Os três cases menores: mesma estrutura, mesma altura, botão sempre no pé do card */
+.work-grid-trio .project-card:not(.project-card-full) { display: flex; flex-direction: column; }
+.work-grid-trio .project-card:not(.project-card-full) .project {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.work-grid-trio .project-card:not(.project-card-full) .project-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.work-grid-trio .project-card:not(.project-card-full) .project-meta-row {
+  flex-direction: column-reverse;
+  align-items: flex-start;
+  gap: 6px;
+}
+.work-grid-trio .project-card:not(.project-card-full) .project-category {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.work-grid-trio .project-card:not(.project-card-full) .project-desc { flex: 1; }
+.work-grid-trio .project-card:not(.project-card-full) .project-footer-link { align-self: flex-start; }
+
+/* Estúdio: serviços como placas de vidro e o botão encaixado à direita da nota */
+.studio-services-stack { gap: 12px; border-top: 0; }
+.studio-services-stack .service-module {
+  padding: 24px 26px;
+  border: 1px solid var(--glass-line);
+  border-radius: 22px;
+  background: var(--glass);
+  box-shadow: var(--glass-hi);
+}
+.studio-action-strip {
+  margin-top: 20px;
+  padding: 10px 10px 10px 26px;
+  border: 1px solid var(--glass-line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.02);
+  flex-wrap: nowrap;
+}
+
+@media (max-width: 768px) {
+  .masthead { display: flex; justify-content: space-between; }
+  .masthead nav { display: none; grid-template-columns: none; gap: 14px; padding: 16px; }
+  .masthead nav.is-open { display: flex; }
+  .nav-links { flex-direction: column; align-items: stretch; border: 0; background: none; box-shadow: none; padding: 0; }
+  .nav-link { padding: 12px 16px; font-size: 16px; }
+  .masthead nav > .pearl { justify-self: auto; align-self: center; }
+  .logo-stage { border-radius: 22px; }
+  .studio-action-strip { flex-direction: column; align-items: flex-start; border-radius: 22px; padding: 18px; }
+}
+
+/* Capas 3D dos cases (o site no ar em navegador e celular): fundo escuro neutro */
+.lemma-art, .cartorio-art, .sorvebom-art { background: #070908; }
+.cartorio-art .project-open, .sorvebom-art .project-open, .lemma-art .project-open { z-index: 2; }
+/* Etiquetas dos cards em uma linha só */
+.project-card .project-metric { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+@media (max-width: 768px) {
+  /* blur aninhado não pega o conteúdo da página: o menu aberto precisa ser opaco */
+  .masthead nav { background: #0B0E0D; }
 }

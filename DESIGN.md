@@ -68,3 +68,5 @@ The local production copy was reviewed at 1920, 1440, 1280, 1101, 1024, 844 land
 
 
 Latest portfolio decision: remove the Bara's Hotel group and show exactly two noninteractive Em breve slots. No concept details or image viewer remain on the page. This supersedes previous project-display instructions.
+
+Revision (18 November 2026): the hero terminal is a pearl glass panel (backdrop blur, top highlight, lower reflection, cast shadow, pearl traffic dots) and shows only the spinning ASCII MCode symbol, with no Matrix rain. The masthead is a three-column grid: logo left, links in a glass rail at the exact centre, contact button right. The LEMMA, Cartório and Sorvebom cards share one structure (mono category above the name, description filling the space, link pinned to the bottom) and their covers are 10 s looping videos of the live site in a tilted browser window and phone, rendered from real captures, in place of the earlier brand-art CSS covers.

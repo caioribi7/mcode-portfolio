@@ -50,9 +50,9 @@ test('portfolio features Masterbase, with LEMMA, the cartório and Sorvebom side
  assert.doesNotMatch(html, /project-image-viewer|data-image-preview/);
 });
 
-test('Masterbase and Lemma cards use a looping video cover, started by app.mjs while visible', () => {
+test('all four cases use a looping video cover, started by app.mjs while visible', () => {
  const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
- for (const name of ['masterbase', 'lemma']) {
+ for (const name of ['masterbase', 'lemma', 'cartorio', 'sorvebom']) {
   const card = html.match(new RegExp(`<a class="project project-${name}"[\\s\\S]*?</a>`))?.[0];
   assert.ok(card, `Missing ${name} card`);
   const video = card.match(/<video\b[^>]*>/)?.[0];
@@ -67,28 +67,6 @@ test('Masterbase and Lemma cards use a looping video cover, started by app.mjs w
  const app = readFileSync(new URL('../app.mjs', import.meta.url), 'utf8');
  assert.match(app, /IntersectionObserver/);
  assert.match(app, /\.play\(\)/);
-});
-
-test('cartório card uses the animated CSS cover with the seal, paused off-screen by app.mjs', () => {
- const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
- const card = html.match(/<a class="project project-cartorio"[\s\S]*?<\/a>/)?.[0];
- assert.ok(card, 'Missing cartório card');
- assert.match(card, /class="cartorio-cover" data-animated-cover aria-hidden="true"/);
- assert.match(card, /src="assets\/cartorio-selo.webp"/);
- assert.ok(existsSync(new URL('../assets/cartorio-selo.webp', import.meta.url)));
- const app = readFileSync(new URL('../app.mjs', import.meta.url), 'utf8');
- assert.match(app, /\[data-animated-cover\]/);
-});
-
-test('Sorvebom card uses the animated CSS cover with the five cleaned product cutouts', () => {
- const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
- const card = html.match(/<a class="project project-sorvebom"[\s\S]*?<\/a>/)?.[0];
- assert.ok(card, 'Missing Sorvebom card');
- assert.match(card, /class="sorvebom-cover" data-animated-cover aria-hidden="true"/);
- assert.doesNotMatch(card, /<video/);
- const products = [...card.matchAll(/src="assets\/(sorvebom-[\w-]+\.webp)"/g)].map(m => m[1]);
- assert.equal(products.length, 5);
- for (const file of products) assert.ok(existsSync(new URL(`../assets/${file}`, import.meta.url)), `Missing ${file}`);
 });
 
 test('dev profile pages exist, are published and stay free of personal e-mails', () => {
