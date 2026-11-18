@@ -1701,3 +1701,60 @@ h2, h3 { text-wrap: balance; font-weight: 400; }
   color: #C4B5FD;
   letter-spacing: 0.06em;
 }
+
+/* Masterbase (destaque): capa em vídeo com terminal e painel, cores da marca do produto */
+.masterbase-art {
+  background: #0A0B1F;
+  color: #F4F5FF;
+  border-bottom: 1px solid var(--line);
+}
+.masterbase-art .mock-top,
+.masterbase-art .mock-bottom,
+.masterbase-art .project-open { z-index: 2; }
+.masterbase-art .mock-top b,
+.masterbase-art .mock-top span,
+.masterbase-art .mock-bottom { color: #9AA0E0; }
+.masterbase-art .project-badge-live {
+  background: #E6FF00;
+  border-color: #E6FF00;
+  color: #0A0B1F;
+}
+.masterbase-art .project-metric {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: #E6FF00;
+  letter-spacing: 0.06em;
+}
+.project-card-masterbase { display: flex; flex-direction: column; }
+.project-card-masterbase .project { height: auto; }
+.project-card-masterbase .project-info { padding-bottom: 8px; }
+.project-card-masterbase .project-desc { margin-bottom: 0; max-width: 72ch; }
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 32px;
+  padding: 10px 28px 28px;
+}
+.project-links .project-footer-link { color: var(--ink); }
+.project-links .project-footer-link:hover,
+.project-links .project-footer-link:focus-visible { color: var(--accent); }
+.project-links .project-footer-link:hover .link-arrow { transform: translateX(4px); }
+.project-card-masterbase:hover .project-footer-link { color: var(--ink); }
+.project-card-masterbase:hover .link-arrow { transform: none; }
+.project-card-masterbase .project-links .project-footer-link:hover { color: var(--accent); }
+.project-card-masterbase .project-links .project-footer-link:hover .link-arrow { transform: translateX(4px); }
+
+/* Desktop: Masterbase em largura total; LEMMA, Cartório e Sorvebom lado a lado */
+@media (min-width: 1025px) {
+  .work-grid-trio { grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  /* mesma proporção do vídeo (1820×700): nada do terminal nem do painel fica cortado */
+  .masterbase-art { height: auto; aspect-ratio: 1820 / 700; }
+  .work-grid-trio .project-card:not(.project-card-full) .project-art { height: 340px; }
+  .work-grid-trio .lemma-art .project-video { object-fit: contain; }
+  .work-grid-trio .project-badge { white-space: nowrap; }
+  .work-grid-trio .project-card:not(.project-card-full) .project-name { font-size: 22px; }
+}
+@media (max-width: 768px) {
+  .project-links { padding: 8px 22px 22px; }
+  .project-card-masterbase .project-info { padding-bottom: 8px; }
+}
