@@ -21,6 +21,8 @@ const MIME_TYPES = {
   '.mp4': 'video/mp4',
   '.webm': 'video/webm',
   '.ttf': 'font/ttf',
+  '.woff2': 'font/woff2',
+  '.webp': 'image/webp',
   '.txt': 'text/plain; charset=utf-8',
 };
 

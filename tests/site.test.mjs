@@ -57,12 +57,12 @@ test('Masterbase and Lemma cards use a looping video cover, started by app.mjs w
   assert.ok(card, `Missing ${name} card`);
   const video = card.match(/<video\b[^>]*>/)?.[0];
   assert.ok(video, `${name} card must have a cover video`);
-  for (const attr of ['class="project-video"', 'data-autoplay-loop', 'muted', 'loop', 'playsinline', `poster="assets/${name}-capa-poster.jpg"`, 'aria-hidden="true"']) assert.ok(video.includes(attr), `${name}: missing ${attr}`);
+  for (const attr of ['class="project-video"', 'data-autoplay-loop', 'muted', 'loop', 'playsinline', `poster="assets/${name}-capa-poster.webp"`, 'aria-hidden="true"']) assert.ok(video.includes(attr), `${name}: missing ${attr}`);
   assert.doesNotMatch(video, /\bautoplay\b(?!-)/, 'Playback is started by app.mjs only while the card is visible');
   assert.match(card, new RegExp(`<source src="assets/${name}-capa\\.webm" type="video/webm">`));
   assert.match(card, new RegExp(`<source src="assets/${name}-capa\\.mp4" type="video/mp4">`));
   assert.doesNotMatch(card, new RegExp(`${name}-vector|${name}-title-art`));
-  for (const ext of ['.mp4', '.webm', '-poster.jpg']) assert.ok(existsSync(new URL(`../assets/${name}-capa${ext}`, import.meta.url)), `Missing ${name}-capa${ext}`);
+  for (const ext of ['.mp4', '.webm', '-poster.webp']) assert.ok(existsSync(new URL(`../assets/${name}-capa${ext}`, import.meta.url)), `Missing ${name}-capa${ext}`);
  }
  const app = readFileSync(new URL('../app.mjs', import.meta.url), 'utf8');
  assert.match(app, /IntersectionObserver/);
@@ -74,8 +74,8 @@ test('cartório card uses the animated CSS cover with the seal, paused off-scree
  const card = html.match(/<a class="project project-cartorio"[\s\S]*?<\/a>/)?.[0];
  assert.ok(card, 'Missing cartório card');
  assert.match(card, /class="cartorio-cover" data-animated-cover aria-hidden="true"/);
- assert.match(card, /src="assets\/cartorio-selo\.png"/);
- assert.ok(existsSync(new URL('../assets/cartorio-selo.png', import.meta.url)));
+ assert.match(card, /src="assets\/cartorio-selo.webp"/);
+ assert.ok(existsSync(new URL('../assets/cartorio-selo.webp', import.meta.url)));
  const app = readFileSync(new URL('../app.mjs', import.meta.url), 'utf8');
  assert.match(app, /\[data-animated-cover\]/);
 });

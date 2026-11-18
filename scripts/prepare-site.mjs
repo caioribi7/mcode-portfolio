@@ -1,8 +1,32 @@
-import { copyFile, lstat, mkdir, readdir } from 'node:fs/promises';
+import { copyFile, lstat, mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, join, relative, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const projectRoot = fileURLToPath(new URL('../', import.meta.url));
+
+// Compactação sem dependências e sem perda: tira comentários e espaços que não mudam nada.
+// CSS: sem comentários, espaços colapsados e cortados em volta de { } ; , > e no fim do bloco.
+// HTML: sem comentários (exceto condicionais) e sem a indentação do começo das linhas;
+// o espaço entre palavras e entre tags inline fica intacto. JS fica como está (já é pequeno).
+export function minifyCss(css) {
+  return css
+    .replace(/\/\*[\s\S]*?\*\//g, '')
+    .replace(/\s+/g, ' ')
+    .replace(/\s*([{};,>])\s*/g, '$1')
+    .replace(/;}/g, '}')
+    .trim();
+}
+
+export function minifyHtml(html) {
+  return html
+    .replace(/<!--(?!\[)[\s\S]*?-->/g, '')
+    .replace(/\r\n?/g, '\n')
+    .replace(/\n[ \t]+/g, '\n')
+    .replace(/\n{2,}/g, '\n')
+    .trim() + '\n';
+}
+
+const MINIFIERS = { '.css': minifyCss, '.html': minifyHtml };
 
 // Explicit publication boundary. Never copy the repository recursively.
 export const PUBLIC_FILES = Object.freeze([
@@ -21,31 +45,29 @@ export const PUBLIC_FILES = Object.freeze([
   'sheen.mjs',
   'logo-animation.mjs',
   'logo-geometry.mjs',
-  'assets/frame-composition.svg',
-  'assets/baras-hotel.jpg',
   'assets/social-preview.jpg',
   'assets/masterbase-capa.mp4',
   'assets/masterbase-capa.webm',
-  'assets/masterbase-capa-poster.jpg',
+  'assets/masterbase-capa-poster.webp',
   'assets/lemma-capa.mp4',
   'assets/lemma-capa.webm',
-  'assets/lemma-capa-poster.jpg',
+  'assets/lemma-capa-poster.webp',
   'assets/sorvebom-mag-cookies.webp',
   'assets/sorvebom-mag-black.webp',
   'assets/sorvebom-picole-abacaxi.webp',
   'assets/sorvebom-pote-sonho-de-verao-2l.webp',
   'assets/sorvebom-pote-leitinho-trufado-zero-1l.webp',
-  'assets/cartorio-selo.png',
+  'assets/cartorio-selo.webp',
   'devs/dev-1.jpg',
   'devs/dev-2.jpg',
-  'assets/fonts/anton.ttf',
-  'assets/fonts/barlow.ttf',
-  'assets/fonts/space-grotesk.ttf',
-  'assets/fonts/geist-mono.ttf',
+  'devs/dev-1.webp',
+  'devs/dev-2.webp',
+  'assets/fonts/anton.woff2',
+  'assets/fonts/space-grotesk.woff2',
+  'assets/fonts/geist-mono.woff2',
   'assets/fonts/OFL-SpaceGrotesk.txt',
   'assets/fonts/OFL-GeistMono.txt',
   'assets/fonts/OFL-Anton.txt',
-  'assets/fonts/OFL-Barlow.txt',
   'MCode-Identidade-Visual/01-Logos-SVG/mcode-horizontal-cor-escuro.svg',
   'MCode-Identidade-Visual/01-Logos-SVG/mcode-simbolo-verde.svg',
   'MCode-Identidade-Visual/03-Web/favicon.svg',
@@ -98,7 +120,9 @@ export async function prepareSite(sourceDirectory = projectRoot) {
   for (const file of PUBLIC_FILES) {
     const target = join(output, file);
     await mkdir(dirname(target), { recursive: true });
-    await copyFile(join(source, file), target);
+    const minify = MINIFIERS[file.slice(file.lastIndexOf('.'))];
+    if (minify) await writeFile(target, minify(await readFile(join(source, file), 'utf8')));
+    else await copyFile(join(source, file), target);
   }
   return output;
 }

@@ -4,7 +4,7 @@ import { mkdtemp, mkdir, writeFile, readFile, readdir, cp, rm, lstat, realpath }
 import { tmpdir } from 'node:os';
 import { dirname, join, relative, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { prepareSite, PUBLIC_FILES } from '../scripts/prepare-site.mjs';
+import { prepareSite, PUBLIC_FILES, minifyCss, minifyHtml } from '../scripts/prepare-site.mjs';
 
 const project = fileURLToPath(new URL('../', import.meta.url));
 
@@ -43,7 +43,10 @@ test('publication includes only explicit assets and licenses, never local secret
   const output = await prepareSite(root);
   assert.deepEqual(await listFiles(output), [...PUBLIC_FILES].sort());
   for (const file of PUBLIC_FILES) {
-    assert.deepEqual(await readFile(join(output, file)), await readFile(join(root, file)));
+    const [built, original] = [await readFile(join(output, file)), await readFile(join(root, file))];
+    // HTML e CSS saem compactados (nunca maiores); o resto é cópia byte a byte.
+    if (/\.(?:html|css)$/.test(file)) assert.ok(built.length <= original.length && (built.length > 0 || original.toString().trim().startsWith("/*")), file);
+    else assert.deepEqual(built, original);
   }
   for (const file of PUBLIC_FILES.filter((name) => /\.(?:html|css|mjs)$/.test(name))) {
     const content = await readFile(join(output, file), 'utf8');
@@ -81,4 +84,10 @@ test('repackaging refreshes source changes and a missing source aborts before co
   await rm(join(root, '404.html'));
   await assert.rejects(prepareSite(root), { code: 'ENOENT' });
   assert.ok((await lstat(join(output, '404.html'))).isFile());
+});
+
+test('compaction keeps strings, inline spacing and selectors intact', () => {
+  assert.equal(minifyCss('/* x */\n.a > .b ,\n.c { content: attr(data-text) / ""; color: red ; }\n.d:hover { x: 1 }'),
+    '.a>.b,.c{content: attr(data-text) / "";color: red}.d:hover{x: 1}');
+  assert.equal(minifyHtml('<p>\n    <!-- nota -->\n    Oi <b>MCode</b> aqui\n  </p>\n'), '<p>\nOi <b>MCode</b> aqui\n</p>\n');
 });
