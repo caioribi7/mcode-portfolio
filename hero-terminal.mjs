@@ -1,71 +1,56 @@
-// Terminal do topo: alguém digita "mcode start", o terminal responde e abre a cena 3D
-// (um site sendo construído: rascunho, design, camadas de código e no ar). A cena é um vídeo
-// pré-renderizado com three.js: leve para o navegador, sem WebGL no carregamento.
-// Ao terminar o vídeo, o ciclo recomeça; a animação nunca para (pedido explícito).
+// Terminal do topo, em loop curto (~6,5 s): digita o deploy, as três notas sobem
+// de 0 até o valor e aparece a linha "no ar". O HTML já traz o estado final, então
+// sem JavaScript o terminal mostra o resultado. A animação nunca para (pedido explícito).
 const root = document.querySelector('#hero-term');
 
 if (root) {
-  const log = root.querySelector('.hero-term-log');
-  const video = root.querySelector('.hero-term-video');
+  const typed = root.querySelector('.ht-typed');
+  const command = typed.textContent;
+  const scores = [...root.querySelectorAll('.ht-score')].map((el) => ({
+    el,
+    value: Number(el.dataset.value),
+    ring: el.querySelector('.ht-ring'),
+    label: el.querySelector('b'),
+  }));
+  const CIRCUMFERENCE = 2 * Math.PI * 27;
   const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-  const LINES = [
-    ['→ carregando identidade visual', 'ok'],
-    ['→ montando interface e tipografia', 'ok'],
-    ['→ ajustando para celular e desktop', 'ok'],
-  ];
+  const easeOut = (x) => 1 - Math.pow(1 - x, 3);
 
-  const line = (html) => {
-    const row = document.createElement('span');
-    row.className = 'hero-term-line';
-    row.innerHTML = html;
-    log.append(row);
-    return row;
+  const setScore = (score, value) => {
+    score.label.textContent = String(Math.round(value));
+    score.ring.style.strokeDashoffset = String(CIRCUMFERENCE * (1 - value / 100));
   };
 
-  // Espera o vídeo poder tocar, sem travar o ciclo se a rede falhar.
-  const ready = () => video.readyState >= 3 ? Promise.resolve(true) : Promise.race([
-    new Promise((resolve) => video.addEventListener('canplay', () => resolve(true), { once: true })),
-    wait(6000).then(() => false),
-  ]);
+  const countUp = (duration) => new Promise((resolve) => {
+    const start = performance.now();
+    const frame = (now) => {
+      const k = Math.min(1, (now - start) / duration);
+      scores.forEach((score, i) => setScore(score, score.value * easeOut(Math.max(0, Math.min(1, k * 1.25 - i * 0.12)))));
+      if (k < 1) requestAnimationFrame(frame);
+      else { scores.forEach((score) => setScore(score, score.value)); resolve(); }
+    };
+    requestAnimationFrame(frame);
+  });
 
   async function cycle() {
-    log.replaceChildren();
-    root.dataset.scene = 'type';
-    const prompt = line('<span class="hero-term-prompt">$</span> <span class="hero-term-cmd"></span><span class="hero-term-caret"></span>');
-    await wait(700);
-    const command = prompt.querySelector('.hero-term-cmd');
-    for (const character of 'mcode start') {
-      command.textContent += character;
-      await wait(70 + Math.random() * 70);
+    root.dataset.step = 'type';
+    typed.textContent = '';
+    scores.forEach((score) => setScore(score, 0));
+    await wait(350);
+    for (const character of command) {
+      typed.textContent += character;
+      await wait(32 + Math.random() * 30);
     }
-    await wait(380);
-    prompt.querySelector('.hero-term-caret').remove();
-    for (const [label, status] of LINES) {
-      const row = line(`<span>${label}</span> <span class="hero-term-ok">${status}</span>`);
-      row.lastChild.hidden = true;
-      await wait(420);
-      row.lastChild.hidden = false;
-    }
-    await wait(260);
-    line('<span class="hero-term-done">✦ pronto. construindo seu site</span><span class="hero-term-caret"></span>');
-    const playable = await ready();
-    await wait(650);
-    if (playable) {
-      video.currentTime = 0;
-      root.dataset.scene = 'video';
-      try {
-        await video.play();
-        await new Promise((resolve) => video.addEventListener('ended', resolve, { once: true }));
-      } catch { await wait(2000); }
-    } else {
-      await wait(2500);
-    }
-    root.dataset.scene = 'type';
-    await wait(500);
+    await wait(250);
+    root.dataset.step = 'scores';
+    await countUp(1300);
+    root.dataset.step = 'live';
+    await wait(2600);
+    root.dataset.step = 'out';
+    await wait(450);
     cycle();
   }
 
-  video.preload = 'auto';
-  video.load();
+  scores.forEach((score) => { score.ring.style.strokeDasharray = String(CIRCUMFERENCE); });
   cycle();
 }
